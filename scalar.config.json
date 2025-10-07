@@ -12,8 +12,30 @@
     {
       "name": "Extension Apps",
       "slug": "extension-apps",
-      "folder": "extension-apps",
-      "description": "Build custom apps and integrations for the Teachfloor platform"
+      "sidebar": [
+        {
+          "name": "Introduction",
+          "description": "Introduction to Teachfloor Extension Apps",
+          "icon": "phosphor/regular/house",
+          "path": "extension-apps/README.md",
+          "type": "page"
+        },
+        {
+          "name": "Getting Started",
+          "type": "folder",
+          "defaultOpen": false,
+          "children": [
+            {
+              "path": "extension-apps/01-introduction.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-apps/02-quickstart.md",
+              "type": "page"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Webhooks",
@@ -31,16 +53,16 @@
   ],
   "header": [
     {
+      "type": "reference",
+      "slug": "api-reference"
+    },
+    {
       "type": "guide",
       "slug": "extension-apps"
     },
     {
       "type": "guide",
       "slug": "webhooks"
-    },
-    {
-      "type": "reference",
-      "slug": "api-reference"
     },
     {
       "type": "spacer"
