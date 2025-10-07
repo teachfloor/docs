@@ -5,6 +5,7 @@
     "description": "Learn how to integrate Teachfloor with your business."
   },
   "assetsDir": "assets",
+  "insertPageTitles": false,
   "customDomain": "docs.teachfloor.com",
   "publishOnMerge": true,
   "guides": [
@@ -13,6 +14,12 @@
       "slug": "extension-apps",
       "folder": "extension-apps",
       "description": "Build custom apps and integrations for the Teachfloor platform"
+    },
+    {
+      "name": "Webhooks",
+      "slug": "webhooks",
+      "folder": "webhooks",
+      "description": "Receive real-time event notifications from Teachfloor"
     }
   ],
   "references": [
@@ -26,6 +33,10 @@
     {
       "type": "guide",
       "slug": "extension-apps"
+    },
+    {
+      "type": "guide",
+      "slug": "webhooks"
     },
     {
       "type": "reference",
@@ -42,8 +53,8 @@
   ],
   "siteConfig": {
     "logo": {
-      "darkMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-dark.svg",
-      "lightMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-light.svg"
+      "darkMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-light.svg",
+      "lightMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-dark.svg"
     },
     "footer": ""
   }
