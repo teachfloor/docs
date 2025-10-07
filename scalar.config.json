@@ -170,12 +170,12 @@
         },
         {
           "name": "Authentication",
-          "path": "webhooks/02-authentication.md",
+          "path": "api/02-authentication.md",
           "type": "page"
         },
         {
           "name": "Rate Limiting",
-          "path": "webhooks/03-rate-limiting.md",
+          "path": "api/03-rate-limiting.md",
           "type": "page"
         }
       ]
