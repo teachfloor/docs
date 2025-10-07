@@ -53,21 +53,14 @@
               "type": "page"
             },
             {
-              "name": "Extension Kit",
-              "type": "folder",
-              "defaultOpen": true,
-              "children": [
-                {
-                  "name": "UI Components",
-                  "path": "extension-apps/05-components.md",
-                  "type": "page"
-                },
-                {
-                  "name": "Integration",
-                  "path": "extension-apps/06-integration.md",
-                  "type": "page"
-                }
-              ]
+              "name": "Extension Kit Components",
+              "path": "extension-apps/05-components.md",
+              "type": "page"
+            },
+            {
+              "name": "Extension Kit Integration",
+              "path": "extension-apps/06-integration.md",
+              "type": "page"
             }
           ]
         }
