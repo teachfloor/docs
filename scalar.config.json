@@ -177,6 +177,33 @@
           "type": "page"
         }
       ]
+    },
+    {
+      "name": "Teachfloor.js",
+      "slug": "teachfloor-js",
+      "sidebar": [
+        {
+          "name": "Introduction",
+          "description": "JavaScript SDK for custom integrations",
+          "path": "teachfloor-js/README.md",
+          "type": "page"
+        },
+        {
+          "name": "Getting Started",
+          "path": "teachfloor-js/01-getting-started.md",
+          "type": "page"
+        },
+        {
+          "name": "SDK Methods",
+          "path": "teachfloor-js/02-sdk-methods.md",
+          "type": "page"
+        },
+        {
+          "name": "Viewports Reference",
+          "path": "teachfloor-js/03-viewports-reference.md",
+          "type": "page"
+        }
+      ]
     }
   ],
   "references": [
@@ -198,6 +225,10 @@
     {
       "type": "guide",
       "slug": "extension-apps"
+    },
+    {
+      "type": "guide",
+      "slug": "teachfloor-js"
     },
     {
       "type": "spacer"
