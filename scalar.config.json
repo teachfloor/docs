@@ -4,9 +4,9 @@
   "publishOnMerge": true,
   "guides": [
     {
-      "name": "Extension App Development",
-      "slug": "extension-app-development",
-      "folder": "extension-app-development",
+      "name": "Extension Apps",
+      "slug": "extension-apps",
+      "folder": "extension-apps",
       "description": "Build custom apps and integrations for the Teachfloor platform"
     }
   ],
@@ -16,5 +16,33 @@
       "slug": "api-reference",
       "liveLink": "https://app.teachfloor.com/docs.openapi"
     }
-  ]
+  ],
+  "header": [
+    {
+      "type": "guide",
+      "slug": "extension-apps"
+    },
+    {
+      "type": "reference",
+      "slug": "api-reference"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "title": "Go to Teachfloor",
+      "type": "link",
+      "link": "https://app.teachfloor.com"
+    }
+  ],
+  "siteConfig": {
+    "logo": {
+      "darkMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-dark.svg",
+      "lightMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-light.svg"
+    },
+    "cssFiles": [
+      "assets/styles.css"
+    ],
+    "footer": ""
+  }
 }
