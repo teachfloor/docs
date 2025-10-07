@@ -1,0 +1,89 @@
+{
+  "$schema": "https://cdn.scalar.com/schema/scalar-config.json",
+  "customDomain": "docs.teachfloor.com",
+  "publishOnMerge": true,
+  "guides": [
+    {
+      "name": "Extension App Development",
+      "sidebar": [
+        {
+          "name": "Getting Started",
+          "items": [
+            {
+              "path": "extension-app-development/README.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/01-introduction.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/02-quickstart.md",
+              "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "Core Concepts",
+          "items": [
+            {
+              "path": "extension-app-development/03-app-manifest.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/04-viewports.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/05-components.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/06-integration.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/07-data-storage.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/08-permissions.md",
+              "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "Development & Deployment",
+          "items": [
+            {
+              "path": "extension-app-development/09-deployment.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/10-cli-reference.md",
+              "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "Resources",
+          "items": [
+            {
+              "path": "extension-app-development/11-best-practices.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/12-examples.md",
+              "type": "page"
+            },
+            {
+              "path": "extension-app-development/13-troubleshooting.md",
+              "type": "page"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": []
+}
