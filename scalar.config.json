@@ -55,7 +55,7 @@
             {
               "name": "Extension Kit",
               "type": "folder",
-              "defaultOpen": false,
+              "defaultOpen": true,
               "children": [
                 {
                   "name": "UI Components",
