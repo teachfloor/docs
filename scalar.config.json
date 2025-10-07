@@ -127,6 +127,44 @@
       "slug": "webhooks",
       "folder": "webhooks",
       "description": "Receive real-time event notifications from Teachfloor"
+    },
+    {
+      "name": "Webhooks",
+      "slug": "webhooks",
+      "sidebar": [
+        {
+          "name": "Webhooks",
+          "description": "Introduction to Teachfloor Webhooks",
+          "icon": "phosphor/regular/house",
+          "path": "webhooks/README.md",
+          "type": "page"
+        },
+        {
+          "name": "Getting Started",
+          "path": "webhooks/01-getting-started.md",
+          "type": "page"
+        },
+        {
+          "name": "Security",
+          "path": "webhooks/02-security.md",
+          "type": "page"
+        },
+        {
+          "name": "Delivery & Retries",
+          "path": "webhooks/03-delivery-retries.md",
+          "type": "page"
+        },
+        {
+          "name": "Event Reference",
+          "path": "webhooks/04-event-reference.md",
+          "type": "page"
+        },
+        {
+          "name": "Troubleshooting",
+          "path": "webhooks/05-troubleshooting.md",
+          "type": "page"
+        }
+      ]
     }
   ],
   "references": [
