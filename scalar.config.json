@@ -11,7 +11,7 @@
   "guides": [
     {
       "name": "Apps",
-      "slug": "apps",
+      "slug": "extension-apps",
       "sidebar": [
         {
           "name": "Teachfloor Apps",
@@ -33,6 +33,33 @@
             {
               "name": "Quickstart Guide",
               "path": "extension-apps/02-quickstart.md",
+              "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "Core Concepts",
+          "type": "folder",
+          "defaultOpen": false,
+          "children": [
+            {
+              "name": "App Manifest",
+              "path": "extension-apps/03-app-manifest.md",
+              "type": "page"
+            },
+            {
+              "name": "Viewports System",
+              "path": "extension-apps/04-viewports.md",
+              "type": "page"
+            },
+            {
+              "name": "Extension Kit Components",
+              "path": "extension-apps/05-components.md",
+              "type": "page"
+            },
+            {
+              "name": "Extension Kit Integration",
+              "path": "extension-apps/06-integration.md",
               "type": "page"
             }
           ]
