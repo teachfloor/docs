@@ -10,11 +10,11 @@
   "publishOnMerge": true,
   "guides": [
     {
-      "name": "Extension Apps",
-      "slug": "extension-apps",
+      "name": "Apps",
+      "slug": "apps",
       "sidebar": [
         {
-          "name": "Introduction",
+          "name": "Teachfloor Apps",
           "description": "Introduction to Teachfloor Extension Apps",
           "icon": "phosphor/regular/house",
           "path": "extension-apps/README.md",
@@ -26,12 +26,48 @@
           "defaultOpen": false,
           "children": [
             {
+              "name": "Introduction",
               "path": "extension-apps/01-introduction.md",
               "type": "page"
             },
             {
+              "name": "Quickstart Guide",
               "path": "extension-apps/02-quickstart.md",
               "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "Core Concepts",
+          "type": "folder",
+          "defaultOpen": false,
+          "children": [
+            {
+              "name": "App Manifest",
+              "path": "extension-apps/03-app-manifest.md",
+              "type": "page"
+            },
+            {
+              "name": "Viewports System",
+              "path": "extension-apps/04-viewports.md",
+              "type": "page"
+            },
+            {
+              "name": "Extension Kit",
+              "type": "folder",
+              "defaultOpen": false,
+              "children": [
+                {
+                  "name": "UI Components",
+                  "path": "extension-apps/05-components.md",
+                  "type": "page"
+                },
+                {
+                  "name": "Integration",
+                  "path": "extension-apps/06-integration.md",
+                  "type": "page"
+                }
+              ]
             }
           ]
         }
