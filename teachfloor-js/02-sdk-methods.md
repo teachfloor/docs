@@ -87,23 +87,25 @@ API.emit(action, parameters)
 
 ### Available Actions
 
-#### `ui.toast.show`
-
-Display a toast notification in the Teachfloor dashboard.
-
-**Parameters:**
-- `message` (string, required): Notification text
-- `autoClose` (number, optional): Duration in milliseconds before auto-closing
-- `color` (string, optional): Accent color (`gray`, `green`, `red`)
+| Action | Description | Parameters |
+|--------|-------------|------------|
+| `ui.toast.show` | Display a toast notification | `message` (string, required)<br>`autoClose` (number, optional)<br>`color` (string, optional): `gray`, `green`, `red` |
+| `ui.drawer.show` | Show the app drawer | None |
+| `ui.drawer.hide` | Hide the app drawer | None |
+| `ui.drawer.toggle` | Toggle the app drawer visibility | None |
 
 ### Example
 
 ```javascript
+// Show toast notification
 API.emit('ui.toast.show', {
   message: 'Welcome to the course!',
   autoClose: 3000,
   color: 'green'
 });
+
+// Show drawer
+API.emit('ui.drawer.show');
 ```
 
 ---
