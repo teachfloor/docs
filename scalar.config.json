@@ -165,17 +165,23 @@
       "sidebar": [
         {
           "name": "Introduction",
-          "path": "api/01-introduction.md",
+          "description": "REST API for integrating with Teachfloor",
+          "path": "api/README.md",
           "type": "page"
         },
         {
           "name": "Authentication",
-          "path": "api/02-authentication.md",
+          "path": "api/01-authentication.md",
           "type": "page"
         },
         {
           "name": "Rate Limiting",
-          "path": "api/03-rate-limiting.md",
+          "path": "api/02-rate-limiting.md",
+          "type": "page"
+        },
+        {
+          "name": "Errors",
+          "path": "api/03-errors.md",
           "type": "page"
         }
       ]

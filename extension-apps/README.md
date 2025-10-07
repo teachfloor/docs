@@ -1,4 +1,4 @@
-# Teachfloor App Development Documentation
+# Teachfloor Apps
 
 Welcome to the Teachfloor App Development documentation! This guide will help you build powerful extensions that integrate seamlessly with the Teachfloor platform.
 
