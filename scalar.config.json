@@ -189,10 +189,6 @@
   ],
   "header": [
     {
-      "type": "reference",
-      "slug": "api-reference"
-    },
-    {
       "type": "guide",
       "slug": "api"
     },
@@ -206,6 +202,10 @@
     },
     {
       "type": "spacer"
+    },
+    {
+      "type": "reference",
+      "slug": "api-reference"
     },
     {
       "title": "Go to Teachfloor",
