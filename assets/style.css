@@ -1,9 +1,22 @@
 :root {
   --scalar-header-height: 64px;
+  --scalar-heading-spacing: 64px;
+}
+
+.t-editor .page-node>.t-editor__heading {
+  margin-top: 44px;
+}
+
+.t-editor .page-node {
+  max-width: min(100%, 840px)
 }
 
 .t-doc__header .header-item-link {
   padding: 12px 8px;
+}
+
+.t-doc__toc li {
+  padding: 2px 16px;
 }
 
 .t-doc__toc .level-3 {

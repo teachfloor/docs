@@ -253,7 +253,3 @@ Apps must request permissions to access platform resources:
 Now that you understand the basics, let's build your first app!
 
 → Continue to [Quickstart Guide](./02-quickstart.md)
-
-## Additional Resources
-
-- [Extension Kit Integration](./06-integration.md)

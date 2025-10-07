@@ -16,7 +16,6 @@
         {
           "name": "Teachfloor Apps",
           "description": "Introduction to Teachfloor Extension Apps",
-          "icon": "phosphor/regular/house",
           "path": "extension-apps/README.md",
           "type": "page"
         },
