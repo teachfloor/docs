@@ -2,10 +2,18 @@
   "$schema": "https://cdn.scalar.com/schema/scalar-config.json",
   "customDomain": "docs.teachfloor.com",
   "publishOnMerge": true,
+  "guides": [
+    {
+      "name": "Extension App Development",
+      "slug": "extension-app-development",
+      "folder": "extension-app-development",
+      "description": "Build custom apps and integrations for the Teachfloor platform"
+    }
+  ],
   "references": [
     {
-      "name": "Public API Reference",
-      "slug": "public-api",
+      "name": "API Reference",
+      "slug": "api-reference",
       "liveLink": "https://app.teachfloor.com/docs.openapi"
     }
   ]
