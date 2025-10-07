@@ -2,18 +2,6 @@
 
 Practical examples and code snippets for common Teachfloor app patterns.
 
-## Table of Contents
-
-- [Backend Integration (No UI)](#backend-integration-no-ui)
-- [Simple Widget](#simple-widget)
-- [Note-Taking App](#note-taking-app)
-- [Progress Tracker](#progress-tracker)
-- [Settings Page](#settings-page)
-- [Data Visualization](#data-visualization)
-- [External API Integration](#external-api-integration)
-
----
-
 ## Backend Integration (No UI)
 
 Apps can run without any UI, listening to platform events and integrating with external services.

@@ -2,18 +2,6 @@
 
 A curated collection of best practices, patterns, and recommendations for building high-quality Teachfloor apps.
 
-## Table of Contents
-
-- [Development](#development)
-- [Performance](#performance)
-- [Security](#security)
-- [User Experience](#user-experience)
-- [Code Quality](#code-quality)
-- [Testing](#testing)
-- [Deployment](#deployment)
-
----
-
 ## Development
 
 ### Project Structure
