@@ -125,16 +125,10 @@
     {
       "name": "Webhooks",
       "slug": "webhooks",
-      "folder": "webhooks",
-      "description": "Receive real-time event notifications from Teachfloor"
-    },
-    {
-      "name": "Webhooks",
-      "slug": "webhooks-introduction",
       "sidebar": [
         {
           "name": "Webhooks",
-          "description": "Introduction to Teachfloor Webhooks",
+          "description": "Receive real-time event notifications from Teachfloor",
           "icon": "phosphor/regular/house",
           "path": "webhooks/README.md",
           "type": "page"
