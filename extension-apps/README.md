@@ -46,9 +46,8 @@ Before you begin, ensure you have:
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/teachfloor/teachfloor-cli/issues)
+- **Issues**: [GitHub Issues](https://github.com/teachfloor/docs/issues)
 - **Email**: support@teachfloor.com
-- **Community**: [Teachfloor Developer Forum](https://community.teachfloor.com/developers)
 
 ## License
 

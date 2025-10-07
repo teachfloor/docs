@@ -256,7 +256,4 @@ Now that you understand the basics, let's build your first app!
 
 ## Additional Resources
 
-- [Extension Kit Storybook](https://extension-kit.teachfloor.com)
 - [Extension Kit Integration](./06-integration.md)
-- [Sample Apps Repository](https://github.com/teachfloor/sample-apps)
-- [Community Forum](https://community.teachfloor.com/developers)

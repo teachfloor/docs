@@ -291,8 +291,7 @@ devServer: {
 ## Get Help
 
 - [Troubleshooting Guide](./13-troubleshooting.md)
-- [GitHub Issues](https://github.com/teachfloor/teachfloor-cli/issues)
-- [Community Forum](https://community.teachfloor.com/developers)
+- [GitHub Issues](https://github.com/teachfloor/docs/issues)
 - Email: support@teachfloor.com
 
 ---
