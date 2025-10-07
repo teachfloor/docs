@@ -5,6 +5,14 @@
   --scalar-heading-1: 28px;
   --scalar-heading-2: 24px;
   --scalar-heading-3: 20px;
+
+  --scalar-sidebar-color-active: #0062ff;
+
+}
+
+.dark-mode {
+  --scalar-background-1: #090b0f;
+  --scalar-background-2: #121623;
 }
 
 .t-editor .page-node>.t-editor__heading {
@@ -29,6 +37,10 @@
 
 .t-doc__header .header-item-link {
   padding: 12px 8px;
+}
+
+.t-doc__header .header-item-logo {
+  height: 34px;
 }
 
 .t-doc__toc li {
