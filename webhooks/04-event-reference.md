@@ -4,250 +4,215 @@ Complete reference of available webhook events.
 
 ## Event Structure
 
-All webhook events follow a consistent JSON structure:
+All webhook events follow this JSON structure:
 
 ```json
 {
-  "event": "event.type",
-  "timestamp": "2025-10-07T15:30:00Z",
+  "id": "evt_abc123",
+  "type": "course.join",
+  "created_at": "2025-10-07T15:30:00.000000Z",
   "data": {
     // Event-specific data
   }
 }
 ```
 
-### Common Fields
+### Root Fields
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `event` | string | The event type identifier |
-| `timestamp` | string | ISO 8601 timestamp when the event occurred |
-| `data` | object | Event-specific payload (structure varies by event) |
+| `id` | string | Unique identifier for this webhook event |
+| `type` | string | The event type (e.g., `course.join`, `element.completed`) |
+| `created_at` | string | ISO 8601 timestamp when the event was created |
+| `data` | object | Event-specific payload (structure varies by event type) |
 
 ## Available Events
 
-Documentation for specific event types is coming soon. Check back or contact support for information about specific events you need to handle.
+### Course Events
 
-### Event Categories
+#### `course.created`
+Triggered when a new course is created.
 
-Events are organized into the following categories:
+#### `course.updated`
+Triggered when a course is updated.
 
-- **Member Events** - User actions and lifecycle
-- **Course Events** - Course creation, updates, and deletions
-- **Element Events** - Learning element interactions
-- **Progress Events** - Completion and progress tracking
-- **Custom Events** - Organization-specific events
+#### `course.completed`
+Triggered when a member completes a course.
 
-## Event Naming Convention
+#### `course.join`
+Triggered when a member joins a course.
 
-Event names follow the pattern: `resource.action`
-
-Examples:
-- `member.joined` - A member joined a course
-- `course.updated` - A course was updated
-- `element.completed` - A learning element was completed
-
-## Payload Examples
-
-### Member Event
-
+**Payload example:**
 ```json
 {
-  "event": "member.joined",
-  "timestamp": "2025-10-07T15:30:00Z",
+  "id": "evt_abc123",
+  "type": "course.join",
+  "created_at": "2025-10-07T15:30:00.000000Z",
   "data": {
+    "id": "cm_xyz789",
+    "object": "course_member",
+    "joined_at": "2025-10-07T15:30:00.000000Z",
     "member": {
-      "id": "mem_abc123",
-      "email": "user@example.com",
-      "name": "John Doe",
-      "avatar": "https://example.com/avatar.jpg"
+      "id": "usr_123",
+      "object": "member",
+      "first_name": "John",
+      "last_name": "Doe",
+      "full_name": "John Doe",
+      "avatar": "https://example.com/avatar.jpg",
+      "email": "john@example.com",
+      "is_email_verified": true,
+      "last_seen": "2025-10-07T14:00:00.000000Z"
     },
     "course": {
-      "id": "course_xyz789",
+      "id": "crs_456",
+      "object": "course",
+      "created_at": "2025-01-01T00:00:00.000000Z",
       "name": "Introduction to Development",
-      "slug": "intro-dev"
-    },
-    "organization": {
-      "id": "org_123",
-      "name": "Acme Academy"
-    }
-  }
-}
-```
-
-### Course Event
-
-```json
-{
-  "event": "course.updated",
-  "timestamp": "2025-10-07T15:30:00Z",
-  "data": {
-    "course": {
-      "id": "course_xyz789",
-      "name": "Introduction to Development",
-      "slug": "intro-dev",
       "status": "published",
-      "updated_at": "2025-10-07T15:30:00Z"
+      "cover": "https://example.com/cover.jpg",
+      "availability": "public",
+      "visibility": "listed",
+      "start_date": null,
+      "end_date": null,
+      "currency": "USD",
+      "price": 99.00,
+      "free_label": null,
+      "url": "https://app.teachfloor.com/org/intro-dev",
+      "public_url": "https://app.teachfloor.com/org/intro-dev/join",
+      "join_url": "https://app.teachfloor.com/org/intro-dev/join",
+      "metadata": {},
+      "custom_fields": {}
     },
-    "changes": {
-      "name": {
-        "old": "Intro to Dev",
-        "new": "Introduction to Development"
-      }
-    },
-    "organization": {
-      "id": "org_123",
-      "name": "Acme Academy"
-    }
+    "custom_fields": {}
   }
 }
 ```
 
-### Element Completion Event
+### Module Events
 
+#### `module.created`
+Triggered when a new module is created.
+
+#### `module.updated`
+Triggered when a module is updated.
+
+### Element Events
+
+#### `element.created`
+Triggered when a new element is created.
+
+#### `element.updated`
+Triggered when an element is updated.
+
+#### `element.deleted`
+Triggered when an element is deleted.
+
+#### `element.completed`
+Triggered when a member completes an element.
+
+**Payload example:**
 ```json
 {
-  "event": "element.completed",
-  "timestamp": "2025-10-07T15:30:00Z",
+  "id": "evt_def456",
+  "type": "element.completed",
+  "created_at": "2025-10-07T15:30:00.000000Z",
   "data": {
+    "id": "act_789",
+    "object": "activity",
+    "timestamp": "2025-10-07T15:30:00.000000Z",
+    "status": "completed",
+    "passed": true,
+    "score": 95,
+    "completed_by": "usr_123",
     "member": {
-      "id": "mem_abc123",
-      "email": "user@example.com",
-      "name": "John Doe"
+      "id": "usr_123",
+      "object": "member",
+      "first_name": "John",
+      "last_name": "Doe",
+      "full_name": "John Doe",
+      "avatar": "https://example.com/avatar.jpg",
+      "email": "john@example.com",
+      "is_email_verified": true,
+      "last_seen": "2025-10-07T15:30:00.000000Z"
     },
-    "element": {
-      "id": "elem_456",
-      "title": "Introduction Video",
-      "type": "video"
-    },
-    "module": {
-      "id": "mod_789",
-      "title": "Getting Started"
-    },
-    "course": {
-      "id": "course_xyz789",
-      "name": "Introduction to Development"
-    },
-    "completion": {
-      "completed_at": "2025-10-07T15:30:00Z",
-      "score": 100,
-      "status": "completed"
+    "context": {
+      "id": "elm_321",
+      "object": "element",
+      "created_at": "2025-01-01T00:00:00.000000Z",
+      "name": "Introduction Video",
+      "cover": "https://example.com/thumb.jpg",
+      "type": "video",
+      "position": 1,
+      "module": "mod_654",
+      "metadata": {}
     }
   }
 }
 ```
 
-## Testing Events
+### Member Events
 
-### Test Webhook
+#### `member.login`
+Triggered when a member logs in.
 
-You can trigger a test event from your Teachfloor dashboard:
+## Object Types
 
-1. Go to **Developers** → **Webhooks**
-2. Select your endpoint
-3. Click **Send Test Event**
-
-Test events have the same structure as production events but include a `test: true` flag:
+### Member Object
 
 ```json
 {
-  "event": "test.event",
-  "timestamp": "2025-10-07T15:30:00Z",
-  "test": true,
-  "data": {
-    "message": "This is a test webhook event"
-  }
+  "id": "usr_123",
+  "object": "member",
+  "first_name": "John",
+  "last_name": "Doe",
+  "full_name": "John Doe",
+  "avatar": "https://example.com/avatar.jpg",
+  "email": "john@example.com",
+  "is_email_verified": true,
+  "last_seen": "2025-10-07T15:30:00.000000Z"
 }
 ```
 
-### Handling Test Events
+### Course Object
 
-```javascript
-function handleWebhook(event) {
-  // Skip test events in production
-  if (event.test && process.env.NODE_ENV === 'production') {
-    console.log('Test event received, skipping');
-    return;
-  }
-
-  // Process real events
-  processEvent(event);
+```json
+{
+  "id": "crs_456",
+  "object": "course",
+  "created_at": "2025-01-01T00:00:00.000000Z",
+  "name": "Course Name",
+  "status": "published",
+  "cover": "https://example.com/cover.jpg",
+  "availability": "public",
+  "visibility": "listed",
+  "start_date": null,
+  "end_date": null,
+  "currency": "USD",
+  "price": 99.00,
+  "free_label": null,
+  "url": "https://app.teachfloor.com/org/course-slug",
+  "public_url": "https://app.teachfloor.com/org/course-slug/join",
+  "join_url": "https://app.teachfloor.com/org/course-slug/join",
+  "metadata": {},
+  "custom_fields": {}
 }
 ```
 
-## Event Filtering
+### Element Object
 
-When setting up your webhook, you can select which events to receive. This helps:
-
-- Reduce unnecessary traffic
-- Process only relevant events
-- Simplify your webhook handler logic
-
-**Tip**: Start with essential events and add more as needed.
-
-## Event Versioning
-
-As the Teachfloor platform evolves, event payloads may be updated. We follow these principles:
-
-- **Additive changes** - New fields added without breaking existing integrations
-- **Deprecation notices** - Advance warning before removing fields
-- **Version headers** - Future events may include version identifiers
-
-### Handling Unknown Fields
-
-Design your webhook handler to ignore unknown fields:
-
-```javascript
-function processEvent(event) {
-  // Extract only the fields you need
-  const { event: eventType, timestamp, data } = event;
-
-  // Ignore any additional fields
-  // Your integration won't break if new fields are added
+```json
+{
+  "id": "elm_321",
+  "object": "element",
+  "created_at": "2025-01-01T00:00:00.000000Z",
+  "name": "Element Name",
+  "cover": "https://example.com/thumb.jpg",
+  "type": "video",
+  "position": 1,
+  "module": "mod_654",
+  "metadata": {}
 }
 ```
-
-## Rate Limits
-
-Webhook delivery is not rate-limited by default. However, your endpoint should:
-
-- Handle bursts of events gracefully
-- Implement your own rate limiting if needed
-- Use queuing for high-volume scenarios
-
-## Webhook Ordering
-
-Events are delivered in near real-time, but:
-
-- **No guaranteed order** - Events may arrive out of sequence
-- **Timestamps included** - Use `timestamp` field to determine actual order
-- **Design for idempotency** - Handle events in any order
-
-### Example: Handling Out-of-Order Events
-
-```javascript
-function processEvent(event) {
-  const lastProcessed = await getLastProcessedTimestamp(event.data.resource_id);
-
-  // Skip if we've already processed a newer event
-  if (lastProcessed && new Date(event.timestamp) < new Date(lastProcessed)) {
-    console.log('Skipping older event');
-    return;
-  }
-
-  // Process event and update timestamp
-  await handleEvent(event);
-  await updateLastProcessedTimestamp(event.data.resource_id, event.timestamp);
-}
-```
-
-## Need More Information?
-
-For detailed information about specific events:
-
-- Check the [Teachfloor API documentation](https://docs.teachfloor.com)
-- Contact support through your Teachfloor dashboard
-- Request documentation for specific events you need
 
 ## Related Documentation
 
