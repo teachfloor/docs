@@ -85,5 +85,10 @@
       ]
     }
   ],
-  "references": []
+  "references": [
+    {
+      "name": "Public API Reference",
+      "url": "https://app.teachfloor.com/docs.openapi"
+    }
+  ]
 }
