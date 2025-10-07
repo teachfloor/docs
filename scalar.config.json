@@ -127,9 +127,8 @@
       "slug": "webhooks",
       "sidebar": [
         {
-          "name": "Webhooks",
+          "name": "Introduction",
           "description": "Receive real-time event notifications from Teachfloor",
-          "icon": "phosphor/regular/house",
           "path": "webhooks/README.md",
           "type": "page"
         },
@@ -159,6 +158,27 @@
           "type": "page"
         }
       ]
+    },
+    {
+      "name": "API",
+      "slug": "api",
+      "sidebar": [
+        {
+          "name": "Introduction",
+          "path": "api/01-introduction.md",
+          "type": "page"
+        },
+        {
+          "name": "Authentication",
+          "path": "webhooks/02-authentication.md",
+          "type": "page"
+        },
+        {
+          "name": "Rate Limiting",
+          "path": "webhooks/03-rate-limiting.md",
+          "type": "page"
+        }
+      ]
     }
   ],
   "references": [
@@ -175,11 +195,15 @@
     },
     {
       "type": "guide",
-      "slug": "extension-apps"
+      "slug": "api"
     },
     {
       "type": "guide",
       "slug": "webhooks"
+    },
+    {
+      "type": "guide",
+      "slug": "extension-apps"
     },
     {
       "type": "spacer"
