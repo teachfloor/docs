@@ -42,8 +42,8 @@
   ],
   "siteConfig": {
     "logo": {
-      "darkMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-dark.svg",
-      "lightMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-light.svg"
+      "darkMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-dark.svg",
+      "lightMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-light.svg"
     },
     "footer": ""
   }
