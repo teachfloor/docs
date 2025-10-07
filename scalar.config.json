@@ -1,5 +1,10 @@
 {
   "$schema": "https://cdn.scalar.com/schema/scalar-config.json",
+  "siteMeta": {
+    "title": "Teachfloor Documentation",
+    "description": "Learn how to integrate Teachfloor with your business."
+  },
+  "assetsDir": "assets",
   "customDomain": "docs.teachfloor.com",
   "publishOnMerge": true,
   "guides": [
@@ -40,9 +45,6 @@
       "darkMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-dark.svg",
       "lightMode": "https://github.com/teachfloor/docs/blob/master/assets/logo-light.svg"
     },
-    "cssFiles": [
-      "assets/styles.css"
-    ],
     "footer": ""
   }
 }
