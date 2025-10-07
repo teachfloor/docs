@@ -754,30 +754,4 @@ function NoteForm({ onSave }) {
 
 ---
 
-## Common Pitfalls
-
-### Avoid
-
-1. **Not handling loading states**
-2. **Ignoring errors**
-3. **Over-requesting permissions**
-4. **Large bundle sizes**
-5. **Missing error boundaries**
-6. **Not testing edge cases**
-7. **Hardcoding values**
-8. **Exposing sensitive data**
-9. **Not cleaning up effects**
-10. **Forgetting accessibility**
-
----
-
-## Resources
-
-- [React Documentation](https://react.dev/)
-- [Extension Kit](./05-components.md)
-- [Examples](./12-examples.md)
-- [Troubleshooting](./13-troubleshooting.md)
-
----
-
 **Remember**: Quality over speed. Take time to write maintainable, secure, and user-friendly code.
