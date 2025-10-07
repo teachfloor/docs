@@ -61,8 +61,6 @@ You can regenerate your API key at any time:
 
 - Store API keys in environment variables
 - Never hardcode keys in your application
-- Use different keys for different environments
-- Rotate keys periodically
 - Regenerate immediately if compromised
 
 ## Next Steps

@@ -21,21 +21,14 @@
           "type": "page"
         },
         {
-          "name": "Getting Started",
-          "type": "folder",
-          "defaultOpen": false,
-          "children": [
-            {
-              "name": "Introduction",
-              "path": "extension-apps/01-introduction.md",
-              "type": "page"
-            },
-            {
-              "name": "Quickstart Guide",
-              "path": "extension-apps/02-quickstart.md",
-              "type": "page"
-            }
-          ]
+          "name": "Introduction",
+          "path": "extension-apps/01-introduction.md",
+          "type": "page"
+        },
+        {
+          "name": "Quickstart Guide",
+          "path": "extension-apps/02-quickstart.md",
+          "type": "page"
         },
         {
           "name": "Core Concepts",
