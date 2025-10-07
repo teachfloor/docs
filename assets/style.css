@@ -11,11 +11,15 @@
   margin-top: 44px;
 }
 
+.t-editor .page-node>.t-editor__heading+.t-editor__heading {
+  margin-top: calc(var(--scalar-heading-spacing) * .35);
+}
+
 .page-node>h1:first-child {
   font-size: 32px;
 }
 
-.page-node>h1:first-child~p:first-of-type {
+.page-node>h1:first-child~p:first-of-type:nth-child(1n) {
   font-size: 18px;
 }
 

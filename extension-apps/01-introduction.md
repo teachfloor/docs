@@ -1,7 +1,5 @@
 # Introduction to Teachfloor Apps
 
-## Overview
-
 Teachfloor Apps are powerful extensions that allow you to customize and enhance the Teachfloor learning platform. Built using modern web technologies, apps integrate seamlessly into the platform's interface while maintaining security and performance.
 
 ## What Can You Build?
