@@ -70,6 +70,55 @@
               ]
             }
           ]
+        },
+        {
+          "name": "Advanced Topics",
+          "type": "folder",
+          "defaultOpen": false,
+          "children": [
+            {
+              "name": "Data Storage",
+              "path": "extension-apps/07-data-storage.md",
+              "type": "page"
+            },
+            {
+              "name": "Permissions",
+              "path": "extension-apps/08-permissions.md",
+              "type": "page"
+            },
+            {
+              "name": "Deployment",
+              "path": "extension-apps/09-deployment.md",
+              "type": "page"
+            }
+          ]
+        },
+        {
+          "name": "References",
+          "type": "folder",
+          "defaultOpen": false,
+          "children": [
+            {
+              "name": "Teachfloor CLI",
+              "path": "extension-apps/10-cli-reference.md",
+              "type": "page"
+            },
+            {
+              "name": "Best Practices",
+              "path": "extension-apps/11-best-practices.md",
+              "type": "page"
+            },
+            {
+              "name": "Examples",
+              "path": "extension-apps/12-examples.md",
+              "type": "page"
+            },
+            {
+              "name": "Troubleshooting",
+              "path": "extension-apps/13-troubleshooting.md",
+              "type": "page"
+            }
+          ]
         }
       ]
     },
