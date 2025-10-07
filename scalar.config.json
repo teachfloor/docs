@@ -218,6 +218,9 @@
       "darkMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-light.svg",
       "lightMode": "https://raw.githubusercontent.com/teachfloor/docs/refs/heads/master/assets/logo-dark.svg"
     },
+    "cssFiles": [
+      "assets/style.css"
+    ],
     "footer": ""
   }
 }

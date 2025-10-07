@@ -1,0 +1,11 @@
+:root {
+  --scalar-header-height: 64px;
+}
+
+.t-doc__header .header-item-link {
+  padding: 12px 8px;
+}
+
+.t-doc__toc .level-3 {
+  display: none;
+}

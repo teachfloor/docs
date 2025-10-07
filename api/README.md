@@ -20,7 +20,7 @@ The Teachfloor Public API provides programmatic access to your organization's da
 - [Authentication](./01-authentication.md) - Get your API key
 - [Rate Limiting](./02-rate-limiting.md) - Usage limits
 - [Errors](./03-errors.md) - Error handling
-- API Reference - Interactive documentation at [docs.teachfloor.com](https://docs.teachfloor.com)
+- API Reference - Interactive documentation at [docs.teachfloor.com](https://docs.teachfloor.com/api-reference)
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ curl https://api.teachfloor.com/v0/members \
 - **Members** - Access member information
 - **Custom Fields** - Work with custom field data
 
-See the full [API Reference](https://docs.teachfloor.com) for complete endpoint documentation.
+See the full [API Reference](https://docs.teachfloor.com/api-reference) for complete endpoint documentation.
 
 ## Need Help?
 

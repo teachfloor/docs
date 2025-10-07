@@ -264,36 +264,6 @@ teachfloor apps upload              # Upload to platform
 
 See [CLI Reference](./10-cli-reference.md) for the complete list of commands and options.
 
-## Troubleshooting
-
-### "Not logged in" error
-Run `teachfloor login` to authenticate.
-
-### Port 3000 already in use
-Set a different port in `webpack.config.js`:
-```javascript
-devServer: {
-  port: 3001,
-  // ...
-}
-```
-
-### App not displaying
-1. Check that you've installed the app
-2. Verify you're on the correct page (viewport)
-3. Check browser console for errors
-
-### Build errors
-1. Delete `node_modules` and reinstall: `npm install`
-2. Clear webpack cache: `rm -rf node_modules/.cache`
-3. Check for syntax errors in your code
-
-## Get Help
-
-- [Troubleshooting Guide](./13-troubleshooting.md)
-- [GitHub Issues](https://github.com/teachfloor/docs/issues)
-- Email: support@teachfloor.com
-
 ---
 
 **Ready to dive deeper?** Continue to [App Manifest](./03-app-manifest.md)
