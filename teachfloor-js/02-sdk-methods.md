@@ -1,6 +1,6 @@
 # SDK Methods
 
-The Teachfloor.js SDK provides three core methods for interacting with the platform.
+The Teachfloor.js SDK provides five core methods for interacting with the platform.
 
 ## API.get()
 
@@ -110,10 +110,63 @@ API.emit('ui.drawer.show');
 
 ---
 
+## API.set()
+
+Store data in Teachfloor (internal use - available for first-party apps).
+
+### Usage
+
+```javascript
+API.set(key, value, source)
+```
+
+### Parameters
+
+- `key` (string): Storage key identifier
+- `value` (any): Value to store
+- `source` (string): Storage source - `appdata`, `userdata`, or `usercollection`
+
+### Returns
+
+Promise that resolves with the stored data or rejects on error.
+
+---
+
+## API.generate()
+
+Generate AI content using Teachfloor's AI capabilities (beta feature).
+
+### Usage
+
+```javascript
+API.generate(prompt, generationType)
+```
+
+### Parameters
+
+- `prompt` (string): The generation prompt
+- `generationType` (string): Type of generation (default: `ai/text-generate`)
+
+### Returns
+
+Promise that resolves with the generated content or rejects on error.
+
+### Example
+
+```javascript
+API.generate('Write a course introduction', 'ai/text-generate')
+  .then(text => console.log('Generated:', text))
+  .catch(error => console.error('Error:', error));
+```
+
+---
+
 ## Summary
 
 - **API.get()**: Retrieve data from Teachfloor
+- **API.set()**: Store data (internal use)
 - **API.on()**: Subscribe to platform events
 - **API.emit()**: Trigger actions in Teachfloor
+- **API.generate()**: Generate AI content (beta)
 
 All methods use promises for asynchronous operations.

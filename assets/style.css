@@ -1,10 +1,22 @@
 :root {
   --scalar-header-height: 64px;
   --scalar-heading-spacing: 64px;
+
+  --scalar-heading-1: 28px;
+  --scalar-heading-2: 24px;
+  --scalar-heading-3: 20px;
 }
 
 .t-editor .page-node>.t-editor__heading {
   margin-top: 44px;
+}
+
+.page-node>h1:first-child {
+  font-size: 32px;
+}
+
+.page-node>h1:first-child~p:first-of-type {
+  font-size: 18px;
 }
 
 .t-editor .page-node {
