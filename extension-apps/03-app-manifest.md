@@ -140,14 +140,14 @@ Determines how your app is distributed.
 - `"private"`: Only your organization can install (default)
 - `"public"`: Listed in marketplace for all organizations
 
-See [Deployment Guide](./09-deployment.md#distribution-types) for detailed information on private vs public distribution.
+<scalar-callout type="info">See [Deployment Guide](./09-deployment.md#distribution-types) for detailed information on private vs public distribution.</scalar-callout>
 
 ### UI Extension
 
 #### `ui_extension` (object, optional)
 Defines where and how your app displays in the platform.
 
-**Note**: The `ui_extension` field is optional. Apps without it can function as backend integrations listening to platform events.
+<scalar-callout type="info">The `ui_extension` field is optional. Apps without it can function as backend integrations listening to platform events.</scalar-callout>
 
 ##### `views` (array)
 List of views your app provides.
@@ -171,7 +171,7 @@ List of views your app provides.
 - `viewport` (string): Where the view displays (must be an exact match to an available viewport)
 - `component` (string): React component name (must match filename without extension)
 
-**Note**: Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./04-viewports.md) for available viewports.
+<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./04-viewports.md) for available viewports.</scalar-callout>
 
 ##### `permissions_policy` (object)
 Browser permissions your app needs (microphone, camera, etc.).
@@ -224,7 +224,7 @@ Platform permissions your app needs to access Teachfloor resources.
 - Users see permission requests during installation
 - Write permissions (`*_write`) automatically include read access
 
-See [Permissions Reference](./08-permissions.md) for the complete list of available permissions, their descriptions, and permission hierarchy.
+<scalar-callout type="info">See [Permissions Reference](./08-permissions.md) for the complete list of available permissions, their descriptions, and permission hierarchy.</scalar-callout>
 
 ### Post-Install Action
 
@@ -338,7 +338,7 @@ The CLI will validate and upload the updated manifest.
 
 Once a version is published, it becomes locked and cannot be modified. To release updates, increment the version number and upload again.
 
-See [Deployment Guide](./09-deployment.md#version-management) for complete information on version states, semantic versioning, and deployment process.
+<scalar-callout type="info">See [Deployment Guide](./09-deployment.md#version-management) for complete information on version states, semantic versioning, and deployment process.</scalar-callout>
 
 ### Multi-Environment Manifests
 
