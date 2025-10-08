@@ -8,9 +8,8 @@
 }
 
 .dark-mode {
-  --scalar-sidebar-color-active: #0062ff;
   --scalar-background-1: #090b0f;
-  --scalar-background-2: #121623;
+  --scalar-background-2: rgb(196, 210, 255, 0.05);
 }
 
 .t-editor .page-node>.t-editor__heading {
