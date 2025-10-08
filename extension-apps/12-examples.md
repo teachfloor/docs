@@ -225,6 +225,7 @@ A complete note-taking application using browser storage.
   ]
 }
 ```
+  </scalar-tab>
   <scalar-tab title="useNotes.jsx">
 ```javascript
 // src/hooks/useNotes.jsx
