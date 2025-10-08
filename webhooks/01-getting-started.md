@@ -75,11 +75,11 @@ Route::post('/webhooks/teachfloor', function (Request $request) {
 Your endpoint must:
 - Accept POST requests
 - Return 2xx status within 3 seconds
-- Verify signatures (see [Security](./02-security.md))
+- Verify signatures (see [Security](./security))
 
 ## Next Steps
 
-- [Security](./02-security.md) - Verify signatures
-- [Delivery & Retries](./03-delivery-retries.md) - Understand reliability
-- [Event Reference](./04-event-reference.md) - View available events
-- [Troubleshooting](./05-troubleshooting.md) - Common issues
+- [Security](./security) - Verify signatures
+- [Delivery & Retries](./delivery-retries) - Understand reliability
+- [Event Reference](./event-reference) - View available events
+- [Troubleshooting](./troubleshooting) - Common issues
