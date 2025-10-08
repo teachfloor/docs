@@ -10,23 +10,23 @@ Set up webhooks to receive real-time event notifications from Teachfloor.
 
 ## Setup Steps
 
-### 1. Access Webhook Settings
-
-1. Log in to your Teachfloor account
-2. Navigate to **Developers** → **Webhooks**
-
-### 2. Add Endpoint
-
-1. Click **Add Endpoint**
-2. Enter your HTTPS endpoint URL
-3. Select which events to receive
-4. Click **Save**
-
-### 3. Get Signing Secret
-
-1. Click **Reveal Signing Secret** on your endpoint
-2. Copy and store the secret securely
-3. Use this to verify webhook signatures
+<scalar-steps>
+  <scalar-step id="step-1" title="Access Webhook Settings">
+    1. Log in to your Teachfloor account
+    2. Navigate to **Developers** → **Webhooks**
+  </scalar-step>
+  <scalar-step id="step-2" title="Add Endpoint">
+    1. Click **Add Endpoint**
+    2. Enter your HTTPS endpoint URL
+    3. Select which events to receive
+    4. Click **Save**
+  </scalar-step>
+  <scalar-step id="step-3" title="Get Signing Secret">
+    1. Click **Reveal Signing Secret** on your endpoint
+    2. Copy and store the secret securely
+    3. Use this to verify webhook signatures
+  </scalar-step>
+</scalar-steps>
 
 ## Webhook Payload
 
