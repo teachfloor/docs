@@ -265,18 +265,18 @@ teachfloor apps upload
 Congratulations! You've built your first Teachfloor app. Here's what to explore next:
 
 ### Learn Core Concepts
-- [App Manifest](./app-manifest) - Configure your app
-- [Viewports](./viewports) - Understand placement options
-- [Extension Kit](./components) - Explore available components
+- [App Manifest](./core-concepts/app-manifest) - Configure your app
+- [Viewports](./core-concepts/viewports-system) - Understand placement options
+- [Extension Kit](./core-concepts/extension-kit/components) - Explore available components
 
 ### Add More Functionality
-- [Data Storage](./data-storage) - Persist user data
-- [Permissions](./permissions) - Access platform resources
-- [Extension Kit Integration](./integration) - Use platform features
+- [Data Storage](./advanced-topics/data-storage) - Persist user data
+- [Permissions](./advanced-topics/permissions) - Access platform resources
+- [Extension Kit Integration](./core-concepts/extension-kit/integration) - Use platform features
 
 ### See Examples
-- [Example Apps](./examples) - Sample code and patterns
+- [Example Apps](./references/examples) - Sample code and patterns
 
 ---
 
-**Ready to dive deeper?** Continue to [App Manifest](./app-manifest)
+**Ready to dive deeper?** Continue to [App Manifest](./core-concepts/app-manifest)
