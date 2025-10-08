@@ -8,6 +8,8 @@ Build your first Teachfloor app in 10 minutes! This guide walks you through crea
 - npm or yarn package manager
 - A Teachfloor account
 
+## Getting Started
+
 <scalar-steps>
   <scalar-step id="step-1" title="Install the CLI">
 
@@ -263,29 +265,18 @@ teachfloor apps upload
 Congratulations! You've built your first Teachfloor app. Here's what to explore next:
 
 ### Learn Core Concepts
-- [App Manifest](./03-app-manifest.md) - Configure your app
-- [Viewports](./04-viewports.md) - Understand placement options
-- [Extension Kit](./05-components.md) - Explore available components
+- [App Manifest](./app-manifest) - Configure your app
+- [Viewports](./viewports) - Understand placement options
+- [Extension Kit](./components) - Explore available components
 
 ### Add More Functionality
-- [Data Storage](./07-data-storage.md) - Persist user data
-- [Permissions](./08-permissions.md) - Access platform resources
-- [Extension Kit Integration](./06-integration.md) - Use platform features
+- [Data Storage](./data-storage) - Persist user data
+- [Permissions](./permissions) - Access platform resources
+- [Extension Kit Integration](./integration) - Use platform features
 
 ### See Examples
-- [Example Apps](./12-examples.md) - Sample code and patterns
-
-## Common Commands
-
-```bash
-teachfloor login                    # Log in to your account
-teachfloor apps create <name>       # Create new app
-teachfloor apps start               # Start dev server
-teachfloor apps upload              # Upload to platform
-```
-
-See [CLI Reference](./10-cli-reference.md) for the complete list of commands and options.
+- [Example Apps](./examples) - Sample code and patterns
 
 ---
 
-**Ready to dive deeper?** Continue to [App Manifest](./03-app-manifest.md)
+**Ready to dive deeper?** Continue to [App Manifest](./app-manifest)

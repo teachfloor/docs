@@ -47,3 +47,11 @@
 .t-doc__toc .level-3 {
   display: none;
 }
+
+.t-editor__steps {
+  margin-top: 24px;
+}
+
+.t-editor__steps p {
+  margin-top: var(--scalar-block-spacing);
+}
