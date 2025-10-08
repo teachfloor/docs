@@ -12,7 +12,7 @@ Three types of storage are available:
 | **User Data** | Organization + App + User | User-specific preferences, state |
 | **User Collection** | Organization + App + User | Lists, activity logs, history |
 
-<scalar-callout type="info">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./advanced-topics/permissions) for details.</scalar-callout>
+<scalar-callout type="info">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.</scalar-callout>
 
 **Security**: All data is automatically encrypted at rest on the Teachfloor platform.
 
@@ -496,11 +496,11 @@ await updateNote('123', {
 })
 ```
 
-<scalar-callout type="warning">**Important**:
+**Important**:
 - Requires `usercollection_write` permission
 - Item ID comes from `item.id` when listing items
 - Update replaces the entire value - merge with existing data if needed
-- Returns the updated value</scalar-callout>
+- Returns the updated value
 
 ### Removing Collection Items
 
@@ -529,11 +529,11 @@ const itemToDelete = page.items[0]
 await removeBookmark(itemToDelete.id)
 ```
 
-<scalar-callout type="warning">**Important**:
+**Important**:
 - Requires `usercollection_write` permission
 - Item ID comes from `item.id` when listing items
 - Delete operations are permanent
-- Returns `null` on success</scalar-callout>
+- Returns `null` on success
 
 ### Complete CRUD Example
 
@@ -693,10 +693,10 @@ All data stored through the Extension Kit is **automatically encrypted at rest**
 
 ## Next Steps
 
-→ Continue to [Permissions](./advanced-topics/permissions)
+→ Continue to [Permissions](./permissions)
 
 ## Additional Resources
 
 - [Best Practices](./references/best-practices) - Storage patterns, error handling, caching, and performance
-- [Permissions](./advanced-topics/permissions) - Storage permission requirements
+- [Permissions](./permissions) - Storage permission requirements
 - [Extension Kit Integration](./core-concepts/extension-kit/integration)
