@@ -52,6 +52,8 @@
   margin-top: 24px;
 }
 
-.t-editor__steps p {
+.t-editor__steps p,
+.t-editor__steps ul,
+.t-editor__steps ol {
   margin-top: var(--scalar-block-spacing);
 }
