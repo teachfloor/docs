@@ -171,7 +171,7 @@ List of views your app provides.
 - `viewport` (string): Where the view displays (must be an exact match to an available viewport)
 - `component` (string): React component name (must match filename without extension)
 
-<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./core-concepts/viewports-system) for available viewports.</scalar-callout>
+<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./viewports-system) for available viewports.</scalar-callout>
 
 ##### `permissions_policy` (object)
 Browser permissions your app needs (microphone, camera, etc.).
@@ -282,7 +282,7 @@ The CLI automatically validates your manifest before upload.
 
 #### Viewport Names
 - Must match known viewport patterns
-- See [Viewports documentation](./core-concepts/viewports-system)
+- See [Viewports documentation](./viewports-system)
 
 ### Manual Validation
 
@@ -381,7 +381,7 @@ teachfloor apps start --manifest teachfloor-app.dev.json
 
 ## Next Steps
 
-→ Continue to [Viewports System](./core-concepts/viewports-system)
+→ Continue to [Viewports System](./viewports-system)
 
 ## Additional Resources
 

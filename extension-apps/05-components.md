@@ -20,9 +20,9 @@ All components are designed to match Teachfloor's design system, ensuring your a
 | What you need | Where to find it |
 |---------------|------------------|
 | Buttons, Forms, Layouts, Charts | **This document** (05-components.md) |
-| Events, Storage, Navigation, Toasts | [Extension Kit Integration](./core-concepts/extension-kit/integration) |
+| Events, Storage, Navigation, Toasts | [Extension Kit Integration](./integration) |
 
-<scalar-callout type="info">**Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./core-concepts/extension-kit/integration) guide.</scalar-callout>
+<scalar-callout type="info">**Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./integration) guide.</scalar-callout>
 
 ## Installation
 
@@ -62,7 +62,7 @@ root.render(
 **Props**:
 - `autoInit`: (Optional) Automatically signal app ready to platform (default: true)
 
-<scalar-callout type="info">**Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./core-concepts/extension-kit/integration#context-api) guide.</scalar-callout>
+<scalar-callout type="info">**Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./integration#context-api) guide.</scalar-callout>
 
 ### View Loader
 
@@ -723,11 +723,11 @@ Available colors:
 
 Learn how to integrate with the platform:
 
-→ Continue to [Extension Kit Integration](./core-concepts/extension-kit/integration)
+→ Continue to [Extension Kit Integration](./integration)
 
 ## Additional Resources
 
-- [Extension Kit Integration](./core-concepts/extension-kit/integration) - Events, storage, navigation, and platform integration
+- [Extension Kit Integration](./integration) - Events, storage, navigation, and platform integration
 - [Data Storage](./advanced-topics/data-storage) - Deep dive into data persistence
 - [Examples](./references/examples) - Sample apps and code snippets
 - [Best Practices](./references/best-practices) - Development patterns and tips

@@ -22,9 +22,9 @@ This document focuses exclusively on **API functions** for platform integration:
 | What you need | Where to find it |
 |---------------|------------------|
 | Events, Storage, Navigation, Toasts | **This document** (06-integration.md) |
-| Buttons, Forms, Layouts, Charts | [Extension Kit Components](./core-concepts/extension-kit/components) |
+| Buttons, Forms, Layouts, Charts | [Extension Kit Components](./components) |
 
-<scalar-callout type="info">**Need UI components?** For buttons, inputs, layouts, and charts, see the [Extension Kit Components](./core-concepts/extension-kit/components) guide.</scalar-callout>
+<scalar-callout type="info">**Need UI components?** For buttons, inputs, layouts, and charts, see the [Extension Kit Components](./components) guide.</scalar-callout>
 
 <scalar-callout type="info">All imports come from `@teachfloor/extension-kit`, which is automatically installed when you create an app.</scalar-callout>
 
@@ -447,7 +447,7 @@ async function safeGenerate(prompt) {
 
 ## Additional Resources
 
-- [Extension Kit Components](./core-concepts/extension-kit/components) - UI components reference
+- [Extension Kit Components](./components) - UI components reference
 - [Permissions](./advanced-topics/permissions) - Permission scopes and usage
 - [Best Practices](./references/best-practices) - Integration patterns and error handling
 - [Examples](./references/examples) - Integration examples

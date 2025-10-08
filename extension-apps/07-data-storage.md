@@ -693,10 +693,10 @@ All data stored through the Extension Kit is **automatically encrypted at rest**
 
 ## Next Steps
 
-→ Continue to [Permissions](./permissions)
+→ Continue to [Permissions](/apps/advanced-topics/permissions)
 
 ## Additional Resources
 
-- [Best Practices](./references/best-practices) - Storage patterns, error handling, caching, and performance
-- [Permissions](./permissions) - Storage permission requirements
-- [Extension Kit Integration](./core-concepts/extension-kit/integration)
+- [Best Practices](/apps/references/best-practices) - Storage patterns, error handling, caching, and performance
+- [Permissions](/apps/advanced-topics/permissions) - Storage permission requirements
+- [Extension Kit Integration](/apps/core-concepts/extension-kit/integration)
