@@ -57,3 +57,7 @@
 .t-editor__steps ol {
   margin-top: var(--scalar-block-spacing);
 }
+
+.custom-tabs-container .custom-tabs-content {
+  border-bottom: none;
+}

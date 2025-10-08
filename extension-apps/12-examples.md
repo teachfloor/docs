@@ -226,7 +226,6 @@ A complete note-taking application using browser storage.
 }
 ```
   <scalar-tab title="useNotes.jsx">
-  </scalar-tab>
 ```javascript
 // src/hooks/useNotes.jsx
 import { useState, useEffect } from 'react'
