@@ -42,9 +42,28 @@
 
 .t-doc__toc li {
   padding: 2px 16px;
+  padding-left: 0;
+}
+
+.t-doc__toc .level-1~.level-2 {
+  padding-left: 16px;
 }
 
 .t-doc__toc .level-3 {
+  display: none;
+}
+
+.t-doc__toc h4 {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.t-doc__toc ul {
+  border-left: none;
+}
+
+.t-doc__toc .outline-marker {
   display: none;
 }
 
