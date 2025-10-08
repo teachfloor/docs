@@ -65,5 +65,5 @@ You can regenerate your API key at any time:
 
 ## Next Steps
 
-- [Rate Limiting](./02-rate-limiting.md) - Understand usage limits
-- [Errors](./03-errors.md) - Handle API errors
+- [Rate Limiting](./rate-limiting) - Understand usage limits
+- [Errors](./errors) - Handle API errors

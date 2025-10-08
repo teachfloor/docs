@@ -117,7 +117,7 @@ The manifest is a JSON configuration file that defines your app:
 
 Viewports define where your app can display within the platform. Each viewport corresponds to a specific page or section, such as course pages, settings, community areas, and more.
 
-See [Viewports System](./04-viewports.md) for the complete list of available viewports and their usage.
+<scalar-callout type="info">See [Viewports System](./core-concepts/viewports-system) for the complete list of available viewports and their usage.</scalar-callout>
 
 ### Extension Context
 
@@ -250,4 +250,4 @@ Apps must request permissions to access platform resources:
 
 Now that you understand the basics, let's build your first app!
 
-→ Continue to [Quickstart Guide](./02-quickstart.md)
+→ Continue to [Quickstart Guide](./quickstart-guide)

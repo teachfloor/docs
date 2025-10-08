@@ -357,7 +357,7 @@ teachfloor.{area}.{page}.{section}
 }
 ```
 
-**Note**: The `settings` viewport provides a dedicated settings page for your app.
+<scalar-callout type="info">The `settings` viewport provides a dedicated settings page for your app.</scalar-callout>
 
 ## Viewport Context
 
@@ -395,7 +395,7 @@ environment: {
 3. Platform finds apps with views matching the exact viewport
 4. Matching app views are rendered in their designated positions
 
-**Note**: Viewports require exact string matches. Wildcard patterns are not supported.
+<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported.</scalar-callout>
 
 ### Example Scenario
 
@@ -570,11 +570,11 @@ teachfloor apps remove view
 
 ## Next Steps
 
-→ Continue to [Extension Kit Components](./05-components.md)
+→ Continue to [Extension Kit Components](./core-concepts/extension-kit/components)
 
 ## Additional Resources
 
-- [Best Practices](./11-best-practices.md) - Viewport selection and performance optimization
-- [Troubleshooting Guide](./13-troubleshooting.md) - Viewport issues and debugging
-- [Examples](./12-examples.md) - Multi-viewport app examples
-- [Extension Kit Integration](./06-integration.md)
+- [Best Practices](./references/best-practices) - Viewport selection and performance optimization
+- [Troubleshooting Guide](./references/troubleshooting) - Viewport issues and debugging
+- [Examples](./references/examples) - Multi-viewport app examples
+- [Extension Kit Integration](./core-concepts/extension-kit/integration)

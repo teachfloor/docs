@@ -98,6 +98,6 @@ app.post('/webhooks/teachfloor',
 
 ## Next Steps
 
-- [Delivery & Retries](./03-delivery-retries.md)
-- [Event Reference](./04-event-reference.md)
-- [Troubleshooting](./05-troubleshooting.md)
+- [Delivery & Retries](./delivery-retries)
+- [Event Reference](./event-reference)
+- [Troubleshooting](./troubleshooting)

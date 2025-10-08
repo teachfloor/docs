@@ -10,8 +10,8 @@ Apps can run without any UI, listening to platform events and integrating with e
 
 Track all user learning events to Intercom for customer engagement and analytics.
 
-### Manifest
-
+<scalar-tabs nested>
+  <scalar-tab title="Manifest">
 ```json
 {
   "id": "intercom-integration",
@@ -35,11 +35,9 @@ Track all user learning events to Intercom for customer engagement and analytics
   ]
 }
 ```
-
-**Note**: No `ui_extension` field - this app runs entirely in the background.
-
-### App Code
-
+<scalar-callout type="info">No `ui_extension` field - this app runs entirely in the background.</scalar-callout>
+  </scalar-tab>
+  <scalar-tab title="index.jsx">
 ```javascript
 // src/index.js
 import { initialize, subscribeToEvent, useExtensionContext } from '@teachfloor/extension-kit'
@@ -112,6 +110,8 @@ subscribeToEvent('environment.viewport.changed', async (viewport, objectContext)
 
 console.log('Intercom integration initialized - listening for events')
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ### How It Works
 
@@ -137,6 +137,8 @@ A minimal widget that displays user information.
 
 ### Manifest
 
+<scalar-tabs nested>
+  <scalar-tab title="Manifest">
 ```json
 {
   "id": "simple-widget",
@@ -154,9 +156,8 @@ A minimal widget that displays user information.
   }
 }
 ```
-
-### Component
-
+  </scalar-tab>
+  <scalar-tab title="Widget.jsx">
 ```javascript
 // src/views/Widget.jsx
 import React from 'react'
@@ -186,6 +187,8 @@ const Widget = () => {
 
 export default Widget
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -193,8 +196,8 @@ export default Widget
 
 A complete note-taking application using browser storage.
 
-### Manifest
-
+<scalar-tabs nested>
+  <scalar-tab title="Manifest">
 ```json
 {
   "id": "notes-app",
@@ -222,11 +225,10 @@ A complete note-taking application using browser storage.
   ]
 }
 ```
-
-### Custom Hook
-
+  <scalar-tab title="useNotes.jsx">
+  </scalar-tab>
 ```javascript
-// src/hooks/useNotes.js
+// src/hooks/useNotes.jsx
 import { useState, useEffect } from 'react'
 import { showToast, store, retrieve } from '@teachfloor/extension-kit'
 
@@ -294,9 +296,8 @@ export function useNotes() {
   return { notes, loading, addNote, updateNote, deleteNote }
 }
 ```
-
-### Components
-
+  </scalar-tab>
+  <scalar-tab title="NotesApp.jsx">
 ```javascript
 // src/views/NotesApp.jsx
 import React, { useState } from 'react'
@@ -384,7 +385,8 @@ const NotesApp = () => {
 
 export default NotesApp
 ```
-
+  </scalar-tab>
+  <scalar-tab title="NotesList.jsx">
 ```javascript
 // src/components/NotesList.jsx
 import React from 'react'
@@ -409,7 +411,8 @@ const NotesList = ({ notes, onEdit, onDelete }) => {
 
 export default NotesList
 ```
-
+  </scalar-tab>
+  <scalar-tab title="NoteForm.jsx">
 ```javascript
 // src/components/NoteForm.jsx
 import React, { useState } from 'react'
@@ -460,6 +463,8 @@ const NoteForm = ({ note, onSave, onCancel }) => {
 
 export default NoteForm
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -467,8 +472,8 @@ export default NoteForm
 
 Track user's learning progress.
 
-### Manifest
-
+<scalar-tabs nested>
+  <scalar-tab title="Manifest">
 ```json
 {
   "id": "progress-tracker",
@@ -495,9 +500,8 @@ Track user's learning progress.
   ]
 }
 ```
-
-### Component
-
+  </scalar-tab>
+  <scalar-tab title="ProgressTracker.jsx">
 ```javascript
 // src/views/ProgressTracker.jsx
 import React, { useState, useEffect } from 'react'
@@ -571,6 +575,8 @@ const ProgressTracker = () => {
 
 export default ProgressTracker
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -578,8 +584,8 @@ export default ProgressTracker
 
 App configuration interface.
 
-### Component
-
+<scalar-tabs nested>
+  <scalar-tab title="AppSettings.jsx">
 ```javascript
 // src/views/AppSettings.jsx
 import React, { useState, useEffect } from 'react'
@@ -664,6 +670,8 @@ const AppSettings = () => {
 
 export default AppSettings
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -671,8 +679,8 @@ export default AppSettings
 
 Display analytics with charts.
 
-### Component
-
+<scalar-tabs nested>
+  <scalar-tab title="AnalyticsDashboard.jsx">
 ```javascript
 // src/views/AnalyticsDashboard.jsx
 import React, { useState, useEffect } from 'react'
@@ -763,6 +771,8 @@ const AnalyticsDashboard = () => {
 
 export default AnalyticsDashboard
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -770,8 +780,8 @@ export default AnalyticsDashboard
 
 Integrate with external service.
 
-### API Client
-
+<scalar-tabs nested>
+  <scalar-tab title="api.js">
 ```javascript
 // src/utils/api.js
 class ExternalAPI {
@@ -811,9 +821,8 @@ class ExternalAPI {
 
 export default ExternalAPI
 ```
-
-### Component
-
+  </scalar-tab>
+  <scalar-tab title="IntegrationView.jsx">
 ```javascript
 // src/views/IntegrationView.jsx
 import React, { useState, useEffect } from 'react'
@@ -898,6 +907,8 @@ const IntegrationView = () => {
 
 export default IntegrationView
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ---
 
@@ -905,10 +916,10 @@ export default IntegrationView
 
 See troubleshooting guide for common issues:
 
-→ Continue to [Troubleshooting](./13-troubleshooting.md)
+→ Continue to [Troubleshooting](./references/troubleshooting)
 
 ## Additional Resources
 
-- [Extension Kit](./05-components.md)
-- [Extension Kit Integration](./06-integration.md)
-- [Best Practices](./11-best-practices.md)
+- [Extension Kit](./core-concepts/extension-kit/components)
+- [Extension Kit Integration](./core-concepts/extension-kit/integration)
+- [Best Practices](./references/best-practices)

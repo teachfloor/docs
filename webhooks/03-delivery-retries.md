@@ -60,6 +60,6 @@ View delivery logs in your Teachfloor dashboard:
 
 ## Next Steps
 
-- [Event Reference](./04-event-reference.md)
-- [Security](./02-security.md)
-- [Troubleshooting](./05-troubleshooting.md)
+- [Event Reference](./event-reference)
+- [Security](./security)
+- [Troubleshooting](./troubleshooting)

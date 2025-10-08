@@ -62,5 +62,5 @@ tf('onInit', function(API) {
 
 ## Next Steps
 
-- Explore [SDK Methods](./02-sdk-methods.md)
-- Review [Viewports Reference](./03-viewports-reference.md)
+- Explore [SDK Methods](./sdk-methods)
+- Review [Viewports Reference](./viewports-reference)

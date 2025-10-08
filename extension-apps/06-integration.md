@@ -22,11 +22,11 @@ This document focuses exclusively on **API functions** for platform integration:
 | What you need | Where to find it |
 |---------------|------------------|
 | Events, Storage, Navigation, Toasts | **This document** (06-integration.md) |
-| Buttons, Forms, Layouts, Charts | [Extension Kit Components](./05-components.md) |
+| Buttons, Forms, Layouts, Charts | [Extension Kit Components](./core-concepts/extension-kit/components) |
 
-> **Need UI components?** For buttons, inputs, layouts, and charts, see the [Extension Kit Components](./05-components.md) guide.
+<scalar-callout type="info">**Need UI components?** For buttons, inputs, layouts, and charts, see the [Extension Kit Components](./core-concepts/extension-kit/components) guide.</scalar-callout>
 
-**Note**: All imports come from `@teachfloor/extension-kit`, which is automatically installed when you create an app.
+<scalar-callout type="info">All imports come from `@teachfloor/extension-kit`, which is automatically installed when you create an app.</scalar-callout>
 
 ## Signaling App Ready
 
@@ -106,7 +106,7 @@ subscribeToEvent('auth.user.event', (eventData, objectContext) => {
 | `environment.path.changed` | `(path)` | URL path changed |
 | `auth.user.event` | `(eventData, objectContext)` | User activity event (login, element_completed, quiz_submitted, etc.). `objectContext` contains contextual data. |
 
-**Important**: The `objectContext` parameter only includes data for permissions declared in your app manifest.
+<scalar-callout type="warning">The `objectContext` parameter only includes data for permissions declared in your app manifest.</scalar-callout>
 
 **objectContext Structure:**
 ```typescript
@@ -146,7 +146,7 @@ interface ObjectContext {
 }
 ```
 
-**Note**: Objects are only present when the permission is granted and the viewport context matches.
+<scalar-callout type="warning">Objects are only present when the permission is granted and the viewport context matches.</scalar-callout>
 
 **How it works:**
 
@@ -177,13 +177,13 @@ When both conditions are met, the **complete object** is included. Otherwise, th
 }
 ```
 
-See [Permissions](./08-permissions.md) for details on requesting access to course, module, and element data.
+<scalar-callout type="info">See [Permissions](./advanced-topics/permissions) for details on requesting access to course, module, and element data.</scalar-callout>
 
 ### Data Storage
 
 The Extension Kit provides `store()`, `retrieve()`, and `createCollection()` functions for persisting data. Three types of storage are available: app data (organization-wide), user data (user-specific), and user collections (paginated lists).
 
-See [Data Storage](./07-data-storage.md) for complete documentation, API reference, and usage examples.
+<scalar-callout type="info">See [Data Storage](./advanced-topics/data-storage) for complete documentation, API reference, and usage examples.</scalar-callout>
 
 ## Context API
 
@@ -439,15 +439,15 @@ async function safeGenerate(prompt) {
 }
 ```
 
-See [Permissions](./08-permissions.md#ai-permissions) for more details on AI permissions.
+<scalar-callout type="info">See [Permissions](./advanced-topics/permissions#ai-permissions) for more details on AI permissions.</scalar-callout>
 
 ## Next Steps
 
-→ Continue to [Data Storage](./07-data-storage.md)
+→ Continue to [Data Storage](./advanced-topics/data-storage)
 
 ## Additional Resources
 
-- [Extension Kit Components](./05-components.md) - UI components reference
-- [Permissions](./08-permissions.md) - Permission scopes and usage
-- [Best Practices](./11-best-practices.md) - Integration patterns and error handling
-- [Examples](./12-examples.md) - Integration examples
+- [Extension Kit Components](./core-concepts/extension-kit/components) - UI components reference
+- [Permissions](./advanced-topics/permissions) - Permission scopes and usage
+- [Best Practices](./references/best-practices) - Integration patterns and error handling
+- [Examples](./references/examples) - Integration examples

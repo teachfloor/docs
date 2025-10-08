@@ -15,25 +15,25 @@ Teachfloor Apps are extensions that enhance the platform's functionality by addi
 ## Documentation Structure
 
 ### Getting Started
-1. [Introduction](./01-introduction.md) - Overview and concepts
-2. [Quickstart Guide](./02-quickstart.md) - Build your first app in 10 minutes
+1. [Introduction](./introduction) - Overview and concepts
+2. [Quickstart Guide](./quickstart-guide) - Build your first app in 10 minutes
 
 ### Core Concepts
-3. [App Manifest](./03-app-manifest.md) - Configure your app's metadata and capabilities
-4. [Viewports System](./04-viewports.md) - Understand where apps can display
-5. [Extension Kit Components](./05-components.md) - Use pre-built UI components
-6. [Extension Kit Integration](./06-integration.md) - Interact with the platform
+3. [App Manifest](./core-concepts/app-manifest) - Configure your app's metadata and capabilities
+4. [Viewports System](./core-concepts/viewports-system) - Understand where apps can display
+5. [Extension Kit Components](./core-concepts/extension-kit/components) - Use pre-built UI components
+6. [Extension Kit Integration](./core-concepts/extension-kit/integration) - Interact with the platform
 
 ### Advanced Topics
-7. [Data Storage](./07-data-storage.md) - Persist user and app data
-8. [Permissions](./08-permissions.md) - Request and use platform resources
-9. [Deployment](./09-deployment.md) - Deploy private apps and publish to marketplace
+7. [Data Storage](./advanced-topics/data-storage) - Persist user and app data
+8. [Permissions](./advanced-topics/permissions) - Request and use platform resources
+9. [Deployment](./advanced-topics/deployment) - Deploy private apps and publish to marketplace
 
 ### Reference
-10. [CLI Commands](./10-cli-reference.md) - Complete command reference
-11. [Best Practices](./11-best-practices.md) - Tips and patterns
-12. [Examples](./12-examples.md) - Sample apps and code snippets
-13. [Troubleshooting](./13-troubleshooting.md) - Common issues and solutions
+10. [CLI Commands](./references/teachfloor-cli) - Complete command reference
+11. [Best Practices](./references/best-practices) - Tips and patterns
+12. [Examples](./references/examples) - Sample apps and code snippets
+13. [Troubleshooting](./references/troubleshooting) - Common issues and solutions
 
 ## Prerequisites
 
@@ -55,4 +55,4 @@ This documentation is provided under the MIT License.
 
 ---
 
-**Ready to get started?** Begin with the [Introduction](./01-introduction.md) or jump straight to the [Quickstart Guide](./02-quickstart.md)!
+**Ready to get started?** Begin with the [Introduction](./introduction) or jump straight to the [Quickstart Guide](./quickstart-guide)!

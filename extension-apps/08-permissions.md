@@ -14,7 +14,7 @@ All permissions must be declared in your app manifest with a user-facing explana
 
 When your app subscribes to events, the platform includes an `objectContext` parameter containing contextual data based on your granted permissions. For example, with `course_read` permission, `objectContext.course` includes the current course data when in a course viewport.
 
-See [Integration Guide - Events](./06-integration.md#events) for detailed `objectContext` structure and usage examples.
+<scalar-callout type="info">See [Integration Guide - Events](./core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.</scalar-callout>
 
 ## Available Permissions
 
@@ -41,7 +41,7 @@ Your app can request the following permissions:
 | `usercollection_read` | Read user data collections | Storage API - Collections | Read only |
 | `usercollection_write` | Write to user data collections | Storage API - Collections | **Includes read** |
 
-**Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.
+<scalar-callout type="info">**Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.</scalar-callout>
 
 ### AI & Feature Permissions
 
@@ -212,13 +212,13 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 
 ### Storage Permissions
 
-Storage permissions allow your app to persist data on the Teachfloor platform. See [Data Storage](./07-data-storage.md) for detailed usage.
+Storage permissions allow your app to persist data on the Teachfloor platform. See [Data Storage](./advanced-topics/data-storage) for detailed usage.
 
 #### `appdata_read` & `appdata_write`
 
 Store and retrieve organization-wide app data shared across all users.
 
-**Permission Hierarchy**: `appdata_write` includes `appdata_read` access.
+<scalar-callout type="info">**Permission Hierarchy**: `appdata_write` includes `appdata_read` access.</scalar-callout>
 
 **Use cases**:
 - App configuration
@@ -312,7 +312,7 @@ const prefs = await retrieve('preferences', 'userdata')
 
 Store and retrieve collections of data items for a user, with pagination support.
 
-**Permission Hierarchy**: `usercollection_write` includes `usercollection_read` access.
+<scalar-callout type="info">**Permission Hierarchy**: `usercollection_write` includes `usercollection_read` access.</scalar-callout>
 
 **Use cases**:
 - Activity logs
@@ -408,10 +408,10 @@ Permission to use platform data placeholders in AI prompts.
 - `{{element.name}}` - Element title
 - `{{element.content}}` - Element content (text format)
 
-**Important**: When using placeholders, you must also have the corresponding read permission:
+<scalar-callout type="warning">**Important**: When using placeholders, you must also have the corresponding read permission:
 - Course placeholders require `course_read`
 - Module placeholders require `module_read`
-- Element placeholders require `element_read`
+- Element placeholders require `element_read`</scalar-callout>
 
 **Example**:
 ```json
@@ -534,14 +534,14 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 })
 ```
 
-See [Integration Guide - Events](./06-integration.md#events) for complete `objectContext` usage examples.
+<scalar-callout type="info">See [Integration Guide - Events](./core-concepts/extension-kit/integration#events) for complete `objectContext` usage examples.</scalar-callout>
 
 ## Next Steps
 
-→ Continue to [Deployment](./09-deployment.md)
+→ Continue to [Deployment](./advanced-topics/deployment)
 
 ## Additional Resources
 
-- [Integration Guide](./06-integration.md) - Using permissions with events and storage
-- [Best Practices](./11-best-practices.md) - Permission best practices and patterns
-- [Examples](./12-examples.md) - Complete permission usage examples
+- [Integration Guide](./core-concepts/extension-kit/integration) - Using permissions with events and storage
+- [Best Practices](./references/best-practices) - Permission best practices and patterns
+- [Examples](./references/examples) - Complete permission usage examples

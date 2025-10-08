@@ -140,7 +140,7 @@ Determines how your app is distributed.
 - `"private"`: Only your organization can install (default)
 - `"public"`: Listed in marketplace for all organizations
 
-<scalar-callout type="info">See [Deployment Guide](./09-deployment.md#distribution-types) for detailed information on private vs public distribution.</scalar-callout>
+<scalar-callout type="info">See [Deployment Guide](./advanced-topics/deployment#distribution-types) for detailed information on private vs public distribution.</scalar-callout>
 
 ### UI Extension
 
@@ -171,7 +171,7 @@ List of views your app provides.
 - `viewport` (string): Where the view displays (must be an exact match to an available viewport)
 - `component` (string): React component name (must match filename without extension)
 
-<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./04-viewports.md) for available viewports.</scalar-callout>
+<scalar-callout type="warning">Viewports require exact string matches. Wildcard patterns are not supported. See [Viewports System](./core-concepts/viewports-system) for available viewports.</scalar-callout>
 
 ##### `permissions_policy` (object)
 Browser permissions your app needs (microphone, camera, etc.).
@@ -224,7 +224,7 @@ Platform permissions your app needs to access Teachfloor resources.
 - Users see permission requests during installation
 - Write permissions (`*_write`) automatically include read access
 
-<scalar-callout type="info">See [Permissions Reference](./08-permissions.md) for the complete list of available permissions, their descriptions, and permission hierarchy.</scalar-callout>
+<scalar-callout type="info">See [Permissions Reference](./advanced-topics/permissions) for the complete list of available permissions, their descriptions, and permission hierarchy.</scalar-callout>
 
 ### Post-Install Action
 
@@ -282,7 +282,7 @@ The CLI automatically validates your manifest before upload.
 
 #### Viewport Names
 - Must match known viewport patterns
-- See [Viewports documentation](./04-viewports.md)
+- See [Viewports documentation](./core-concepts/viewports-system)
 
 ### Manual Validation
 
@@ -338,7 +338,7 @@ The CLI will validate and upload the updated manifest.
 
 Once a version is published, it becomes locked and cannot be modified. To release updates, increment the version number and upload again.
 
-<scalar-callout type="info">See [Deployment Guide](./09-deployment.md#version-management) for complete information on version states, semantic versioning, and deployment process.</scalar-callout>
+<scalar-callout type="info">See [Deployment Guide](./advanced-topics/deployment#version-management) for complete information on version states, semantic versioning, and deployment process.</scalar-callout>
 
 ### Multi-Environment Manifests
 
@@ -381,12 +381,12 @@ teachfloor apps start --manifest teachfloor-app.dev.json
 
 ## Next Steps
 
-→ Continue to [Viewports System](./04-viewports.md)
+→ Continue to [Viewports System](./core-concepts/viewports-system)
 
 ## Additional Resources
 
-- [Best Practices](./11-best-practices.md) - Naming, descriptions, permissions, and versioning guidelines
-- [Troubleshooting Guide](./13-troubleshooting.md) - Common manifest errors and solutions
-- [Examples](./12-examples.md) - Complete manifest examples
-- [Permissions Reference](./08-permissions.md)
-- [CLI Commands](./10-cli-reference.md)
+- [Best Practices](./references/best-practices) - Naming, descriptions, permissions, and versioning guidelines
+- [Troubleshooting Guide](./references/troubleshooting) - Common manifest errors and solutions
+- [Examples](./references/examples) - Complete manifest examples
+- [Permissions Reference](./advanced-topics/permissions)
+- [CLI Commands](./references/teachfloor-cli)

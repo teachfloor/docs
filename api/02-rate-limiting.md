@@ -87,5 +87,5 @@ Contact support through your Teachfloor dashboard to discuss your use case.
 
 ## Next Steps
 
-- [Errors](./03-errors.md) - Handle API errors
-- [Authentication](./01-authentication.md) - API key setup
+- [Errors](./errors) - Handle API errors
+- [Authentication](./authentication) - API key setup

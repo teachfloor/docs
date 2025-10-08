@@ -20,9 +20,9 @@ All components are designed to match Teachfloor's design system, ensuring your a
 | What you need | Where to find it |
 |---------------|------------------|
 | Buttons, Forms, Layouts, Charts | **This document** (05-components.md) |
-| Events, Storage, Navigation, Toasts | [Extension Kit Integration](./06-integration.md) |
+| Events, Storage, Navigation, Toasts | [Extension Kit Integration](./core-concepts/extension-kit/integration) |
 
-> **Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./06-integration.md) guide.
+<scalar-callout type="info">**Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./core-concepts/extension-kit/integration) guide.</scalar-callout>
 
 ## Installation
 
@@ -62,7 +62,7 @@ root.render(
 **Props**:
 - `autoInit`: (Optional) Automatically signal app ready to platform (default: true)
 
-> **Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./06-integration.md#context-api) guide.
+<scalar-callout type="info">**Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./core-concepts/extension-kit/integration#context-api) guide.</scalar-callout>
 
 ### View Loader
 
@@ -723,11 +723,11 @@ Available colors:
 
 Learn how to integrate with the platform:
 
-→ Continue to [Extension Kit Integration](./06-integration.md)
+→ Continue to [Extension Kit Integration](./core-concepts/extension-kit/integration)
 
 ## Additional Resources
 
-- [Extension Kit Integration](./06-integration.md) - Events, storage, navigation, and platform integration
-- [Data Storage](./07-data-storage.md) - Deep dive into data persistence
-- [Examples](./12-examples.md) - Sample apps and code snippets
-- [Best Practices](./11-best-practices.md) - Development patterns and tips
+- [Extension Kit Integration](./core-concepts/extension-kit/integration) - Events, storage, navigation, and platform integration
+- [Data Storage](./advanced-topics/data-storage) - Deep dive into data persistence
+- [Examples](./references/examples) - Sample apps and code snippets
+- [Best Practices](./references/best-practices) - Development patterns and tips

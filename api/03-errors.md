@@ -60,7 +60,7 @@ All errors return JSON with an `error` field:
 }
 ```
 
-**Solution:** Wait 60 seconds before retrying. See [Rate Limiting](./02-rate-limiting.md).
+**Solution:** Wait 60 seconds before retrying. See [Rate Limiting](./rate-limiting).
 
 ### Invalid Parameters
 
@@ -76,5 +76,5 @@ All errors return JSON with an `error` field:
 
 ## Next Steps
 
-- [Authentication](./01-authentication.md) - API key setup
-- [Rate Limiting](./02-rate-limiting.md) - Usage limits
+- [Authentication](./authentication) - API key setup
+- [Rate Limiting](./rate-limiting) - Usage limits

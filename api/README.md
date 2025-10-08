@@ -17,9 +17,9 @@ The Teachfloor Public API provides programmatic access to your organization's da
 
 ## Quick Links
 
-- [Authentication](./01-authentication.md) - Get your API key
-- [Rate Limiting](./02-rate-limiting.md) - Usage limits
-- [Errors](./03-errors.md) - Error handling
+- [Authentication](./authentication) - Get your API key
+- [Rate Limiting](./rate-limiting) - Usage limits
+- [Errors](./errors) - Error handling
 - API Reference - Interactive documentation at [docs.teachfloor.com](https://docs.teachfloor.com/api-reference)
 
 ## Getting Started

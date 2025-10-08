@@ -616,10 +616,10 @@ teachfloor version
 
 Learn about best practices:
 
-→ Continue to [Best Practices](./11-best-practices.md)
+→ Continue to [Best Practices](./references/best-practices)
 
 ## Additional Resources
 
-- [Quickstart Guide](./02-quickstart.md)
-- [App Manifest](./03-app-manifest.md)
-- [Deployment](./09-deployment.md)
+- [Quickstart Guide](./quickstart-guide)
+- [App Manifest](./core-concepts/app-manifest)
+- [Deployment](./advanced-topics/deployment)

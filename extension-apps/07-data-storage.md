@@ -12,7 +12,7 @@ Three types of storage are available:
 | **User Data** | Organization + App + User | User-specific preferences, state |
 | **User Collection** | Organization + App + User | Lists, activity logs, history |
 
-**Permissions**: Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./08-permissions.md) for details.
+<scalar-callout type="info">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./advanced-topics/permissions) for details.</scalar-callout>
 
 **Security**: All data is automatically encrypted at rest on the Teachfloor platform.
 
@@ -34,7 +34,7 @@ Store data shared across all users in your organization.
 }
 ```
 
-**Note**: `appdata_write` automatically includes read access.
+<scalar-callout type="info">`appdata_write` automatically includes read access.</scalar-callout>
 
 **Read-Only** (if you only need to read):
 ```json
@@ -128,7 +128,7 @@ Store data specific to individual users.
 }
 ```
 
-**Note**: `userdata_write` includes read access.
+<scalar-callout type="info">`userdata_write` includes read access.</scalar-callout>
 
 **Read-Only**:
 ```json
@@ -496,11 +496,11 @@ await updateNote('123', {
 })
 ```
 
-**Important**:
+<scalar-callout type="warning">**Important**:
 - Requires `usercollection_write` permission
 - Item ID comes from `item.id` when listing items
 - Update replaces the entire value - merge with existing data if needed
-- Returns the updated value
+- Returns the updated value</scalar-callout>
 
 ### Removing Collection Items
 
@@ -529,11 +529,11 @@ const itemToDelete = page.items[0]
 await removeBookmark(itemToDelete.id)
 ```
 
-**Important**:
+<scalar-callout type="warning">**Important**:
 - Requires `usercollection_write` permission
 - Item ID comes from `item.id` when listing items
 - Delete operations are permanent
-- Returns `null` on success
+- Returns `null` on success</scalar-callout>
 
 ### Complete CRUD Example
 
@@ -693,10 +693,10 @@ All data stored through the Extension Kit is **automatically encrypted at rest**
 
 ## Next Steps
 
-→ Continue to [Permissions](./08-permissions.md)
+→ Continue to [Permissions](./advanced-topics/permissions)
 
 ## Additional Resources
 
-- [Best Practices](./11-best-practices.md) - Storage patterns, error handling, caching, and performance
-- [Permissions](./08-permissions.md) - Storage permission requirements
-- [Extension Kit Integration](./06-integration.md)
+- [Best Practices](./references/best-practices) - Storage patterns, error handling, caching, and performance
+- [Permissions](./advanced-topics/permissions) - Storage permission requirements
+- [Extension Kit Integration](./core-concepts/extension-kit/integration)

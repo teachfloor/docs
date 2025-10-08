@@ -216,6 +216,6 @@ Triggered when a member logs in.
 
 ## Related Documentation
 
-- [Getting Started](./01-getting-started.md) - Set up your first webhook
-- [Security](./02-security.md) - Verify webhook signatures
-- [Delivery & Retries](./03-delivery-retries.md) - Understand reliability
+- [Getting Started](./getting-started) - Set up your first webhook
+- [Security](./security) - Verify webhook signatures
+- [Delivery & Retries](./delivery-retries) - Understand reliability
