@@ -8,7 +8,7 @@ Build your first Teachfloor app in 10 minutes! This guide walks you through crea
 - npm or yarn package manager
 - A Teachfloor account
 
-## Getting Started
+## Setup Steps
 
 <scalar-steps>
   <scalar-step id="step-1" title="Install the CLI">
