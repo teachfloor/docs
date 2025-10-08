@@ -255,9 +255,7 @@ teachfloor apps upload
 4. Find your app and click "Submit for Review"
 5. Wait for approval from the Teachfloor team
 
-    <scalar-callout type="warning">
-Only apps with `distribution_type: "public"` can be submitted for marketplace review. Private apps (`distribution_type: "private"`) are only visible to your organization and don't require review.
-    </scalar-callout>
+<scalar-callout type="warning">Only apps with `distribution_type: "public"` can be submitted for marketplace review. Private apps (`distribution_type: "private"`) are only visible to your organization and don't require review.</scalar-callout>
 
   </scalar-step>
 </scalar-steps>
