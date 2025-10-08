@@ -12,7 +12,7 @@ Three types of storage are available:
 | **User Data** | Organization + App + User | User-specific preferences, state |
 | **User Collection** | Organization + App + User | Lists, activity logs, history |
 
-<scalar-callout type="info">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.</scalar-callout>
+<scalar-callout type="warning">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.</scalar-callout>
 
 **Security**: All data is automatically encrypted at rest on the Teachfloor platform.
 
