@@ -14,7 +14,7 @@ All permissions must be declared in your app manifest with a user-facing explana
 
 When your app subscribes to events, the platform includes an `objectContext` parameter containing contextual data based on your granted permissions. For example, with `course_read` permission, `objectContext.course` includes the current course data when in a course viewport.
 
-<scalar-callout type="info">See [Integration Guide - Events](./core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.</scalar-callout>
+<scalar-callout type="info">See [Integration Guide - Events](/apps/core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.</scalar-callout>
 
 ## Available Permissions
 
@@ -212,7 +212,7 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 
 ### Storage Permissions
 
-Storage permissions allow your app to persist data on the Teachfloor platform. See [Data Storage](./advanced-topics/data-storage) for detailed usage.
+Storage permissions allow your app to persist data on the Teachfloor platform. See [Data Storage](./data-storage) for detailed usage.
 
 #### `appdata_read` & `appdata_write`
 
@@ -534,14 +534,14 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 })
 ```
 
-<scalar-callout type="info">See [Integration Guide - Events](./core-concepts/extension-kit/integration#events) for complete `objectContext` usage examples.</scalar-callout>
+<scalar-callout type="info">See [Integration Guide - Events](/apps/core-concepts/extension-kit/integration#events) for complete `objectContext` usage examples.</scalar-callout>
 
 ## Next Steps
 
-→ Continue to [Deployment](./advanced-topics/deployment)
+→ Continue to [Deployment](./deployment)
 
 ## Additional Resources
 
-- [Integration Guide](./core-concepts/extension-kit/integration) - Using permissions with events and storage
-- [Best Practices](./references/best-practices) - Permission best practices and patterns
-- [Examples](./references/examples) - Complete permission usage examples
+- [Integration Guide](/apps/core-concepts/extension-kit/integration) - Using permissions with events and storage
+- [Best Practices](/apps/references/best-practices) - Permission best practices and patterns
+- [Examples](/apps/references/examples) - Complete permission usage examples

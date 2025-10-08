@@ -728,6 +728,6 @@ Learn how to integrate with the platform:
 ## Additional Resources
 
 - [Extension Kit Integration](./integration) - Events, storage, navigation, and platform integration
-- [Data Storage](./advanced-topics/data-storage) - Deep dive into data persistence
-- [Examples](./references/examples) - Sample apps and code snippets
-- [Best Practices](./references/best-practices) - Development patterns and tips
+- [Data Storage](/apps/advanced-topics/data-storage) - Deep dive into data persistence
+- [Examples](/apps/references/examples) - Sample apps and code snippets
+- [Best Practices](/apps/references/best-practices) - Development patterns and tips

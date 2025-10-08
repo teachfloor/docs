@@ -177,13 +177,13 @@ When both conditions are met, the **complete object** is included. Otherwise, th
 }
 ```
 
-<scalar-callout type="info">See [Permissions](./advanced-topics/permissions) for details on requesting access to course, module, and element data.</scalar-callout>
+<scalar-callout type="info">See [Permissions](/apps/advanced-topics/permissions) for details on requesting access to course, module, and element data.</scalar-callout>
 
 ### Data Storage
 
 The Extension Kit provides `store()`, `retrieve()`, and `createCollection()` functions for persisting data. Three types of storage are available: app data (organization-wide), user data (user-specific), and user collections (paginated lists).
 
-<scalar-callout type="info">See [Data Storage](./advanced-topics/data-storage) for complete documentation, API reference, and usage examples.</scalar-callout>
+<scalar-callout type="info">See [Data Storage](/apps/advanced-topics/data-storage) for complete documentation, API reference, and usage examples.</scalar-callout>
 
 ## Context API
 
@@ -439,15 +439,15 @@ async function safeGenerate(prompt) {
 }
 ```
 
-<scalar-callout type="info">See [Permissions](./advanced-topics/permissions#ai-permissions) for more details on AI permissions.</scalar-callout>
+<scalar-callout type="info">See [Permissions](/apps/advanced-topics/permissions#ai-permissions) for more details on AI permissions.</scalar-callout>
 
 ## Next Steps
 
-→ Continue to [Data Storage](./advanced-topics/data-storage)
+→ Continue to [Data Storage](/apps/advanced-topics/data-storage)
 
 ## Additional Resources
 
 - [Extension Kit Components](./components) - UI components reference
-- [Permissions](./advanced-topics/permissions) - Permission scopes and usage
-- [Best Practices](./references/best-practices) - Integration patterns and error handling
-- [Examples](./references/examples) - Integration examples
+- [Permissions](/apps/advanced-topics/permissions) - Permission scopes and usage
+- [Best Practices](/apps/references/best-practices) - Integration patterns and error handling
+- [Examples](/apps/references/examples) - Integration examples

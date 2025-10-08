@@ -289,10 +289,10 @@ Public apps must meet quality standards for performance, accessibility, design, 
 
 ## Next Steps
 
-→ Continue to [CLI Reference](./references/teachfloor-cli)
+→ Continue to [CLI Reference](/apps/references/teachfloor-cli)
 
 ## Additional Resources
 
-- [Best Practices](./references/best-practices) - Deployment best practices and checklists
-- [Troubleshooting Guide](./references/troubleshooting) - Common deployment issues
-- [App Manifest](./core-concepts/app-manifest) - Manifest configuration
+- [Best Practices](/apps/references/best-practices) - Deployment best practices and checklists
+- [Troubleshooting Guide](/apps/references/troubleshooting) - Common deployment issues
+- [App Manifest](/apps/core-concepts/app-manifest) - Manifest configuration

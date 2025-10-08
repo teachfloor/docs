@@ -570,11 +570,11 @@ teachfloor apps remove view
 
 ## Next Steps
 
-→ Continue to [Extension Kit Components](./core-concepts/extension-kit/components)
+→ Continue to [Extension Kit Components](./extension-kit/components)
 
 ## Additional Resources
 
-- [Best Practices](./references/best-practices) - Viewport selection and performance optimization
-- [Troubleshooting Guide](./references/troubleshooting) - Viewport issues and debugging
-- [Examples](./references/examples) - Multi-viewport app examples
-- [Extension Kit Integration](./core-concepts/extension-kit/integration)
+- [Best Practices](/apps/references/best-practices) - Viewport selection and performance optimization
+- [Troubleshooting Guide](/apps/references/troubleshooting) - Viewport issues and debugging
+- [Examples](/apps/references/examples) - Multi-viewport app examples
+- [Extension Kit Integration](./extension-kit/integration)
