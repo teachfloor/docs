@@ -45,8 +45,8 @@ All webhooks have this structure:
 
 ## Basic Implementation
 
-### Node.js Example
-
+<scalar-tabs nested>
+  <scalar-tab title="Node.js">
 ```javascript
 app.post('/webhooks/teachfloor', express.json(), (req, res) => {
   // Respond immediately
@@ -56,9 +56,8 @@ app.post('/webhooks/teachfloor', express.json(), (req, res) => {
   processWebhook(req.body).catch(console.error);
 });
 ```
-
-### PHP Example
-
+  </scalar-tab>
+  <scalar-tab title="PHP">
 ```php
 Route::post('/webhooks/teachfloor', function (Request $request) {
     // Respond immediately
@@ -68,6 +67,8 @@ Route::post('/webhooks/teachfloor', function (Request $request) {
     ProcessWebhookJob::dispatch($request->json()->all());
 });
 ```
+  </scalar-tab>
+</scalar-tabs>
 
 ## Requirements
 
