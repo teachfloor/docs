@@ -58,6 +58,11 @@
   margin-top: var(--scalar-block-spacing);
 }
 
+.custom-tabs-container .custom-tabs-content,
 .custom-tabs-container .custom-tabs-content {
   border-bottom: none;
+}
+
+.custom-tabs-container .custom-tabs-content>div>div:first-of-type {
+  margin-top: 0;
 }
