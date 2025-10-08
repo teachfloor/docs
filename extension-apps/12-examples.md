@@ -916,10 +916,10 @@ export default IntegrationView
 
 See troubleshooting guide for common issues:
 
-→ Continue to [Troubleshooting](./references/troubleshooting)
+→ Continue to [Troubleshooting](./troubleshooting)
 
 ## Additional Resources
 
-- [Extension Kit](./core-concepts/extension-kit/components)
-- [Extension Kit Integration](./core-concepts/extension-kit/integration)
-- [Best Practices](./references/best-practices)
+- [Extension Kit](/apps/core-concepts/extension-kit/components)
+- [Extension Kit Integration](/apps/core-concepts/extension-kit/integration)
+- [Best Practices](./best-practices)
