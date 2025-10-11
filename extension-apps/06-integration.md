@@ -261,23 +261,23 @@ function UserGreeting() {
 import { showToast } from '@teachfloor/extension-kit'
 
 // Success message
-showToast('Changes saved successfully', { type: 'success' })
+showToast('Changes saved successfully', { color: 'green' })
 
 // Error message
-showToast('Failed to save changes', { type: 'error' })
+showToast('Failed to save changes', { color: 'red' })
 
 // Info message
-showToast('Processing your request', { type: 'info' })
+showToast('Processing your request', { color: 'blue' })
 
 // Warning message
-showToast('Please review your input', { type: 'warning' })
+showToast('Please review your input', { color: 'orange' })
 ```
 
 **Options:**
 ```typescript
 interface ToastOptions {
-  type?: 'success' | 'error' | 'info' | 'warning'
-  duration?: number  // milliseconds
+  color?: 'green' | 'red' | 'blue' | 'orange'
+  autoClose?: number  // milliseconds
 }
 ```
 

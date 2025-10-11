@@ -82,10 +82,10 @@ import { store, retrieve, showToast } from '@teachfloor/extension-kit'
 async function saveAppConfig(config) {
   try {
     await store('app-config', config, 'appdata')
-    showToast('Configuration saved', { type: 'success' })
+    showToast('Configuration saved', { color: 'green' })
   } catch (error) {
     console.error('Failed to save:', error)
-    showToast('Failed to save configuration', { type: 'error' })
+    showToast('Failed to save configuration', { color: 'red' })
   }
 }
 

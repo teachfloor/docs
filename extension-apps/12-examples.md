@@ -245,7 +245,7 @@ export function useNotes() {
       const data = await retrieve('notes', 'userdata')
       setNotes(data || [])
     } catch (error) {
-      showToast('Failed to load notes', { type: 'error' })
+      showToast('Failed to load notes', { color: 'red' })
     } finally {
       setLoading(false)
     }
@@ -263,9 +263,9 @@ export function useNotes() {
       const updated = [...notes, newNote]
       await store('notes', updated, 'userdata')
       setNotes(updated)
-      showToast('Note saved!', { type: 'success' })
+      showToast('Note saved!', { color: 'green' })
     } catch (error) {
-      showToast('Failed to save note', { type: 'error' })
+      showToast('Failed to save note', { color: 'red' })
     }
   }
 
@@ -276,9 +276,9 @@ export function useNotes() {
       )
       await store('notes', updated, 'userdata')
       setNotes(updated)
-      showToast('Note updated!', { type: 'success' })
+      showToast('Note updated!', { color: 'green' })
     } catch (error) {
-      showToast('Failed to update note', { type: 'error' })
+      showToast('Failed to update note', { color: 'red' })
     }
   }
 
@@ -287,9 +287,9 @@ export function useNotes() {
       const updated = notes.filter(note => note.id !== id)
       await store('notes', updated, 'userdata')
       setNotes(updated)
-      showToast('Note deleted!', { type: 'success' })
+      showToast('Note deleted!', { color: 'green' })
     } catch (error) {
-      showToast('Failed to delete note', { type: 'error' })
+      showToast('Failed to delete note', { color: 'red' })
     }
   }
 
@@ -623,10 +623,10 @@ const AppSettings = () => {
     try {
       await store('settings', values, 'appdata')
       setStatus('Saved successfully!')
-      showToast('Settings saved!', { type: 'success' })
+      showToast('Settings saved!', { color: 'green' })
     } catch (error) {
       setStatus('Failed to save settings')
-      showToast('Failed to save', { type: 'error' })
+      showToast('Failed to save', { color: 'red' })
     }
   }
 
@@ -854,13 +854,13 @@ const IntegrationView = () => {
         setApi(new ExternalAPI(settings.apiKey))
       }
     } catch (error) {
-      showToast('Failed to load settings', { type: 'error' })
+      showToast('Failed to load settings', { color: 'red' })
     }
   }
 
   async function loadData() {
     if (!api) {
-      showToast('Please configure API key in settings', { type: 'warning' })
+      showToast('Please configure API key in settings', { color: 'orange' })
       return
     }
 
@@ -869,9 +869,9 @@ const IntegrationView = () => {
     try {
       const result = await api.getData()
       setData(result)
-      showToast('Data loaded successfully', { type: 'success' })
+      showToast('Data loaded successfully', { color: 'green' })
     } catch (error) {
-      showToast('Failed to load data', { type: 'error' })
+      showToast('Failed to load data', { color: 'red' })
     } finally {
       setLoading(false)
     }

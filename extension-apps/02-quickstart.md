@@ -139,7 +139,7 @@ const CourseListView = () => {
   const { userContext } = useExtensionContext()
 
   const handleClick = () => {
-    showToast('Hello from your app!', { type: 'success' })
+    showToast('Hello from your app!', { color: 'green' })
   }
 
   return (

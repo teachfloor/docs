@@ -368,7 +368,7 @@ function DataLoader() {
       setData(data)
     } catch (error) {
       setError('Failed to load data. Please try again.')
-      showToast(error.message, { type: 'error' })
+      showToast(error.message, { color: 'red' })
     }
   }
 
@@ -392,11 +392,11 @@ Provide immediate feedback:
 ```javascript
 async function saveData(data) {
   try {
-    showToast('Saving...', { type: 'info' })
+    showToast('Saving...', { color: 'blue' })
     await store('data', data, 'userdata')
-    showToast('Saved successfully!', { type: 'success' })
+    showToast('Saved successfully!', { color: 'green' })
   } catch (error) {
-    showToast('Failed to save', { type: 'error' })
+    showToast('Failed to save', { color: 'red' })
   }
 }
 ```
@@ -726,9 +726,9 @@ function NoteForm({ onSave }) {
 
     try {
       await onSave(values)
-      showToast('Saved!', { type: 'success' })
+      showToast('Saved!', { color: 'green' })
     } catch (error) {
-      showToast('Failed to save', { type: 'error' })
+      showToast('Failed to save', { color: 'red' })
     }
   }
 
