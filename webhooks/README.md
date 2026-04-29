@@ -18,11 +18,11 @@ When a subscribed event occurs, Teachfloor sends an HTTP POST request to your de
 
 ## Quick Links
 
-- [Getting Started](./getting-started) - Set up your first webhook
-- [Security](./security) - Verify webhook signatures
-- [Delivery & Retries](./delivery-retries) - Understanding webhook reliability
-- [Event Reference](./event-reference) - Available webhook events
-- [Troubleshooting](./troubleshooting) - Common issues and solutions
+- [Getting Started](./webhooks/getting-started) - Set up your first webhook
+- [Security](./webhooks/security) - Verify webhook signatures
+- [Delivery & Retries](./webhooks/delivery-retries) - Understanding webhook reliability
+- [Event Reference](./webhooks/event-reference) - Available webhook events
+- [Troubleshooting](./webhooks/troubleshooting) - Common issues and solutions
 
 ## Need Help?
 
