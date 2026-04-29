@@ -22,7 +22,9 @@ All components are designed to match Teachfloor's design system, ensuring your a
 | Buttons, Forms, Layouts, Charts | **This document** (05-components.md) |
 | Events, Storage, Navigation, Toasts | [Extension Kit Integration](./integration) |
 
-<scalar-callout type="info">**Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./integration) guide.</scalar-callout>
+:::info
+**Looking for platform integration?** To communicate with the platform (events, storage, navigation, toasts), see the [Extension Kit Integration](./integration) guide.
+:::
 
 ## Installation
 
@@ -62,7 +64,9 @@ root.render(
 **Props**:
 - `autoInit`: (Optional) Automatically signal app ready to platform (default: true)
 
-<scalar-callout type="info">**Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./integration#context-api) guide.</scalar-callout>
+:::info
+**Accessing context data?** To use the `useExtensionContext()` hook and access platform data, see the [Extension Kit Integration](./integration#context-api) guide.
+:::
 
 ### View Loader
 
@@ -728,6 +732,6 @@ Learn how to integrate with the platform:
 ## Additional Resources
 
 - [Extension Kit Integration](./integration) - Events, storage, navigation, and platform integration
-- [Data Storage](/apps/advanced-topics/data-storage) - Deep dive into data persistence
-- [Examples](/apps/references/examples) - Sample apps and code snippets
-- [Best Practices](/apps/references/best-practices) - Development patterns and tips
+- [Data Storage](/docs/apps/advanced-topics/data-storage) - Deep dive into data persistence
+- [Examples](/docs/apps/references/examples) - Sample apps and code snippets
+- [Best Practices](/docs/apps/references/best-practices) - Development patterns and tips

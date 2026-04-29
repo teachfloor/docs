@@ -620,6 +620,6 @@ Learn about best practices:
 
 ## Additional Resources
 
-- [Quickstart Guide](/apps/quickstart-guide)
-- [App Manifest](/apps/core-concepts/app-manifest)
-- [Deployment](/apps/advanced-topics/deployment)
+- [Quickstart Guide](/docs/apps/quickstart)
+- [App Manifest](/docs/apps/core-concepts/app-manifest)
+- [Deployment](/docs/apps/advanced-topics/deployment)

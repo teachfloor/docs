@@ -10,8 +10,7 @@ Build your first Teachfloor app in 10 minutes! This guide walks you through crea
 
 ## Setup Steps
 
-<scalar-steps>
-  <scalar-step id="step-1" title="Install the CLI">
+### 1. Install the CLI
 
 Open your terminal and install the Teachfloor CLI globally:
 
@@ -25,9 +24,7 @@ Verify the installation:
 teachfloor version
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-2" title="Authenticate">
+### 2. Authenticate
 
 Log in to your Teachfloor account:
 
@@ -46,9 +43,7 @@ Once authenticated, verify your session:
 teachfloor whoami
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-3" title="Create Your First App">
+### 3. Create Your First App
 
 Create a new app called "hello-world":
 
@@ -74,9 +69,7 @@ The CLI will:
 ✓ App "Hello World" created successfully in "hello-world".
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-4" title="Explore the Project Structure">
+### 4. Explore the Project Structure
 
 Navigate into your app directory:
 
@@ -101,9 +94,7 @@ hello-world/
 └── .gitignore
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-5" title="Add a View">
+### 5. Add a View
 
 Add a view to display your app in the course list page:
 
@@ -118,9 +109,7 @@ Select:
 
 This creates `src/views/CourseListView.jsx` and updates your manifest.
 
-  </scalar-step>
-
-  <scalar-step id="step-6" title="Customize Your Component">
+### 6. Customize Your Component
 
 Open `src/views/CourseListView.jsx` and modify it:
 
@@ -162,9 +151,7 @@ const CourseListView = () => {
 export default CourseListView
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-7" title="Start the Development Server">
+### 7. Start the Development Server
 
 Run the development server:
 
@@ -184,9 +171,7 @@ Install URL: https://app.teachfloor.com/your-org/courses?app=abc123@1.0.0
 Starting development server...
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-8" title="Test Your App">
+### 8. Test Your App
 
 1. Your browser will open to the install URL
 2. Click "Install" to add the app to your organization
@@ -195,9 +180,7 @@ Starting development server...
 
 The app will hot-reload as you make changes to the code.
 
-  </scalar-step>
-
-  <scalar-step id="step-9" title="Build for Production">
+### 9. Build for Production
 
 When you're ready to deploy:
 
@@ -220,9 +203,7 @@ This will:
 ✓ App uploaded successfully.
 ```
 
-  </scalar-step>
-
-  <scalar-step id="step-10" title="Publish to Marketplace (Optional)">
+### 10. Publish to Marketplace (Optional)
 
 If you want to make your app available in the public marketplace:
 
@@ -255,10 +236,9 @@ teachfloor apps upload
 4. Find your app and click "Submit for Review"
 5. Wait for approval from the Teachfloor team
 
-<scalar-callout type="warning">Only apps with `distribution_type: "public"` can be submitted for marketplace review. Private apps (`distribution_type: "private"`) are only visible to your organization and don't require review.</scalar-callout>
-
-  </scalar-step>
-</scalar-steps>
+:::caution
+Only apps with `distribution_type: "public"` can be submitted for marketplace review. Private apps (`distribution_type: "private"`) are only visible to your organization and don't require review.
+:::
 
 ## What's Next?
 
@@ -266,7 +246,7 @@ Congratulations! You've built your first Teachfloor app. Here's what to explore 
 
 ### Learn Core Concepts
 - [App Manifest](./core-concepts/app-manifest) - Configure your app
-- [Viewports](./core-concepts/viewports-system) - Understand placement options
+- [Viewports](./core-concepts/viewports) - Understand placement options
 - [Extension Kit](./core-concepts/extension-kit/components) - Explore available components
 
 ### Add More Functionality

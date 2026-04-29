@@ -21,15 +21,12 @@ Authorization: Bearer YOUR_API_KEY
 
 ## Example Request
 
-<scalar-tabs nested>
-  <scalar-tab title="curl">
 ```bash
 curl https://api.teachfloor.com/v0/members \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json"
 ```
-  </scalar-tab>
-  <scalar-tab title="JavaScript">
+
 ```javascript
 const response = await fetch('https://api.teachfloor.com/v0/members', {
   headers: {
@@ -38,8 +35,7 @@ const response = await fetch('https://api.teachfloor.com/v0/members', {
   }
 });
 ```
-  </scalar-tab>
-  <scalar-tab title="PHP">
+
 ```php
 $curl = curl_init();
 curl_setopt_array($curl, [
@@ -51,8 +47,6 @@ curl_setopt_array($curl, [
 ]);
 $response = curl_exec($curl);
 ```
-  </scalar-tab>
-</scalar-tabs>
 
 ## Regenerating Your Key
 

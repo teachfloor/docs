@@ -125,7 +125,9 @@ Select `public` when prompted.
 }
 ```
 
-<scalar-callout type="warning">This must be set to `public` before the app can be submitted for marketplace review.</scalar-callout>
+:::caution
+This must be set to `public` before the app can be submitted for marketplace review.
+:::
 
 ### Step 3: Upload Your App
 
@@ -265,7 +267,9 @@ teachfloor apps set distribution
 4. Upload: `teachfloor apps upload`
 5. Submit via dashboard
 
-<scalar-callout type="info">Existing private installations remain unaffected.</scalar-callout>
+:::info
+Existing private installations remain unaffected.
+:::
 
 ## Marketplace Guidelines
 
@@ -289,10 +293,10 @@ Public apps must meet quality standards for performance, accessibility, design, 
 
 ## Next Steps
 
-→ Continue to [CLI Reference](/apps/references/teachfloor-cli)
+→ Continue to [CLI Reference](/docs/apps/references/cli)
 
 ## Additional Resources
 
-- [Best Practices](/apps/references/best-practices) - Deployment best practices and checklists
-- [Troubleshooting Guide](/apps/references/troubleshooting) - Common deployment issues
-- [App Manifest](/apps/core-concepts/app-manifest) - Manifest configuration
+- [Best Practices](/docs/apps/references/best-practices) - Deployment best practices and checklists
+- [Troubleshooting Guide](/docs/apps/references/troubleshooting) - Common deployment issues
+- [App Manifest](/docs/apps/core-concepts/app-manifest) - Manifest configuration

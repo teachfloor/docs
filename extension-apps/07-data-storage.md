@@ -12,7 +12,9 @@ Three types of storage are available:
 | **User Data** | Organization + App + User | User-specific preferences, state |
 | **User Collection** | Organization + App + User | Lists, activity logs, history |
 
-<scalar-callout type="warning">Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.</scalar-callout>
+:::caution
+Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.
+:::
 
 **Security**: All data is automatically encrypted at rest on the Teachfloor platform.
 
@@ -34,7 +36,9 @@ Store data shared across all users in your organization.
 }
 ```
 
-<scalar-callout type="info">`appdata_write` automatically includes read access.</scalar-callout>
+:::info
+`appdata_write` automatically includes read access.
+:::
 
 **Read-Only** (if you only need to read):
 ```json
@@ -128,7 +132,9 @@ Store data specific to individual users.
 }
 ```
 
-<scalar-callout type="info">`userdata_write` includes read access.</scalar-callout>
+:::info
+`userdata_write` includes read access.
+:::
 
 **Read-Only**:
 ```json
@@ -693,10 +699,10 @@ All data stored through the Extension Kit is **automatically encrypted at rest**
 
 ## Next Steps
 
-→ Continue to [Permissions](/apps/advanced-topics/permissions)
+→ Continue to [Permissions](/docs/apps/advanced-topics/permissions)
 
 ## Additional Resources
 
-- [Best Practices](/apps/references/best-practices) - Storage patterns, error handling, caching, and performance
-- [Permissions](/apps/advanced-topics/permissions) - Storage permission requirements
-- [Extension Kit Integration](/apps/core-concepts/extension-kit/integration)
+- [Best Practices](/docs/apps/references/best-practices) - Storage patterns, error handling, caching, and performance
+- [Permissions](/docs/apps/advanced-topics/permissions) - Storage permission requirements
+- [Extension Kit Integration](/docs/apps/core-concepts/extension-kit/integration)

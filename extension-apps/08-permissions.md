@@ -14,7 +14,9 @@ All permissions must be declared in your app manifest with a user-facing explana
 
 When your app subscribes to events, the platform includes an `objectContext` parameter containing contextual data based on your granted permissions. For example, with `course_read` permission, `objectContext.course` includes the current course data when in a course viewport.
 
-<scalar-callout type="info">See [Integration Guide - Events](/apps/core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.</scalar-callout>
+:::info
+See [Integration Guide - Events](/docs/apps/core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.
+:::
 
 ## Available Permissions
 
@@ -41,7 +43,9 @@ Your app can request the following permissions:
 | `usercollection_read` | Read user data collections | Storage API - Collections | Read only |
 | `usercollection_write` | Write to user data collections | Storage API - Collections | **Includes read** |
 
-<scalar-callout type="info">**Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.</scalar-callout>
+:::info
+**Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.
+:::
 
 ### AI & Feature Permissions
 
@@ -218,7 +222,9 @@ Storage permissions allow your app to persist data on the Teachfloor platform. S
 
 Store and retrieve organization-wide app data shared across all users.
 
-<scalar-callout type="info">**Permission Hierarchy**: `appdata_write` includes `appdata_read` access.</scalar-callout>
+:::info
+**Permission Hierarchy**: `appdata_write` includes `appdata_read` access.
+:::
 
 **Use cases**:
 - App configuration
@@ -312,7 +318,9 @@ const prefs = await retrieve('preferences', 'userdata')
 
 Store and retrieve collections of data items for a user, with pagination support.
 
-<scalar-callout type="info">**Permission Hierarchy**: `usercollection_write` includes `usercollection_read` access.</scalar-callout>
+:::info
+**Permission Hierarchy**: `usercollection_write` includes `usercollection_read` access.
+:::
 
 **Use cases**:
 - Activity logs
@@ -408,10 +416,12 @@ Permission to use platform data placeholders in AI prompts.
 - `{{element.name}}` - Element title
 - `{{element.content}}` - Element content (text format)
 
-<scalar-callout type="warning">**Important**: When using placeholders, you must also have the corresponding read permission:
+:::caution
+**Important**: When using placeholders, you must also have the corresponding read permission:
 - Course placeholders require `course_read`
 - Module placeholders require `module_read`
-- Element placeholders require `element_read`</scalar-callout>
+- Element placeholders require `element_read`
+:::
 
 **Example**:
 ```json
@@ -534,7 +544,9 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 })
 ```
 
-<scalar-callout type="info">See [Integration Guide - Events](/apps/core-concepts/extension-kit/integration#events) for complete `objectContext` usage examples.</scalar-callout>
+:::info
+See [Integration Guide - Events](/docs/apps/core-concepts/extension-kit/integration#events) for complete `objectContext` usage examples.
+:::
 
 ## Next Steps
 
@@ -542,6 +554,6 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 
 ## Additional Resources
 
-- [Integration Guide](/apps/core-concepts/extension-kit/integration) - Using permissions with events and storage
-- [Best Practices](/apps/references/best-practices) - Permission best practices and patterns
-- [Examples](/apps/references/examples) - Complete permission usage examples
+- [Integration Guide](/docs/apps/core-concepts/extension-kit/integration) - Using permissions with events and storage
+- [Best Practices](/docs/apps/references/best-practices) - Permission best practices and patterns
+- [Examples](/docs/apps/references/examples) - Complete permission usage examples

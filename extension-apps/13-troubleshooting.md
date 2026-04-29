@@ -710,7 +710,7 @@ npm run build
 
 ## Additional Resources
 
-- [Quickstart Guide](/apps/quickstart-guide)
-- [CLI Reference](./teachfloor-cli)
+- [Quickstart Guide](/docs/apps/quickstart)
+- [CLI Reference](./cli)
 - [Best Practices](./best-practices)
 - [Examples](./examples)
