@@ -15,25 +15,25 @@ Teachfloor Apps are extensions that enhance the platform's functionality by addi
 ## Documentation Structure
 
 ### Getting Started
-1. [Introduction](./introduction) - Overview and concepts
-2. [Quickstart Guide](./quickstart) - Build your first app in 10 minutes
+1. [Introduction](./apps/introduction) - Overview and concepts
+2. [Quickstart Guide](./apps/quickstart) - Build your first app in 10 minutes
 
 ### Core Concepts
-3. [App Manifest](./core-concepts/app-manifest) - Configure your app's metadata and capabilities
-4. [Viewports System](./core-concepts/viewports) - Understand where apps can display
-5. [Extension Kit Components](./core-concepts/extension-kit/components) - Use pre-built UI components
-6. [Extension Kit Integration](./core-concepts/extension-kit/integration) - Interact with the platform
+3. [App Manifest](./apps/core-concepts/app-manifest) - Configure your app's metadata and capabilities
+4. [Viewports System](./apps/core-concepts/viewports) - Understand where apps can display
+5. [Extension Kit Components](./apps/core-concepts/extension-kit/components) - Use pre-built UI components
+6. [Extension Kit Integration](./apps/core-concepts/extension-kit/integration) - Interact with the platform
 
 ### Advanced Topics
-7. [Data Storage](./advanced-topics/data-storage) - Persist user and app data
-8. [Permissions](./advanced-topics/permissions) - Request and use platform resources
-9. [Deployment](./advanced-topics/deployment) - Deploy private apps and publish to marketplace
+7. [Data Storage](./apps/advanced-topics/data-storage) - Persist user and app data
+8. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
+9. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
 
 ### Reference
-10. [CLI Commands](./references/cli) - Complete command reference
-11. [Best Practices](./references/best-practices) - Tips and patterns
-12. [Examples](./references/examples) - Sample apps and code snippets
-13. [Troubleshooting](./references/troubleshooting) - Common issues and solutions
+10. [CLI Commands](./apps/references/cli) - Complete command reference
+11. [Best Practices](./apps/references/best-practices) - Tips and patterns
+12. [Examples](./apps/references/examples) - Sample apps and code snippets
+13. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
 
 ## Prerequisites
 
@@ -55,4 +55,4 @@ This documentation is provided under the MIT License.
 
 ---
 
-**Ready to get started?** Begin with the [Introduction](./introduction) or jump straight to the [Quickstart Guide](./quickstart)!
+**Ready to get started?** Begin with the [Introduction](./apps/introduction) or jump straight to the [Quickstart Guide](./apps/quickstart)!
