@@ -8,9 +8,9 @@ The Teachfloor.js SDK enables seamless communication between your custom web pag
 
 ## Quick Links
 
-- [Getting Started](./getting-started)
-- [SDK Methods](./sdk-methods)
-- [Viewports Reference](./viewports-reference)
+- [Getting Started](./teachfloor-js/getting-started)
+- [SDK Methods](./teachfloor-js/sdk-methods)
+- [Viewports Reference](./teachfloor-js/viewports-reference)
 
 ## Quick Start
 
