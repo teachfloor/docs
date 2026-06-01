@@ -35,7 +35,7 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.course.assessment.list` | Assessment list | `/:org/courses/:id/assessments` | Assessment overview, quiz management |
 | `teachfloor.dashboard.course.progress.detail` | Course progress | `/:org/courses/:id/progress` | Progress tracking, completion status |
 | `teachfloor.dashboard.course.calendar.detail` | Course calendar | `/:org/courses/:id/calendar` | Schedule view, deadline tracking |
-| `teachfloor.dashboard.course.member.list` | Course members | `/:org/courses/:id/members` | Student list, member management |
+| `teachfloor.dashboard.course.member.list` | Course members | `/:org/courses/:id/directory` | Student list, member management |
 | **Community** |
 | `teachfloor.dashboard.community.post.list` | Community posts | `/:org/community/:id/posts` | Social features, engagement tools, moderation |
 | `teachfloor.dashboard.community.member.list` | Community members | `/:org/community/:id/members` | Member profiles, networking tools, search |
@@ -47,10 +47,12 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.settings.integration.list` | Integrations | `/:org/settings/integrations` | Third-party integrations, API tools |
 | `teachfloor.dashboard.settings.notification.list` | Notifications | `/:org/settings/notifications` | Custom notification rules, digest tools |
 | `teachfloor.dashboard.settings.custom-field.list` | Custom fields | `/:org/settings/custom-fields` | Custom field management, data import tools |
+| `teachfloor.dashboard.settings.branch.list` | Branches | `/:org/settings/branches` | Branch management, multi-tenant tools |
 | `teachfloor.dashboard.settings.import.list` | Import data | `/:org/settings/import` | Bulk import tools, data migration |
 | `teachfloor.dashboard.settings.app.list` | Apps | `/:org/settings/apps` | Installed apps, app marketplace |
 | **User Management** |
 | `teachfloor.dashboard.account.detail` | User account | `/:org/account` | Personal tools, user preferences, integrations |
+| `teachfloor.dashboard.profile.detail` | User profile | `/:org/users/:userId` | Profile widgets, member insights |
 | `teachfloor.dashboard.learner.list` | Learners | `/:org/learners` | Learner analytics, bulk actions, import tools |
 | **Commerce** |
 | `teachfloor.dashboard.payment.list` | Payments | `/:org/payments` | Payment analytics, invoicing tools |
@@ -157,7 +159,7 @@ teachfloor.{area}.{page}.{section}
 
 #### `teachfloor.dashboard.course.member.list`
 **Displays on**: Course members page
-**Path**: `/:organization/courses/:courseId/members`
+**Path**: `/:organization/courses/:courseId/directory`
 **Use cases**: Learner list, member management
 
 ```json
@@ -279,6 +281,18 @@ teachfloor.{area}.{page}.{section}
 }
 ```
 
+#### `teachfloor.dashboard.settings.branch.list`
+**Displays on**: Branches settings page
+**Path**: `/:organization/settings/branches`
+**Use cases**: Branch management, multi-tenant tools
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.branch.list",
+  "component": "BranchListView"
+}
+```
+
 #### `teachfloor.dashboard.settings.import.list`
 **Displays on**: Import data page
 **Path**: `/:organization/settings/import`
@@ -314,6 +328,18 @@ teachfloor.{area}.{page}.{section}
 {
   "viewport": "teachfloor.dashboard.account.detail",
   "component": "AccountView"
+}
+```
+
+#### `teachfloor.dashboard.profile.detail`
+**Displays on**: User profile page
+**Path**: `/:organization/users/:userId`
+**Use cases**: Profile widgets, member insights, supplementary user info
+
+```json
+{
+  "viewport": "teachfloor.dashboard.profile.detail",
+  "component": "ProfileDetailView"
 }
 ```
 
