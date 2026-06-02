@@ -12,7 +12,8 @@ This document focuses exclusively on **API functions** for platform integration:
 - `store()`, `retrieve()`, `createCollection()` - Data storage and retrieval
 - `showToast()` - Display notifications
 - `showDrawer()`, `hideDrawer()`, `toggleDrawer()` - Control app drawer
-- `goToViewport()` - Navigate to different platform areas
+- `goToViewport()` - Navigate to different platform areas using viewports
+- `goToPath()` - Navigate to different platform areas using paths
 
 ### React Hooks
 - `useExtensionContext()` - Access user and platform data reactively
@@ -340,6 +341,27 @@ function goToAccount() {
   goToViewport('teachfloor.dashboard.account.detail')
 }
 ```
+
+### Deeplinking
+
+Use `goToPath` when you already have a fully-resolved in-app path — typically captured from `environment.path` — and want to deeplink the user back to it (e.g. a saved bookmark or a "back to where you were" button).
+
+```javascript
+import { goToPath, useExtensionContext } from '@teachfloor/extension-kit'
+
+// Save the current path...
+const { environment } = useExtensionContext()
+const savedPath = environment.path  // e.g. "/org-slug/courses/123/modules/456"
+
+// ...and deeplink back later
+goToPath(savedPath)
+```
+
+**Rules and guards:**
+
+- `path` must be a relative path beginning with a single `/` (no protocol-relative `//…`, no absolute URLs). Anything else is ignored.
+- The path must belong to the **current organization** — deeplinks whose first segment doesn't match the user's org slug are rejected, so an app installed in one org can't redirect the user into another.
+- On custom domains, the org slug is stripped from the URL automatically — paths captured from `environment.path` work on both URL shapes.
 
 ## AI Generation
 
