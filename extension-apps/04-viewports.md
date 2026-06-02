@@ -42,6 +42,14 @@ teachfloor.{area}.{page}.{section}
 | **Settings** |
 | `teachfloor.dashboard.settings.general.detail` | General settings | `/:org/settings/general` | Organization-wide integrations, preferences |
 | `teachfloor.dashboard.settings.customization.detail` | Customization | `/:org/settings/customization` | Branding tools, theme extensions |
+| `teachfloor.dashboard.settings.customization.domain.detail` | Customization · Domain | `/:org/settings/customization/domain` | Domain configuration widgets, DNS helpers |
+| `teachfloor.dashboard.settings.customization.appearance.detail` | Customization · Appearance | `/:org/settings/customization/appearance` | Theme tools, brand previews |
+| `teachfloor.dashboard.settings.customization.smtp.detail` | Customization · SMTP | `/:org/settings/customization/smtp` | Email-delivery diagnostics |
+| `teachfloor.dashboard.settings.customization.checkout.detail` | Customization · Checkout | `/:org/settings/customization/checkout` | Checkout experiments, payment tweaks |
+| `teachfloor.dashboard.settings.customization.login.detail` | Customization · Login | `/:org/settings/customization/login` | Login-screen branding |
+| `teachfloor.dashboard.settings.customization.labels.detail` | Customization · Labels | `/:org/settings/customization/labels` | Custom terminology tools |
+| `teachfloor.dashboard.settings.customization.achievements.detail` | Customization · Achievements | `/:org/settings/customization/achievements` | Gamification configuration |
+| `teachfloor.dashboard.settings.customization.profile-layout.detail` | Customization · Profile layout | `/:org/settings/customization/profile-layout` | Profile field arrangement tools |
 | `teachfloor.dashboard.settings.team.list` | Team management | `/:org/settings/team` | Team collaboration tools, role management |
 | `teachfloor.dashboard.settings.billing.detail` | Billing | `/:org/settings/billing` | Usage analytics, cost tracking |
 | `teachfloor.dashboard.settings.integration.list` | Integrations | `/:org/settings/integrations` | Third-party integrations, API tools |
@@ -56,6 +64,14 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.learner.list` | Learners | `/:org/learners` | Learner analytics, bulk actions, import tools |
 | **Commerce** |
 | `teachfloor.dashboard.payment.list` | Payments | `/:org/payments` | Payment analytics, invoicing tools |
+| **Messaging** |
+| `teachfloor.dashboard.messaging.list` | Inbox | `/:org/messaging` | Inbox widgets, unread badges |
+| `teachfloor.dashboard.messaging.thread.detail` | Thread detail | `/:org/messaging/threads/:thread` | Thread sidebars, translation tools, message-level integrations |
+| **Workspace** |
+| `teachfloor.dashboard.analytics.detail` | Analytics | `/:org/analytics` | Custom dashboards, exports, alerts |
+| `teachfloor.dashboard.library.detail` | Library | `/:org/library` | Asset browsers, content pickers |
+| `teachfloor.dashboard.automation.list` | Automations | `/:org/automations` | Workflow inspectors, audit tools |
+| `teachfloor.dashboard.getstarted.detail` | Get started | `/:org/getstarted` | Onboarding hints, checklists |
 | **App Settings** |
 | `settings` | App settings | `/:org/settings/apps/:appId` | App configuration, user preferences |
 
@@ -221,6 +237,106 @@ teachfloor.{area}.{page}.{section}
 }
 ```
 
+:::info
+The bare `/settings/customization` URL redirects to its first subtab (`/domain`). The `settings.customization.detail` viewport is kept for backward compatibility — new apps should target the specific subtab they care about.
+:::
+
+#### `teachfloor.dashboard.settings.customization.domain.detail`
+**Displays on**: Customization · Domain subtab
+**Path**: `/:organization/settings/customization/domain`
+**Use cases**: Domain configuration widgets, DNS helpers
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.domain.detail",
+  "component": "CustomizationDomainView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.appearance.detail`
+**Displays on**: Customization · Appearance subtab
+**Path**: `/:organization/settings/customization/appearance`
+**Use cases**: Theme tools, brand previews
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.appearance.detail",
+  "component": "CustomizationAppearanceView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.smtp.detail`
+**Displays on**: Customization · SMTP subtab
+**Path**: `/:organization/settings/customization/smtp`
+**Use cases**: Email-delivery diagnostics
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.smtp.detail",
+  "component": "CustomizationSmtpView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.checkout.detail`
+**Displays on**: Customization · Checkout subtab
+**Path**: `/:organization/settings/customization/checkout`
+**Use cases**: Checkout experiments, payment tweaks
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.checkout.detail",
+  "component": "CustomizationCheckoutView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.login.detail`
+**Displays on**: Customization · Login subtab
+**Path**: `/:organization/settings/customization/login`
+**Use cases**: Login-screen branding
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.login.detail",
+  "component": "CustomizationLoginView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.labels.detail`
+**Displays on**: Customization · Labels subtab
+**Path**: `/:organization/settings/customization/labels`
+**Use cases**: Custom terminology tools
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.labels.detail",
+  "component": "CustomizationLabelsView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.achievements.detail`
+**Displays on**: Customization · Achievements subtab (visible only when the workspace has the achievements feature enabled)
+**Path**: `/:organization/settings/customization/achievements`
+**Use cases**: Gamification configuration
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.achievements.detail",
+  "component": "CustomizationAchievementsView"
+}
+```
+
+#### `teachfloor.dashboard.settings.customization.profile-layout.detail`
+**Displays on**: Customization · Profile layout subtab (visible only to owners and admins)
+**Path**: `/:organization/settings/customization/profile-layout`
+**Use cases**: Profile field arrangement tools
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.profile-layout.detail",
+  "component": "CustomizationProfileLayoutView"
+}
+```
+
 #### `teachfloor.dashboard.settings.team.list`
 **Displays on**: Team management page
 **Path**: `/:organization/settings/team`
@@ -366,6 +482,82 @@ teachfloor.{area}.{page}.{section}
 {
   "viewport": "teachfloor.dashboard.payment.list",
   "component": "PaymentView"
+}
+```
+
+### Messaging
+
+#### `teachfloor.dashboard.messaging.list`
+**Displays on**: Inbox / conversation list
+**Path**: `/:organization/messaging`
+**Use cases**: Inbox widgets, unread badges, quick-reply panels
+
+```json
+{
+  "viewport": "teachfloor.dashboard.messaging.list",
+  "component": "MessagingListView"
+}
+```
+
+#### `teachfloor.dashboard.messaging.thread.detail`
+**Displays on**: Single thread / conversation page
+**Path**: `/:organization/messaging/threads/:threadId`
+**Use cases**: Thread sidebars, translation tools, message-level integrations
+
+```json
+{
+  "viewport": "teachfloor.dashboard.messaging.thread.detail",
+  "component": "MessagingThreadView"
+}
+```
+
+### Workspace
+
+#### `teachfloor.dashboard.analytics.detail`
+**Displays on**: Analytics page
+**Path**: `/:organization/analytics`
+**Use cases**: Custom dashboards, exports, alerts
+
+```json
+{
+  "viewport": "teachfloor.dashboard.analytics.detail",
+  "component": "AnalyticsView"
+}
+```
+
+#### `teachfloor.dashboard.library.detail`
+**Displays on**: Library page
+**Path**: `/:organization/library`
+**Use cases**: Asset browsers, content pickers
+
+```json
+{
+  "viewport": "teachfloor.dashboard.library.detail",
+  "component": "LibraryView"
+}
+```
+
+#### `teachfloor.dashboard.automation.list`
+**Displays on**: Automations page
+**Path**: `/:organization/automations`
+**Use cases**: Workflow inspectors, audit tools
+
+```json
+{
+  "viewport": "teachfloor.dashboard.automation.list",
+  "component": "AutomationListView"
+}
+```
+
+#### `teachfloor.dashboard.getstarted.detail`
+**Displays on**: Get started page
+**Path**: `/:organization/getstarted`
+**Use cases**: Onboarding hints, checklists
+
+```json
+{
+  "viewport": "teachfloor.dashboard.getstarted.detail",
+  "component": "GetStartedView"
 }
 ```
 
