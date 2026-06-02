@@ -38,10 +38,10 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.course.member.list` | Course members | `/:org/courses/:id/directory` | Student list, member management |
 | **Community** |
 | `teachfloor.dashboard.community.post.list` | Community posts | `/:org/community/:id/posts` | Social features, engagement tools, moderation |
+| `teachfloor.dashboard.community.post.detail` | Community post detail | `/:org/community/:id/posts/:postId` | Post sidebars, reaction tools, translation |
 | `teachfloor.dashboard.community.member.list` | Community members | `/:org/community/:id/members` | Member profiles, networking tools, search |
 | **Settings** |
 | `teachfloor.dashboard.settings.general.detail` | General settings | `/:org/settings/general` | Organization-wide integrations, preferences |
-| `teachfloor.dashboard.settings.customization.detail` | Customization | `/:org/settings/customization` | Branding tools, theme extensions |
 | `teachfloor.dashboard.settings.customization.domain.detail` | Customization · Domain | `/:org/settings/customization/domain` | Domain configuration widgets, DNS helpers |
 | `teachfloor.dashboard.settings.customization.appearance.detail` | Customization · Appearance | `/:org/settings/customization/appearance` | Theme tools, brand previews |
 | `teachfloor.dashboard.settings.customization.smtp.detail` | Customization · SMTP | `/:org/settings/customization/smtp` | Email-delivery diagnostics |
@@ -56,6 +56,7 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.settings.notification.list` | Notifications | `/:org/settings/notifications` | Custom notification rules, digest tools |
 | `teachfloor.dashboard.settings.custom-field.list` | Custom fields | `/:org/settings/custom-fields` | Custom field management, data import tools |
 | `teachfloor.dashboard.settings.branch.list` | Branches | `/:org/settings/branches` | Branch management, multi-tenant tools |
+| `teachfloor.dashboard.settings.sanction.list` | Sanctions | `/:org/settings/sanctions` | Restriction policies, moderation tooling |
 | `teachfloor.dashboard.settings.import.list` | Import data | `/:org/settings/import` | Bulk import tools, data migration |
 | `teachfloor.dashboard.settings.app.list` | Apps | `/:org/settings/apps` | Installed apps, app marketplace |
 | **User Management** |
@@ -65,11 +66,10 @@ teachfloor.{area}.{page}.{section}
 | **Commerce** |
 | `teachfloor.dashboard.payment.list` | Payments | `/:org/payments` | Payment analytics, invoicing tools |
 | **Messaging** |
-| `teachfloor.dashboard.messaging.list` | Inbox | `/:org/messaging` | Inbox widgets, unread badges |
-| `teachfloor.dashboard.messaging.thread.detail` | Thread detail | `/:org/messaging/threads/:thread` | Thread sidebars, translation tools, message-level integrations |
+| `teachfloor.dashboard.messaging.thread.detail` | Thread | `/:org/messaging/threads/:thread` | Thread sidebars, translation tools, message-level integrations |
 | **Workspace** |
 | `teachfloor.dashboard.analytics.detail` | Analytics | `/:org/analytics` | Custom dashboards, exports, alerts |
-| `teachfloor.dashboard.library.detail` | Library | `/:org/library` | Asset browsers, content pickers |
+| `teachfloor.dashboard.library.detail` | Library drive | `/:org/library/:drive` | Asset browsers, content pickers |
 | `teachfloor.dashboard.automation.list` | Automations | `/:org/automations` | Workflow inspectors, audit tools |
 | `teachfloor.dashboard.getstarted.detail` | Get started | `/:org/getstarted` | Onboarding hints, checklists |
 | **App Settings** |
@@ -199,6 +199,18 @@ teachfloor.{area}.{page}.{section}
 }
 ```
 
+#### `teachfloor.dashboard.community.post.detail`
+**Displays on**: Individual community post page
+**Path**: `/:organization/community/:communityId/posts/:postId`
+**Use cases**: Post sidebars, reaction tools, translation, attached references
+
+```json
+{
+  "viewport": "teachfloor.dashboard.community.post.detail",
+  "component": "CommunityPostView"
+}
+```
+
 #### `teachfloor.dashboard.community.member.list`
 **Displays on**: Community members directory
 **Path**: `/:organization/community/:communityId/members`
@@ -224,22 +236,6 @@ teachfloor.{area}.{page}.{section}
   "component": "GeneralSettingsView"
 }
 ```
-
-#### `teachfloor.dashboard.settings.customization.detail`
-**Displays on**: Customization settings page
-**Path**: `/:organization/settings/customization`
-**Use cases**: Branding tools, theme extensions
-
-```json
-{
-  "viewport": "teachfloor.dashboard.settings.customization.detail",
-  "component": "CustomizationView"
-}
-```
-
-:::info
-The bare `/settings/customization` URL redirects to its first subtab (`/domain`). The `settings.customization.detail` viewport is kept for backward compatibility — new apps should target the specific subtab they care about.
-:::
 
 #### `teachfloor.dashboard.settings.customization.domain.detail`
 **Displays on**: Customization · Domain subtab
@@ -409,6 +405,18 @@ The bare `/settings/customization` URL redirects to its first subtab (`/domain`)
 }
 ```
 
+#### `teachfloor.dashboard.settings.sanction.list`
+**Displays on**: Sanctions settings page (visible only when the workspace has the sanctions feature enabled)
+**Path**: `/:organization/settings/sanctions`
+**Use cases**: Restriction policies, moderation tooling
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.sanction.list",
+  "component": "SanctionListView"
+}
+```
+
 #### `teachfloor.dashboard.settings.import.list`
 **Displays on**: Import data page
 **Path**: `/:organization/settings/import`
@@ -487,20 +495,8 @@ The bare `/settings/customization` URL redirects to its first subtab (`/domain`)
 
 ### Messaging
 
-#### `teachfloor.dashboard.messaging.list`
-**Displays on**: Inbox / conversation list
-**Path**: `/:organization/messaging`
-**Use cases**: Inbox widgets, unread badges, quick-reply panels
-
-```json
-{
-  "viewport": "teachfloor.dashboard.messaging.list",
-  "component": "MessagingListView"
-}
-```
-
 #### `teachfloor.dashboard.messaging.thread.detail`
-**Displays on**: Single thread / conversation page
+**Displays on**: Messaging thread page
 **Path**: `/:organization/messaging/threads/:threadId`
 **Use cases**: Thread sidebars, translation tools, message-level integrations
 
@@ -526,14 +522,14 @@ The bare `/settings/customization` URL redirects to its first subtab (`/domain`)
 ```
 
 #### `teachfloor.dashboard.library.detail`
-**Displays on**: Library page
-**Path**: `/:organization/library`
+**Displays on**: Library drive page
+**Path**: `/:organization/library/:drive`
 **Use cases**: Asset browsers, content pickers
 
 ```json
 {
   "viewport": "teachfloor.dashboard.library.detail",
-  "component": "LibraryView"
+  "component": "LibraryDriveView"
 }
 ```
 
