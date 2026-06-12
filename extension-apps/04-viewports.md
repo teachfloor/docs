@@ -11,14 +11,14 @@ A viewport is a specific location in the Teachfloor dashboard where your app ren
 Viewports follow a hierarchical naming pattern:
 
 ```
-teachfloor.{area}.{page}.{section}
+teachfloor.{surface}.{resource}.{view-type}
 ```
 
 **Example**: `teachfloor.dashboard.course.detail`
 - `teachfloor`: Platform namespace
-- `dashboard`: Area (dashboard vs public pages)
-- `course`: Page category
-- `detail`: Specific page
+- `dashboard`: Surface where the view renders
+- `course`: Resource being viewed
+- `detail`: View type
 
 ## Available Viewports
 
@@ -37,9 +37,10 @@ teachfloor.{area}.{page}.{section}
 | `teachfloor.dashboard.course.calendar.detail` | Course calendar | `/:org/courses/:id/calendar` | Schedule view, deadline tracking |
 | `teachfloor.dashboard.course.member.list` | Course members | `/:org/courses/:id/directory` | Student list, member management |
 | **Community** |
-| `teachfloor.dashboard.community.post.list` | Community posts | `/:org/community/:id/posts` | Social features, engagement tools, moderation |
-| `teachfloor.dashboard.community.post.detail` | Community post detail | `/:org/community/:id/posts/:postId` | Post sidebars, reaction tools, translation |
-| `teachfloor.dashboard.community.member.list` | Community members | `/:org/community/:id/members` | Member profiles, networking tools, search |
+| `teachfloor.dashboard.community.overview` | Community home (cross-channel feed) | `/:org/community` | Cross-channel feed widgets, suggested content, digest tools |
+| `teachfloor.dashboard.community.channel.detail` | Single channel page | `/:org/community/:channelId` | Social features, engagement tools, moderation |
+| `teachfloor.dashboard.community.post.detail` | Community post detail | `/:org/community/:channelId/posts/:postId` | Post sidebars, reaction tools, translation |
+| `teachfloor.dashboard.community.member.list` | Community members | `/:org/community/:channelId/members` | Member profiles, networking tools, search |
 | **Settings** |
 | `teachfloor.dashboard.settings.general.detail` | General settings | `/:org/settings/general` | Organization-wide integrations, preferences |
 | `teachfloor.dashboard.settings.customization.domain.detail` | Customization · Domain | `/:org/settings/customization/domain` | Domain configuration widgets, DNS helpers |
@@ -187,21 +188,37 @@ teachfloor.{area}.{page}.{section}
 
 ### Community
 
-#### `teachfloor.dashboard.community.post.list`
-**Displays on**: Community posts/feed page
-**Path**: `/:organization/community/:communityId/posts`
-**Use cases**: Social features, engagement tools, moderation
+#### `teachfloor.dashboard.community.overview`
+**Displays on**: Community home (cross-channel feed) — the `/community` landing page
+**Path**: `/:organization/community`
+**Use cases**: Cross-channel feed widgets, suggested content, digest tools
+
+The workspace-level home that aggregates posts across every channel the viewer can see. Stripe-style `overview` rather than `feed`/`list` because no single resource is being listed — distinct from `community.channel.detail`, which targets a single channel.
 
 ```json
 {
-  "viewport": "teachfloor.dashboard.community.post.list",
-  "component": "CommunityPostsView"
+  "viewport": "teachfloor.dashboard.community.overview",
+  "component": "CommunityOverviewView"
+}
+```
+
+#### `teachfloor.dashboard.community.channel.detail`
+**Displays on**: Single channel page
+**Path**: `/:organization/community/:channelId`
+**Use cases**: Social features, engagement tools, moderation
+
+The primary resource on this page is the Channel itself — posts are its content — so the viewport follows Stripe's `{resource}.detail` convention.
+
+```json
+{
+  "viewport": "teachfloor.dashboard.community.channel.detail",
+  "component": "CommunityChannelView"
 }
 ```
 
 #### `teachfloor.dashboard.community.post.detail`
 **Displays on**: Individual community post page
-**Path**: `/:organization/community/:communityId/posts/:postId`
+**Path**: `/:organization/community/:channelId/posts/:postId`
 **Use cases**: Post sidebars, reaction tools, translation, attached references
 
 ```json
@@ -213,7 +230,7 @@ teachfloor.{area}.{page}.{section}
 
 #### `teachfloor.dashboard.community.member.list`
 **Displays on**: Community members directory
-**Path**: `/:organization/community/:communityId/members`
+**Path**: `/:organization/community/:channelId/members`
 **Use cases**: Member profiles, networking tools, search
 
 ```json

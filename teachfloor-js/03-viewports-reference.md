@@ -16,8 +16,10 @@ Some viewports provide an `objectContext` object containing details about the cu
 | `teachfloor.dashboard.course.detail` | `/:organization/courses/:course` | course |
 | `teachfloor.dashboard.course.module.detail` | `/:organization/courses/:course/modules/:module` | course, module |
 | `teachfloor.dashboard.course.element.detail` | `/:organization/courses/:course/modules/:module/elements/:element` | course, module, element |
-| `teachfloor.dashboard.community.post.list` | `/:organization/community/:community` | - |
-| `teachfloor.dashboard.community.member.list` | `/:organization/community/:community/members` | - |
+| `teachfloor.dashboard.community.overview` | `/:organization/community` | - |
+| `teachfloor.dashboard.community.channel.detail` | `/:organization/community/:channel` | channel |
+| `teachfloor.dashboard.community.post.detail` | `/:organization/community/:channel/posts/:post` | channel, post |
+| `teachfloor.dashboard.community.member.list` | `/:organization/community/:channel/members` | channel |
 | `teachfloor.dashboard.settings.general.detail` | `/:organization/settings/general` | - |
 | `teachfloor.dashboard.settings.customization.detail` | `/:organization/settings/customization` | - |
 | `teachfloor.dashboard.settings.team.list` | `/:organization/settings/team` | - |
