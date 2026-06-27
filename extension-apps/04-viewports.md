@@ -51,6 +51,7 @@ teachfloor.{surface}.{resource}.{view-type}
 | `teachfloor.dashboard.settings.customization.labels.detail` | Customization · Labels | `/:org/settings/customization/labels` | Custom terminology tools |
 | `teachfloor.dashboard.settings.customization.achievements.detail` | Customization · Achievements | `/:org/settings/customization/achievements` | Gamification configuration |
 | `teachfloor.dashboard.settings.customization.profile-layout.detail` | Customization · Profile layout | `/:org/settings/customization/profile-layout` | Profile field arrangement tools |
+| `teachfloor.dashboard.settings.customization.dashboards.detail` | Customization · Dashboards | `/:org/settings/customization/dashboards` | Home-dashboard widget catalog, layout authoring tools |
 | `teachfloor.dashboard.settings.team.list` | Team management | `/:org/settings/team` | Team collaboration tools, role management |
 | `teachfloor.dashboard.settings.billing.detail` | Billing | `/:org/settings/billing` | Usage analytics, cost tracking |
 | `teachfloor.dashboard.settings.integration.list` | Integrations | `/:org/settings/integrations` | Third-party integrations, API tools |
@@ -69,6 +70,7 @@ teachfloor.{surface}.{resource}.{view-type}
 | **Messaging** |
 | `teachfloor.dashboard.messaging.thread.detail` | Thread | `/:org/messaging/threads/:thread` | Thread sidebars, translation tools, message-level integrations |
 | **Workspace** |
+| `teachfloor.dashboard.dashboard.detail` | Home dashboard | `/:org/dashboard` | Widget-based home insights, custom KPIs, welcome banners |
 | `teachfloor.dashboard.analytics.detail` | Analytics | `/:org/analytics` | Custom dashboards, exports, alerts |
 | `teachfloor.dashboard.library.detail` | Library drive | `/:org/library/:drive` | Asset browsers, content pickers |
 | `teachfloor.dashboard.automation.list` | Automations | `/:org/automations` | Workflow inspectors, audit tools |
@@ -350,6 +352,18 @@ The primary resource on this page is the Channel itself — posts are its conten
 }
 ```
 
+#### `teachfloor.dashboard.settings.customization.dashboards.detail`
+**Displays on**: Customization · Dashboards subtab — the admin page for managing home-dashboard layouts and widgets
+**Path**: `/:organization/settings/customization/dashboards`
+**Use cases**: Widget catalogs, layout authoring tools, dashboard templates
+
+```json
+{
+  "viewport": "teachfloor.dashboard.settings.customization.dashboards.detail",
+  "component": "CustomizationDashboardsView"
+}
+```
+
 #### `teachfloor.dashboard.settings.team.list`
 **Displays on**: Team management page
 **Path**: `/:organization/settings/team`
@@ -525,6 +539,18 @@ The primary resource on this page is the Channel itself — posts are its conten
 ```
 
 ### Workspace
+
+#### `teachfloor.dashboard.dashboard.detail`
+**Displays on**: Home dashboard page — the user's landing screen with widget-based insights
+**Path**: `/:organization/dashboard`
+**Use cases**: KPI widgets, welcome banners, announcements, custom org-level insights
+
+```json
+{
+  "viewport": "teachfloor.dashboard.dashboard.detail",
+  "component": "DashboardView"
+}
+```
 
 #### `teachfloor.dashboard.analytics.detail`
 **Displays on**: Analytics page
