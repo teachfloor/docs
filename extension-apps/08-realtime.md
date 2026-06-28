@@ -1,6 +1,6 @@
 # Realtime Channels
 
-Live, server-driven event streams scoped to a course or user. Extension apps subscribe to a channel and receive any events that other clients publish on it; they can also publish their own.
+Live event streams scoped to a course or user. Extension apps subscribe to a channel, receive any events that other clients publish on it, and can publish their own.
 
 :::info
 **Requires `@teachfloor/extension-kit` ≥ 1.22.0.** Earlier versions of the kit don't ship the `realtime` namespace. Bump your app's dependency before adding the `realtime` permission to your manifest.
@@ -8,10 +8,9 @@ Live, server-driven event streams scoped to a course or user. Extension apps sub
 
 ## What you can build
 
-- Live cohort presence — *"3 learners are also reviewing this lesson"*.
+- Live cohort presence — *"3 learners are also on this course right now"*.
 - Multiplayer review — flashcards / quizzes / polls with synchronized state.
 - Live admin dashboards — *"new submission received"*, *"X just completed the module"*.
-- Cross-iframe coordination — one app emits, another app reacts.
 
 ## Channel model
 
@@ -28,7 +27,7 @@ Channels are **private**: Teachfloor authenticates every subscription server-sid
 
 ## Permissions
 
-Add a single permission to your manifest:
+Add the `realtime` permission to your manifest:
 
 ```json
 {
@@ -43,11 +42,15 @@ Add a single permission to your manifest:
 
 The `realtime` permission grants:
 
-- Subscribing to `course`-scoped channels for any course the user belongs to.
+- Subscribing to `course`-scoped channels for any course in an organization the user is a member of.
 - Subscribing to your own `user`-scoped channel (`scope: 'user'`, `id: <auth user>`).
 - Publishing to channels you're subscribed to.
 
 It does **not** grant cross-app, cross-org, or other-user channel access.
+
+:::info
+**Resource ids are gated by their own read permissions.** Subscribing to a `course`-scoped channel needs `course_read` in addition to `realtime` — without it the host strips `course` from the viewport payload, so `environment.context.course.id` is `undefined` and there's no id to subscribe with. The same applies for `module_read` and `element_read` if you ever derive an id from those contexts.
+:::
 
 ## SDK API
 
@@ -95,7 +98,7 @@ What your `on` handler receives:
 ### Notes
 
 - Publishers do **not** receive their own events back. Update your own UI optimistically when you call `.publish()`.
-- Subscribing to a channel you don't have access to (wrong scope / wrong user / wrong org) fails silently. Register a `channel.onError(…)` handler to surface those failures.
+- Subscription and publish failures (wrong scope, missing permission, rate limit hit, network blip) are delivered to the channel's `onError(…)` handler — register one to log or surface them. Without it, failures are dropped.
 - There's no message history. If a learner joins after an event was published, they won't see it. Cache state in `appdata` / `userdata` if you need persistence.
 
 ## Limits
@@ -110,15 +113,21 @@ What your `on` handler receives:
 
 Rate limits return `429` with a `retry_after_seconds` field; the SDK surfaces them through `channel.onError(…)` with `code: 'rate_limited'`.
 
-## Example: live "currently reviewing" counter
+## Example: live "currently here" counter
+
+Realtime channels don't keep a presence roster for you — building one is a pattern of three pieces: announce yourself, refresh the announcement on a heartbeat, and locally drop peers you haven't heard from in a while. The example below shows all three.
 
 ```jsx
 import { useEffect, useState } from 'react'
 import { realtime, useExtensionContext } from '@teachfloor/extension-kit'
 
-const LiveReviewCounter = () => {
-  const { environment, userContext } = useExtensionContext()
-  const [activeUserIds, setActiveUserIds] = useState(new Set())
+const HEARTBEAT_MS  = 30_000   // re-announce every 30s
+const STALE_AFTER   = 60_000   // drop peers we haven't heard from in 60s
+const PRUNE_TICK_MS = 10_000   // re-check the stale window every 10s
+
+const LiveHereCounter = () => {
+  const { environment } = useExtensionContext()
+  const [peers, setPeers] = useState({}) // { [userId]: lastSeen timestamp }
 
   useEffect(() => {
     const courseId = environment?.context?.course?.id
@@ -126,26 +135,52 @@ const LiveReviewCounter = () => {
 
     const channel = realtime.subscribe({ scope: 'course', id: courseId })
 
-    // Announce ourselves
-    channel.publish('joined', {})
-    // Periodically heartbeat so stale clients drop off
-    const heartbeat = setInterval(() => channel.publish('joined', {}), 30000)
-
-    channel.on('joined', (payload) => {
-      setActiveUserIds((s) => new Set(s).add(payload.fromUserId))
+    // Add a peer or refresh their lastSeen on every heartbeat.
+    channel.on('joined', ({ fromUserId }) => {
+      setPeers((prev) => ({ ...prev, [fromUserId]: Date.now() }))
     })
+
+    // Drop peers who explicitly leave (covers tab close on unmount).
+    channel.on('left', ({ fromUserId }) => {
+      setPeers((prev) => {
+        const next = { ...prev }
+        delete next[fromUserId]
+        return next
+      })
+    })
+
+    // Announce ourselves immediately, then on every heartbeat.
+    const announce = () => channel.publish('joined', {})
+    announce()
+    const heartbeat = setInterval(announce, HEARTBEAT_MS)
+
+    // Locally prune peers who've gone silent — covers closed laptops
+    // and network drops where no `left` is fired.
+    const prune = setInterval(() => {
+      const cutoff = Date.now() - STALE_AFTER
+      setPeers((prev) => Object.fromEntries(
+        Object.entries(prev).filter(([, lastSeen]) => lastSeen >= cutoff)
+      ))
+    }, PRUNE_TICK_MS)
 
     return () => {
       clearInterval(heartbeat)
-      channel.publish('left', {})
+      clearInterval(prune)
+      try { channel.publish('left', {}) } catch (_) { /* unsubscribed already */ }
       channel.unsubscribe()
     }
   }, [environment])
 
-  // +1 for the current user (publisher never receives their own events)
-  return <div>{activeUserIds.size + 1} reviewing right now</div>
+  // +1 for the current user — the publisher never receives their own events.
+  return <div>{Object.keys(peers).length + 1} here right now</div>
 }
 ```
+
+The numbers come from a few design choices worth thinking through for your own app:
+
+- **Heartbeat interval** trades freshness against publish budget. At 30 seconds, each learner uses 2 of their 60-events-per-minute budget — leaves plenty of headroom for other event types.
+- **Stale window** is set to two missed heartbeats so a transient network blip doesn't drop someone for a beat.
+- **Prune tick** controls how smoothly peers fade out in the UI; smaller values feel snappier but cost a tiny bit more re-rendering.
 
 ## Security model
 
