@@ -26,14 +26,15 @@ Teachfloor Apps are extensions that enhance the platform's functionality by addi
 
 ### Advanced Topics
 7. [Data Storage](./apps/advanced-topics/data-storage) - Persist user and app data
-8. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
-9. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
+8. [Realtime Channels](./apps/advanced-topics/realtime) - Subscribe to and publish low-latency events between learners
+9. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
+10. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
 
 ### Reference
-10. [CLI Commands](./apps/references/cli) - Complete command reference
-11. [Best Practices](./apps/references/best-practices) - Tips and patterns
-12. [Examples](./apps/references/examples) - Sample apps and code snippets
-13. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
+11. [CLI Commands](./apps/references/cli) - Complete command reference
+12. [Best Practices](./apps/references/best-practices) - Tips and patterns
+13. [Examples](./apps/references/examples) - Sample apps and code snippets
+14. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
 
 ## Prerequisites
 

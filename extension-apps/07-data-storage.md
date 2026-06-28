@@ -699,7 +699,7 @@ All data stored through the Extension Kit is **automatically encrypted at rest**
 
 ## Next Steps
 
-→ Continue to [Permissions](/docs/apps/advanced-topics/permissions)
+→ Continue to [Realtime Channels](/docs/apps/advanced-topics/realtime)
 
 ## Additional Resources
 
