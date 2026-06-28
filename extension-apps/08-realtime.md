@@ -15,7 +15,7 @@ Live, server-driven event streams scoped to a course or user. Extension apps sub
 
 ## Channel model
 
-A channel is identified by a **scope** and a **resource id**. v1 supports two scopes:
+A channel is identified by a **scope** and a **resource id**. Two scopes are available:
 
 | Scope | Resource id | Who can subscribe |
 |---|---|---|
@@ -85,10 +85,12 @@ What your `on` handler receives:
 ```js
 {
   data:        { /* what the publisher passed to .publish() */ },
-  fromUserId:  42,                          // publisher's user id
+  fromUserId:  'QnX4ogW9QbyLpEz9',          // publisher's id (same shape as userContext.id)
   at:          '2026-06-28T03:24:11+02:00', // server timestamp
 }
 ```
+
+`fromUserId` is the publisher's id — the same value you get from `useExtensionContext().userContext.id`. You can compare it against your own user id to filter your own activity, or use it in a navigation helper like `goToPath('/${slug}/users/${fromUserId}')` to deep-link to the peer's profile.
 
 ### Notes
 
@@ -96,7 +98,7 @@ What your `on` handler receives:
 - Subscribing to a channel you don't have access to (wrong scope / wrong user / wrong org) fails silently. Register a `channel.onError(…)` handler to surface those failures.
 - There's no message history. If a learner joins after an event was published, they won't see it. Cache state in `appdata` / `userdata` if you need persistence.
 
-## Limits (v1)
+## Limits
 
 | Limit | Value |
 |---|---|
@@ -154,14 +156,6 @@ Permission and scope checks run server-side on **both** the subscribe and publis
 - Publish payloads are validated against the size and rate limits above.
 
 There is no way for an app to read a channel it doesn't subscribe to, or to publish on behalf of another user.
-
-## Roadmap (v2 candidates)
-
-- Presence channels with `members()` and `joining` / `leaving` events.
-- Org-scoped channels (`scope: 'org'`).
-- Server-originated broadcasts (Teachfloor pushes events into app channels).
-- Optional message history (last N events delivered on subscribe).
-- Per-app usage analytics in the developer dashboard.
 
 ## Next Steps
 
