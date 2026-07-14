@@ -33,6 +33,48 @@ npm install -g @teachfloor/teachfloor-cli
 | **Distribution** |
 | `teachfloor apps set distribution` | Set public/private | Yes | Yes |
 
+## Non-Interactive Mode
+
+Every prompt in every command has a matching flag. Pass all the flags a command needs and the CLI runs end-to-end without asking questions — required for scripts, CI pipelines, and AI-driven workflows.
+
+**Three triggers** (any one flips the CLI into non-interactive mode):
+
+- `--nonInteractive` on the command (alias: `--non-interactive`, `--no-interactive`).
+- Environment variable: `TF_NON_INTERACTIVE=1` or `CI=1`.
+- Automatic: whenever stdin isn't a TTY (piped input, subprocess spawn, headless agent).
+
+**In non-interactive mode**:
+
+- A prompt whose flag is set → uses the flag value (validated).
+- A prompt whose flag is missing but has a default → uses the default (validated).
+- A prompt whose flag is missing and has no default → hard error: `Missing required input in non-interactive mode: pass --<flag> to set "<field>".`
+- Invalid values (bad choice, failed regex, empty required string) → error naming the flag, with the underlying validator's message.
+
+**Example** — scripted `apps create`:
+
+```bash
+teachfloor apps create my-app \
+  --name "My App" \
+  --description "A test app" \
+  --version 1.0.0
+```
+
+No `--nonInteractive` needed when stdin isn't a TTY — piping / subprocess spawn triggers it automatically. Add the flag explicitly in wrapper scripts if you want fail-fast behavior regardless of shell context.
+
+**Flag → prompt mapping** (per command):
+
+| Command | Flags |
+|---|---|
+| `apps create <name>` | `--appId`, `--name`, `--description`, `--version` |
+| `apps add view` | `--viewport`, `--componentName`, `--withExample`, `--overwrite` |
+| `apps add settings` | `--componentName`, `--withExample` |
+| `apps remove view` | `--viewport`, `--removeComponent` |
+| `apps grant permission` | `--permissionName`, `--explanation` |
+| `apps revoke permission` | `--permissionName` |
+| `apps set distribution` | `--distributionType` |
+
+`login` remains interactive-only (browser OAuth).
+
 ## Global Commands
 
 ### `teachfloor version`
@@ -123,11 +165,11 @@ teachfloor apps create my-awesome-app
 **Arguments**:
 - `app-name`: Name of the folder to create
 
-**Prompts**:
-- **App ID**: Unique identifier (auto-generated)
-- **Display Name**: User-facing name
-- **Description**: Short description
-- **Version**: Semantic version (default: 1.0.0)
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **App ID** — `--appId <value>` (alias `--id`; default: `<slug>-<timestamp>`)
+- **Display Name** — `--name <value>` (required)
+- **Description** — `--description <value>` (required)
+- **Version** — `--version <value>` (semver, default: `1.0.0`)
 
 **What it does**:
 1. Creates app on the platform
@@ -241,10 +283,11 @@ Add a new view to your app.
 teachfloor apps add view
 ```
 
-**Prompts**:
-1. **Select viewport**: Choose from available viewports
-2. **Component name**: React component name (PascalCase)
-3. **Generate example**: Include example code
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select viewport** — `--viewport <id>` (must be one of the app's available viewports)
+- **Component name** — `--componentName <PascalCase>` (alias `--component`; defaults to a name derived from the viewport)
+- **Generate example** — `--withExample` (alias `--with-example`; default: `false`)
+- **Overwrite existing file** — `--overwrite` (only prompted when the target file exists; default: `false`)
 
 **What it does**:
 1. Shows available viewports for your app
@@ -288,8 +331,9 @@ Remove a view from your app.
 teachfloor apps remove view
 ```
 
-**Prompts**:
-- **Select viewport**: Choose viewport to remove
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select viewport** — `--viewport <id>` (must match an existing view in the manifest)
+- **Delete component file too** — `--removeComponent` (alias `--remove-component`; default: `false`)
 
 **What it does**:
 1. Removes view from your app manifest
@@ -312,9 +356,9 @@ Add a settings view to your app.
 teachfloor apps add settings
 ```
 
-**Prompts**:
-- **Component name**: Settings component name
-- **Generate example**: Include example code
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Component name** — `--componentName <PascalCase>` (alias `--component`; default: `AppSettings`)
+- **Generate example** — `--withExample` (alias `--with-example`; default: `false`)
 
 **What it does**:
 1. Creates settings component in `src/views/`
@@ -341,9 +385,9 @@ Add a permission to your app.
 teachfloor apps grant permission
 ```
 
-**Prompts**:
-1. **Select permission**: Choose from available permissions
-2. **Purpose**: User-facing explanation
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select permission** — `--permissionName <key>` (alias `--permission`; must be one of the available permissions and not already granted)
+- **Purpose** — `--explanation <text>` (required — user-facing reason shown on the install screen)
 
 **Available Permissions**:
 - `user_read`: Read user profile
@@ -382,8 +426,8 @@ Remove a permission from your app.
 teachfloor apps revoke permission
 ```
 
-**Prompts**:
-- **Select permission**: Choose permission to remove
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select permission** — `--permissionName <key>` (alias `--permission`; must match an existing granted permission)
 
 **Example**:
 ```bash
@@ -404,8 +448,8 @@ Set app distribution type (public or private).
 teachfloor apps set distribution
 ```
 
-**Prompts**:
-- **Distribution type**: public or private
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Distribution type** — `--distributionType <value>` (alias `--type`; one of `private` or `public`)
 
 **Distribution Types**:
 - **private**: Only your organization (default)
