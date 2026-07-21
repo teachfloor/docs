@@ -27,6 +27,8 @@ npm install -g @teachfloor/teachfloor-cli
 | `teachfloor apps add view` | Add view to app | Yes | Yes |
 | `teachfloor apps remove view` | Remove view from app | Yes | Yes |
 | `teachfloor apps add settings` | Add settings view | Yes | Yes |
+| `teachfloor apps add widget` | Add widget to app | Yes | Yes |
+| `teachfloor apps remove widget` | Remove widget from app | Yes | Yes |
 | **Permission Management** |
 | `teachfloor apps grant permission` | Add permission | Yes | Yes |
 | `teachfloor apps revoke permission` | Remove permission | Yes | Yes |
@@ -68,7 +70,9 @@ No `--nonInteractive` needed when stdin isn't a TTY — piping / subprocess spaw
 | `apps create <name>` | `--appId`, `--name`, `--description`, `--version` |
 | `apps add view` | `--viewport`, `--componentName`, `--withExample`, `--overwrite` |
 | `apps add settings` | `--componentName`, `--withExample` |
+| `apps add widget` | `--viewport`, `--id`, `--name`, `--description`, `--componentName`, `--withExample`, `--overwrite` |
 | `apps remove view` | `--viewport`, `--removeComponent` |
+| `apps remove widget` | `--id`, `--removeComponent` |
 | `apps grant permission` | `--permissionName`, `--explanation` |
 | `apps revoke permission` | `--permissionName` |
 | `apps set distribution` | `--distributionType` |
@@ -375,6 +379,87 @@ $ teachfloor apps add settings
 
 ---
 
+### `teachfloor apps add widget`
+
+Add a new widget to your app. See [Surfaces](./surfaces) for the concepts (widget id, `<WidgetView>`, admin picker).
+
+```bash
+teachfloor apps add widget
+```
+
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select viewport** — `--viewport <pattern>` (`"*"` for universal, or a concrete widget-hosting viewport)
+- **Widget id** — `--id <slug>` (lowercase slug, `^[a-z][a-z0-9_]*$`, unique per app across all widget declarations)
+- **Widget name** — `--name <string>` (≤60 chars; shown in the admin's widget picker and the app install-consent surfaces list)
+- **Widget description** — `--description <string>` (≤200 chars; shown alongside the name in the picker)
+- **Component name** — `--componentName <PascalCase>` (alias `--component`; defaults to `<PascalId>Widget` derived from the widget id — e.g. `streak_daily` → `StreakDailyWidget`)
+- **Generate example** — `--withExample` (alias `--with-example`; default: `false`)
+- **Overwrite existing file** — `--overwrite` (only prompted when the target file exists; default: `false`)
+
+**What it does**:
+1. Prompts for the widget's scoping viewport
+2. Validates the widget id locally against ids already in your manifest (fails fast before the server round-trip)
+3. Creates the component file in `src/views/`
+4. Appends a `surface: "widget"` view entry to your manifest with the nested `widget: { id, name, description }` block
+
+**Example**:
+```bash
+$ teachfloor apps add widget
+✔ Select the viewport for your widget: *
+✔ Enter the widget id (lowercase slug): learning_streak
+✔ Enter the widget name: Learning Streak
+✔ Enter the widget description: Current daily study streak with a 7-day heatmap.
+✔ Enter the name of your component: LearningStreakWidget
+✔ Generate a "Getting Started" example widget? Yes
+✓ Component view created at src/views/LearningStreakWidget.jsx
+✓ Manifest file updated
+✓ Widget "Learning Streak" added successfully under "*".
+```
+
+**Generated Manifest Entry**:
+```json
+{
+  "surface": "widget",
+  "viewport": "*",
+  "component": "LearningStreakWidget",
+  "widget": {
+    "id": "learning_streak",
+    "name": "Learning Streak",
+    "description": "Current daily study streak with a 7-day heatmap."
+  }
+}
+```
+
+---
+
+### `teachfloor apps remove widget`
+
+Remove a widget from your app.
+
+```bash
+teachfloor apps remove widget
+```
+
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Select widget** — `--id <slug>` (must match a widget id declared in your manifest; picker lists each widget as `<id> — <name> (<viewport>)`)
+- **Delete component file too** — `--removeComponent` (alias `--remove-component`; default: `false`)
+
+**What it does**:
+1. Removes the widget's view entry from your manifest (matched by `widget.id`, not viewport — multiple widgets can share the same viewport)
+2. Optionally deletes the component file in `src/views/` when `--removeComponent` is set
+
+**Example**:
+```bash
+$ teachfloor apps remove widget
+✔ Select the widget you want to remove: learning_streak — Learning Streak (*)
+✔ Do you want to delete the component file as well? Yes
+✓ Component file "src/views/LearningStreakWidget.jsx" deleted
+✓ Manifest file updated
+✓ Widget "Learning Streak" removed successfully.
+```
+
+---
+
 ## Permission Management
 
 ### `teachfloor apps grant permission`
@@ -515,6 +600,8 @@ These commands must be run inside an app folder:
 - `teachfloor apps add view`
 - `teachfloor apps remove view`
 - `teachfloor apps add settings`
+- `teachfloor apps add widget`
+- `teachfloor apps remove widget`
 - `teachfloor apps grant permission`
 - `teachfloor apps revoke permission`
 - `teachfloor apps set distribution`

@@ -21,20 +21,21 @@ Teachfloor Apps are extensions that enhance the platform's functionality by addi
 ### Core Concepts
 3. [App Manifest](./apps/core-concepts/app-manifest) - Configure your app's metadata and capabilities
 4. [Viewports System](./apps/core-concepts/viewports) - Understand where apps can display
-5. [Extension Kit Components](./apps/core-concepts/extension-kit/components) - Use pre-built UI components
-6. [Extension Kit Integration](./apps/core-concepts/extension-kit/integration) - Interact with the platform
+5. [Surfaces](./apps/core-concepts/surfaces) - How your app renders — drawer or widget — and how it pairs with viewports
+6. [Extension Kit Components](./apps/core-concepts/extension-kit/components) - Use pre-built UI components
+7. [Extension Kit Integration](./apps/core-concepts/extension-kit/integration) - Interact with the platform
 
 ### Advanced Topics
-7. [Data Storage](./apps/advanced-topics/data-storage) - Persist user and app data
-8. [Realtime Channels](./apps/advanced-topics/realtime) - Subscribe to and publish low-latency events between learners
-9. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
-10. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
+8. [Data Storage](./apps/advanced-topics/data-storage) - Persist user and app data
+9. [Realtime Channels](./apps/advanced-topics/realtime) - Subscribe to and publish low-latency events between learners
+10. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
+11. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
 
 ### Reference
-11. [CLI Commands](./apps/references/cli) - Complete command reference
-12. [Best Practices](./apps/references/best-practices) - Tips and patterns
-13. [Examples](./apps/references/examples) - Sample apps and code snippets
-14. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
+12. [CLI Commands](./apps/references/cli) - Complete command reference
+13. [Best Practices](./apps/references/best-practices) - Tips and patterns
+14. [Examples](./apps/references/examples) - Sample apps and code snippets
+15. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
 
 ## Prerequisites
 

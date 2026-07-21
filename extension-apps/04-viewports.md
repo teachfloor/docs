@@ -2,6 +2,8 @@
 
 Viewports define where your app displays within the Teachfloor platform.
 
+Viewport is one of two axes that fully describe where and how your app renders. The other axis — [surface](./surfaces) — answers *how* your app is presented (as a drawer that opens from the app dock, or as a widget embedded inline). Together, `(viewport, surface)` uniquely specifies each entry in your manifest.
+
 ## What is a Viewport?
 
 A viewport is a specific location in the Teachfloor dashboard where your app renders its UI. Each viewport corresponds to a page or section of the platform.

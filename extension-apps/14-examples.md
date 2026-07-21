@@ -131,44 +131,56 @@ Use this pattern for:
 
 ## Simple Widget
 
-A minimal widget that displays user information.
+A minimal widget-surface app that greets the current user. Demonstrates the widget manifest shape, `<WidgetView>` auto-height, and how a widget reads platform context. See [Surfaces](./surfaces) for the concepts.
 
 ### Manifest
+
+Note the three parts specific to the widget surface: `surface: "widget"`, a widget-hosting `viewport`, and the nested `widget: { id, name, description }` block. The `id` is what identifies this widget internally + on the composite key stored in dashboard rows; `name` + `description` appear in the admin's widget picker.
 
 ```json
 {
   "id": "simple-widget",
   "version": "1.0.0",
   "name": "Simple Widget",
-  "description": "Display user greeting",
+  "description": "Greet the current user from a dashboard widget slot.",
   "distribution_type": "private",
   "ui_extension": {
     "views": [
       {
-        "viewport": "teachfloor.dashboard.course.detail",
-        "component": "Widget"
+        "surface": "widget",
+        "viewport": "teachfloor.dashboard.dashboard.detail",
+        "component": "GreetingWidget",
+        "widget": {
+          "id": "greeting",
+          "name": "Greeting",
+          "description": "Says hello to the current user."
+        }
       }
     ]
   }
 }
 ```
 
+### Component
+
+Wrap the widget content in `<WidgetView>` so the dashboard slot auto-fits the widget's natural height — no aspect ratio needed. The rest is standard Extension Kit + `useExtensionContext()`.
+
 ```javascript
-// src/views/Widget.jsx
+// src/views/GreetingWidget.jsx
 import React from 'react'
 import {
-  Container,
+  WidgetView,
   Text,
   Avatar,
   Group,
   useExtensionContext
 } from '@teachfloor/extension-kit'
 
-const Widget = () => {
+const GreetingWidget = () => {
   const { userContext } = useExtensionContext()
 
   return (
-    <Container p="md">
+    <WidgetView sx={{ padding: 16 }}>
       <Group spacing="md">
         <Avatar src={userContext.avatar} alt={userContext.full_name} />
         <div>
@@ -176,12 +188,21 @@ const Widget = () => {
           <Text size="sm" c="dimmed">{userContext.email}</Text>
         </div>
       </Group>
-    </Container>
+    </WidgetView>
   )
 }
 
-export default Widget
+export default GreetingWidget
 ```
+
+### Scaffold it from the CLI
+
+```bash
+teachfloor apps add widget
+# Prompts: viewport → id → name → description → component name
+```
+
+See [`teachfloor apps add widget`](./references/cli#teachfloor-apps-add-widget) for the full flag list.
 
 ---
 

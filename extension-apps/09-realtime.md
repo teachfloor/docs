@@ -109,7 +109,7 @@ What your `on` handler receives:
 | Payload size | 4 KB per published message |
 | Per user, per app | 60 messages / minute |
 | Per app (org-wide) | 600 messages / minute |
-| Concurrent subscriptions per iframe | unlimited (but bounded by the host's single WebSocket) |
+| Concurrent subscriptions per app instance | unlimited (but bounded by the host's single WebSocket) |
 
 Rate limits return `429` with a `retry_after_seconds` field; the SDK surfaces them through `channel.onError(…)` with `code: 'rate_limited'`.
 

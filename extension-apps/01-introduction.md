@@ -57,9 +57,9 @@ Combine UI and backend capabilities:
 
 ### How Apps Run
 
-Apps are rendered as sandboxed iframes within the Teachfloor dashboard:
+Apps run in sandboxed environments within the Teachfloor dashboard:
 
-1. **Isolation**: Each app runs in its own iframe for security
+1. **Isolation**: Each app runs in its own sandbox for security
 2. **Communication**: Apps communicate with the platform via PostMessage RPC
 3. **Context**: Platform provides user, organization, and environment data
 4. **Storage**: Secure data persistence through the Extension Kit
@@ -68,7 +68,7 @@ Apps are rendered as sandboxed iframes within the Teachfloor dashboard:
 ┌──────────────────────────────────────────────┐
 │       Teachfloor Dashboard (Parent)          │
 │  ┌────────────────────────────────────────┐  │
-│  │     Your App (Sandboxed iframe)        │  │
+│  │            Your App (Sandboxed)        │  │
 │  │                                        │  │
 │  │  ┌──────────────────────────────┐      │  │
 │  │  │   React Components           │      │  │
@@ -214,7 +214,7 @@ Apps must request permissions to access platform resources:
 ## Security & Privacy
 
 ### Sandboxing
-- Apps run in isolated iframes
+- Apps run in isolated sandboxes
 - Cannot access parent page directly
 - All communication through SDK
 
