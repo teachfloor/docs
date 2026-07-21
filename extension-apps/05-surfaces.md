@@ -135,6 +135,8 @@ Apps that don't need surface-aware behavior can ignore `environment.surface` ent
 
 ## Widget Auto-Height with `<WidgetView>`
 
+**Requires `@teachfloor/extension-kit` ≥ 1.27.0.** Earlier versions of the kit don't ship `<WidgetView>` or the `SURFACES` constant. Bump your app's dependency before wrapping widgets in `<WidgetView>`.
+
 Wrap your widget's root element in `<WidgetView>` and the slot in the dashboard grid will automatically fit your content's height. No aspect ratio needed:
 
 ```jsx
