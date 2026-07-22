@@ -180,7 +180,7 @@ const GreetingWidget = () => {
   const { userContext } = useExtensionContext()
 
   return (
-    <WidgetView sx={{ padding: 16 }}>
+    <WidgetView p="md">
       <Group spacing="md">
         <Avatar src={userContext.avatar} alt={userContext.full_name} />
         <div>

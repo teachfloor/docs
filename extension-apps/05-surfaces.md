@@ -143,7 +143,7 @@ Wrap your widget's root element in `<WidgetView>` and the slot in the dashboard 
 import { WidgetView, Text, Stack } from '@teachfloor/extension-kit'
 
 const LearningStreakWidget = () => (
-  <WidgetView sx={{ padding: 16 }}>
+  <WidgetView p="md">
     <Stack spacing="xs">
       <Text size="lg" weight={700}>7-day streak</Text>
       <Text size="sm" color="dimmed">Keep going — you're on fire.</Text>
@@ -151,6 +151,8 @@ const LearningStreakWidget = () => (
   </WidgetView>
 )
 ```
+
+`WidgetView` accepts the same layout props as `Container` (`p`, `px`, `py`, `sx`, etc.) — spacing shorthands work directly.
 
 Under the hood, `WidgetView` observes its own DOM height and emits it to the host over RPC. The host applies the reported height to the slot's container, so a widget with sparse content stays compact and a widget with a scrolling list grows to match. The same mechanism powers `<SettingsView>`.
 
