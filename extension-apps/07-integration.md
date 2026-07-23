@@ -12,11 +12,13 @@ This document focuses exclusively on **API functions** for platform integration:
 - `store()`, `retrieve()`, `createCollection()` - Data storage and retrieval
 - `showToast()` - Display notifications
 - `showDrawer()`, `hideDrawer()`, `toggleDrawer()` - Control app drawer
+- `openModal()`, `closeModal()` - Promote a widget into a modal container (widget surface only)
 - `goToViewport()` - Navigate to different platform areas using viewports
 - `goToPath()` - Navigate to different platform areas using paths
 
 ### React Hooks
 - `useExtensionContext()` - Access user and platform data reactively
+- `useLaunchState()` - Read the app-provided launch state passed by `openModal({ state })`
 
 ### Quick Reference
 
@@ -249,7 +251,14 @@ interface Context {
     initialized: boolean
     viewport: string
     path: string
+    surface: 'drawer' | 'page' | 'widget'
+    presentation: 'default' | 'modal'  // 'modal' when the widget was opened via openModal()
   }
+
+  // App-provided payload passed to openModal({ state }). Set once at
+  // mount and does not update.
+  // null when no launch state was provided.
+  state: object | null
 }
 ```
 
@@ -320,6 +329,80 @@ useEffect(() => {
   return () => hideDrawer()
 }, [])
 ```
+
+### Modal Control
+
+Widget-surface views can promote themselves into a modal for more room — useful for detail views, forms, or wizards triggered from a compact dashboard widget. The widget always opens ITSELF in the modal (never a different widget), and the modal iframe runs the same component with a fresh mount.
+
+```javascript
+import { openModal, closeModal, useExtensionContext } from '@teachfloor/extension-kit'
+
+function MyWidget() {
+  const { environment } = useExtensionContext()
+  const isModal = environment.presentation === 'modal'
+
+  // Compact rendering in the widget slot, full rendering in the modal
+  if (!isModal) {
+    return <button onClick={() => openModal({ size: 'lg' })}>Expand</button>
+  }
+
+  return (
+    <div>
+      <FullDetailView />
+      <button onClick={() => closeModal()}>Done</button>
+    </div>
+  )
+}
+```
+
+#### `openModal(options)`
+
+Available on the **widget surface only**. Calls from drawer or page surfaces are silently ignored.
+
+```typescript
+interface ModalOptions {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '100%'  // default 'md'
+  closeOnClickOutside?: boolean                       // default true
+  closeOnEscape?: boolean                             // default true
+  state?: object                                      // arbitrary launch state (see below)
+}
+```
+
+Anything outside the allowed values is dropped by the host — you can't pass arbitrary strings through to the underlying modal.
+
+#### `closeModal()`
+
+Dismiss the modal from within its own iframe. Only meaningful when `environment.presentation === 'modal'`. Typical use: form submit success, wizard finish. Calls from a normally-placed widget/drawer/page are no-ops.
+
+#### Launch state — `openModal({ state })` + `useLaunchState()`
+
+Passing `state` in `openModal` hands an arbitrary object to the modal-hosted iframe. The child reads it via `useLaunchState()` (or `useExtensionContext().state`). Set once at mount, does not update. Use it for deep-linking, initial form values, or opener context.
+
+```javascript
+import { openModal, useLaunchState } from '@teachfloor/extension-kit'
+
+// In the widget slot:
+function CompactWidget() {
+  return (
+    <button onClick={() => openModal({
+      size: 'lg',
+      state: { noteId: 'abc-123', mode: 'edit' },
+    })}>
+      Edit note
+    </button>
+  )
+}
+
+// In the same widget rendered in the modal:
+function ModalView() {
+  const launchState = useLaunchState()  // { noteId: 'abc-123', mode: 'edit' } — or null
+
+  if (!launchState?.noteId) return <NewNoteForm />
+  return <EditNoteForm noteId={launchState.noteId} mode={launchState.mode} />
+}
+```
+
+`useLaunchState()` returns `null` when the view wasn't launched with state (i.e. rendered directly in its widget slot, not opened via `openModal`).
 
 ### Navigation
 
