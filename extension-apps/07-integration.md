@@ -9,7 +9,7 @@ This document focuses exclusively on **API functions** for platform integration:
 ### Core Functions
 - `initialize()` - Signal that your app is ready
 - `subscribeToEvent()` - Listen to platform events
-- `store()`, `retrieve()`, `createCollection()` - Data storage and retrieval
+- `store()`, `retrieve()`, `createStorage()`, `createCollection()` - Data storage and retrieval
 - `showToast()` - Display notifications
 - `showDrawer()`, `hideDrawer()`, `toggleDrawer()` - Control app drawer
 - `openModal()`, `closeModal()` - Promote a widget into a modal container (widget surface only)
@@ -194,7 +194,7 @@ See [Permissions](/docs/apps/advanced-topics/permissions) for details on request
 
 ### Data Storage
 
-The Extension Kit provides `store()`, `retrieve()`, and `createCollection()` functions for persisting data. Three types of storage are available: app data (organization-wide), user data (user-specific), and user collections (paginated lists).
+The Extension Kit provides `store()`, `retrieve()`, `createStorage()`, and `createCollection()` functions for persisting data. Three types of storage are available: app data (organization-wide), user data (user-specific), and user collections (paginated lists). `createStorage()` is the recommended wrapper over `store` / `retrieve`, adding namespaced keys, TTL, and `query()` for paged filter/sort iteration.
 
 :::info
 See [Data Storage](/docs/apps/advanced-topics/data-storage) for complete documentation, API reference, and usage examples.

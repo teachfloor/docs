@@ -12,6 +12,13 @@ Three types of storage are available:
 | **User Data** | Organization + App + User | User-specific preferences, state |
 | **User Collection** | Organization + App + User | Lists, activity logs, history |
 
+Two API styles are available on top of App Data and User Data:
+
+- **Raw primitives** (`store` / `retrieve`) — one row per key, described in the App Data / User Data sections below.
+- **Storage Manager** (`createStorage`, **recommended**) — a namespaced wrapper adding TTL and `query()` for paged filter/sort iteration across many rows. See [Storage Manager](#storage-manager-recommended).
+
+For per-key append semantics (many rows sharing a key, id-based CRUD), use [User Collection Storage](#user-collection-storage) instead.
+
 :::caution
 Each storage type requires appropriate read/write permissions. Write permissions automatically include read access. See [Permissions Reference](./permissions) for details.
 :::
@@ -231,6 +238,194 @@ await prefsManager.save({
   notifications: false
 })
 ```
+
+## Storage Manager (recommended)
+
+The Storage Manager (`createStorage`) is the recommended way to work with App Data and User Data. It's a thin wrapper over `store` / `retrieve` that adds three things:
+
+1. **Namespaced keys** — every operation is scoped under a `baseKey` prefix so different features of your app can hold their own storage instances without key collisions.
+2. **TTL / expiry** — pass `{ ttl: seconds }` on `set()` to auto-expire values.
+3. **`query()`** — paged iteration across many rows in the namespace with a small filter + sort DSL. Available in kit `1.29.0+`.
+
+### Permissions Required
+
+Same as App Data / User Data — the Storage Manager doesn't add its own permissions. Pass `{ source: 'appdata' }` for org-shared storage or `{ source: 'userdata' }` for per-user storage.
+
+```json
+{
+  "permissions": [
+    {
+      "permission": "userdata_write",
+      "purpose": "Save and load user notes"
+    }
+  ]
+}
+```
+
+### Basic Usage
+
+```javascript
+import { createStorage } from '@teachfloor/extension-kit'
+
+// Per-user lesson notes, all keys automatically prefixed with 'lesson-notes:'
+const notes = createStorage('lesson-notes', { source: 'userdata' })
+
+// set → row key: 'lesson-notes:lesson-42-note-1'
+await notes.set('lesson-42-note-1', {
+  content: 'Mitochondria produce ATP via oxidative phosphorylation',
+  lesson_id: 'lesson-42',
+  tag: 'lecture',
+})
+
+// get by sub-key (namespace stripped from returned key)
+const note = await notes.get('lesson-42-note-1')
+// → { content: 'Mitochondria produce ATP via oxidative phosphorylation',
+//     lesson_id: 'lesson-42', tag: 'lecture' }
+
+// TTL — auto-expires after 3600 seconds
+// (e.g. flag a lesson as "recently viewed" for one hour)
+await notes.set('recently-viewed:lesson-42', true, { ttl: 3600 })
+
+// remove
+await notes.remove('lesson-42-note-1')
+```
+
+The kit prepends the `baseKey` to every operation, so callers only ever see un-namespaced sub-keys. Different `createStorage(...)` instances can't accidentally reach each other's data.
+
+### Query — paged filter + sort
+
+`query({ where, sort, limit, after })` returns `{ items, nextCursor }` where each item is `{ key, value, created_at, updated_at }`. `key` is the sub-key (namespace stripped).
+
+```javascript
+// Simplest — first page of the namespace, newest first
+const page = await notes.query()
+// → {
+//     items: [
+//       { key: 'lesson-73-note-2', value: {...}, created_at: '...', updated_at: '...' },
+//       { key: 'lesson-73-note-1', value: {...}, created_at: '...', updated_at: '...' },
+//       { key: 'lesson-42-note-1', value: {...}, created_at: '...', updated_at: '...' },
+//       ...
+//     ],
+//     nextCursor: '...' | null
+//   }
+
+// Pagination — resume with `after: nextCursor`
+let cursor = null
+do {
+  const p = await notes.query({ limit: 20, after: cursor })
+  render(p.items)
+  cursor = p.nextCursor
+} while (cursor)
+```
+
+#### DSL
+
+Filters run against **metadata columns only** — the `value` column is encrypted at rest and can't be predicated on. Expired rows are always excluded (no escape).
+
+**Field / op matrix:**
+
+| Field | Operators |
+|---|---|
+| `key` | `=`, `!=`, `in`, `not in`, `contains`, `not contains` |
+| `created_at`, `updated_at` | `>`, `>=`, `<`, `<=` |
+
+**Sort fields:** `updated_at`, `created_at`. **Sort directions:** `asc`, `desc`. Default when omitted: `[['updated_at', 'desc']]`.
+
+**Predicates** are `[field, op, value]` tuples. Multiple tuples in a `where` array AND together implicitly. For OR, wrap in a `{ or: [...] }` group; for explicit AND groups, use `{ and: [...] }`. Groups nest arbitrarily.
+
+```javascript
+// All notes for lesson 42 (key sub-namespace)
+await notes.query({
+  where: [['key', 'contains', 'lesson-42-']],
+})
+
+// Batch fetch by known ids (max 100 values per in / not in)
+await notes.query({
+  where: [['key', 'in', ['lesson-42-note-1', 'lesson-73-note-2']]],
+})
+
+// Recent notes only, oldest first — e.g. review what you took this week
+await notes.query({
+  where: [['updated_at', '>=', '2026-07-01']],
+  sort: [['updated_at', 'asc']],
+})
+
+// Combined AND — notes for lesson 42, updated since July 1
+await notes.query({
+  where: [
+    ['key', 'contains', 'lesson-42-'],
+    ['updated_at', '>=', '2026-07-01'],
+  ],
+})
+
+// Nested OR — recent notes from module 3 OR any pinned exam-prep card
+await notes.query({
+  where: [
+    { or: [
+      { and: [
+        ['key', 'contains', 'module-3-'],
+        ['updated_at', '>=', '2026-07-01'],
+      ]},
+      ['key', 'in', ['exam-prep:cell-biology', 'exam-prep:genetics']],
+    ]},
+  ],
+  sort: [['updated_at', 'desc']],
+  limit: 20,
+})
+```
+
+For `key` exact-match ops (`=`, `!=`, `in`, `not in`), values are treated as sub-keys and namespaced automatically — you write un-namespaced sub-keys, matching `get()` / `set()` semantics. `contains` / `not contains` values pass through as raw substrings and search only within the current namespace.
+
+#### Constraints and errors
+
+- **`in` / `not in` cap** — max 100 values per predicate. Larger arrays throw `storage.query: "in" cannot accept more than 100 values (got N)`. Split into multiple pages instead.
+- **Result size cap** — server hard cap is 200 rows per page regardless of `limit`.
+- **Fail-loud validation** — unsupported fields or operators throw at the call site before any RPC. Example: `where: [['value', '=', 'x']]` throws `storage.query: unsupported field "value"`.
+- **Cursor is opaque** — pass the exact string back in `after`. Don't decode / hand-craft.
+- **Cursor is tied to the sort order it was minted with** — if you change `sort` between pages, the cursor becomes semantically wrong (no error, but rows may be skipped or duplicated).
+
+### Example: Lesson notes with load-more search
+
+A learner's notes browser — filter by lesson (`lesson-42-`, `lesson-73-`, …), paginate through everything.
+
+```jsx
+import React, { useEffect, useState } from 'react'
+import { createStorage } from '@teachfloor/extension-kit'
+
+const notes = createStorage('lesson-notes', { source: 'userdata' })
+
+function LessonNotesList() {
+  const [items, setItems] = useState([])
+  const [cursor, setCursor] = useState(null)
+  const [lessonFilter, setLessonFilter] = useState('')  // e.g. 'lesson-42-'
+
+  const loadMore = async (reset = false) => {
+    const page = await notes.query({
+      where: lessonFilter ? [['key', 'contains', lessonFilter]] : [],
+      limit: 20,
+      after: reset ? null : cursor,
+    })
+    setItems(reset ? page.items : [...items, ...page.items])
+    setCursor(page.nextCursor)
+  }
+
+  useEffect(() => { loadMore(true) }, [lessonFilter])
+
+  return (
+    <>
+      <input
+        value={lessonFilter}
+        placeholder="Filter by lesson id (e.g. lesson-42-)"
+        onChange={(e) => setLessonFilter(e.target.value)}
+      />
+      {items.map((r) => <NoteCard key={r.key} note={r.value} />)}
+      {cursor && <button onClick={() => loadMore()}>Load more</button>}
+    </>
+  )
+}
+```
+
+Storage Manager vs raw `store` / `retrieve`: use raw primitives only for a small, well-known set of keys (like a single `'config'` blob). If you're storing multiple items and might want to enumerate or filter them, use Storage Manager from the start.
 
 ## User Collection Storage
 
