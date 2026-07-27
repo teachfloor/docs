@@ -206,7 +206,15 @@ $ teachfloor apps create notes-app
 ✓ Setting up app structure...
 ✓ Installing npm dependencies...
 ✓ App "Notes App" created successfully in "notes-app".
+
+OAuth credentials for this app:
+  Client ID:     9f8e7d6c-1234-4abc-9def-0123456789ab
+  Client Secret: rN7pQ8E4fD0sUjLvX2mK5H1a3bT9wY6c
 ```
+
+:::caution
+**Save the Client Secret now.** It's shown once at create time and never returned by the API again — if you lose it, you can retrieve it from Developers → Apps → your app → **OAuth Client Secret** in the Teachfloor dashboard. The Client ID is also delivered inside every `app.installed` webhook payload; the Client Secret is not. See [OAuth](./oauth) for how to use these credentials for the refresh flow.
+:::
 
 ---
 
@@ -475,11 +483,31 @@ teachfloor apps grant permission
 - **Purpose** — `--explanation <text>` (required — user-facing reason shown on the install screen)
 
 **Available Permissions**:
+
+Contextual data (SDK):
 - `user:read`: Read user profile
 - `user_events:read`: Read user activity
-- `courses:read`: Read course data
-- `modules:read`: Read module content
-- `elements:read`: Read learning elements
+- `courses:read`: Read course data (also unlocks `GET /v0/courses/*` when OAuth is opted in)
+- `modules:read`: Read module content (also unlocks `GET /v0/modules/*` when OAuth is opted in)
+- `elements:read`: Read learning elements (also unlocks `GET /v0/elements/*` when OAuth is opted in)
+
+Data storage (SDK):
+- `appdata:read` / `appdata:write`: Organization-wide app storage
+- `userdata:read` / `userdata:write`: User-specific storage
+- `usercollection:read` / `usercollection:write`: User-specific collection storage
+
+AI (SDK):
+- `ai:text_generate`: Consume AI credits to generate text
+- `ai:context_external_send`: Include platform data in external AI requests
+
+Realtime (SDK):
+- `realtime`: Publish and subscribe to the app's realtime channels
+
+Public API only (backend/OAuth):
+- `members:read`: Read organization members and enrollments via `GET /v0/members/*`
+- `activities:read`: Read activity records via `GET /v0/activities/*`
+
+See [Permissions](/docs/apps/advanced-topics/permissions) for the full description of each permission and [OAuth](/docs/apps/advanced-topics/oauth) for the scope mapping.
 
 **Example**:
 ```bash

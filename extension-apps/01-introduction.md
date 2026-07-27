@@ -245,7 +245,7 @@ Apps must request permissions to access platform resources:
 ### Platform
 - Apps cannot modify core platform UI
 - Limited to defined viewports
-- Cannot execute server-side code
+- Cannot run code on Teachfloor's servers (your own backend runs on your infrastructure — see [OAuth](./oauth) and [Webhooks](./webhooks))
 - No direct database access
 
 ## Next Steps

@@ -197,7 +197,7 @@ The `installer` block identifies the user who clicked Install — always present
 The `credentials` block is **opt-in** and only appears when both of these are true in the app manifest:
 
 1. An explicit `oauth: { type: "install" }` block declares that the app wants install-integrated OAuth.
-2. At least one declared permission maps to an OAuth scope (currently: `courses:read`, `modules:read`, `elements:read`).
+2. At least one declared permission maps to an OAuth scope (currently: `courses:read`, `modules:read`, `elements:read`, `members:read`, `activities:read`).
 
 See the [OAuth chapter](/docs/apps/advanced-topics/oauth) for the full end-to-end recipe — opt-in, storage shape, calling the API, refresh flow, and code samples in Node / Python / PHP.
 
@@ -214,7 +214,7 @@ See the [OAuth chapter](/docs/apps/advanced-topics/oauth) for the full end-to-en
 
 Without the `oauth` block, no tokens are minted even if the manifest declares OAuth-mappable permissions — an SDK-only app that adds `courses:read` for in-app use won't unexpectedly start receiving credentials in its webhook receiver logs. Adding `oauth: { type: "install" }` is the explicit opt-in.
 
-Iframe-only apps and apps with only SDK-scoped storage permissions receive no `credentials` — they can still deliver a signed webhook, they just don't get an access token for the public API. When `credentials` is present, use the tokens to call the public API on behalf of the installing organization — bearer-authenticated with `access_token`, refreshable via the standard OAuth 2.0 `/oauth/token` refresh flow using `client_id` + `client_secret` + `refresh_token`. Store `access_token` and `refresh_token` per-install (keyed by `organization.id`).
+SDK-only apps and apps with only SDK-scoped storage permissions receive no `credentials` — they can still deliver a signed webhook, they just don't get an access token for the public API. When `credentials` is present, use the tokens to call the public API on behalf of the installing organization — bearer-authenticated with `access_token`, refreshable via the standard OAuth 2.0 `/oauth/token` refresh flow using `client_id` + `client_secret` + `refresh_token`. Store `access_token` and `refresh_token` per-install (keyed by `organization.id`).
 
 The `client_secret` is **not** in the webhook payload — you fetch it once from the Teachfloor developer dashboard (Developers → Apps → your app → OAuth Client Secret) or from the `teachfloor apps create` CLI response, and store it in your app config. It's the same across every install of your app.
 

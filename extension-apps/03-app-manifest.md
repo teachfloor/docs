@@ -228,7 +228,7 @@ Platform permissions your app needs to access Teachfloor resources.
 - Only request permissions you actually use
 - Provide clear, user-facing explanations
 - Users see permission requests during installation
-- Write permissions (`*_write`) automatically include read access
+- Write permissions (`*:write`) automatically include read access
 
 :::info
 See [Permissions Reference](./advanced-topics/permissions) for the complete list of available permissions, their descriptions, and permission hierarchy.

@@ -50,7 +50,7 @@ Your app can request the following permissions:
 | `usercollection:write` | Write to user data collections | Storage API - Collections | **Includes read** |
 
 :::info
-**Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.
+**Important**: Write permissions (`*:write`) automatically grant read access. Requesting `*:write` is sufficient for both reading and writing.
 :::
 
 ### AI & Feature Permissions
@@ -59,6 +59,12 @@ Your app can request the following permissions:
 |-----------|-------------|-------------|
 | `ai:text_generate` | Generate text using AI models | AI Generation API |
 | `ai:context_external_send` | Send platform data to AI models | AI Context Sharing |
+
+### Realtime Permissions
+
+| Permission | Description | Access Type |
+|-----------|-------------|-------------|
+| `realtime` | Publish and subscribe to the app's realtime channels | Realtime SDK |
 
 ### Public API Permissions
 
@@ -479,6 +485,42 @@ const detailedResult = await generate(
   'Create a quiz about {{module.name}} covering: {{module.content}}'
 )
 ```
+
+### Realtime Permission
+
+#### `realtime`
+
+Publish and subscribe to your app's realtime channels. Enables sub-second event delivery between an app's SDK views (widgets, drawers, pages) while learners are active.
+
+**Use cases**:
+- Live collaboration UIs (cursors, presence, live-edit)
+- Broadcasting state changes from one widget instance to others
+- Instructor-side dashboards that react to learner activity in real time
+
+**Example**:
+```json
+{
+  "permission": "realtime",
+  "purpose": "Broadcast live collaboration cursors between learners viewing this widget"
+}
+```
+
+**Usage**:
+```javascript
+import { realtime, useExtensionContext } from '@teachfloor/extension-kit'
+
+const courseId = useExtensionContext().environment.context.course?.id
+
+// Subscribe to a course-scoped channel and receive events other
+// clients publish on it.
+const channel = realtime.subscribe({ scope: 'course', id: courseId })
+channel.on('cursor.moved', (message) => renderRemoteCursor(message.data))
+
+// Broadcast to every other subscriber on the same channel.
+channel.publish('cursor.moved', { x: 120, y: 340 })
+```
+
+Subscribing to a `course`-scoped channel additionally needs `courses:read` (and the same pattern for `modules:read` / `elements:read`) — without it, the host strips the resource id from the viewport payload and there's no id to subscribe with. See [Realtime Channels](./realtime) for the full channel model, event shape, and delivery guarantees.
 
 ### Public API Permissions
 
