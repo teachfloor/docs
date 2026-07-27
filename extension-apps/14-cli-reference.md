@@ -32,6 +32,11 @@ npm install -g @teachfloor/teachfloor-cli
 | **Permission Management** |
 | `teachfloor apps grant permission` | Add permission | Yes | Yes |
 | `teachfloor apps revoke permission` | Remove permission | Yes | Yes |
+| **Webhook & OAuth** |
+| `teachfloor apps set webhook` | Configure webhook URL and events | Yes | Yes |
+| `teachfloor apps remove webhook` | Remove webhook block | Yes | Yes |
+| `teachfloor apps set oauth` | Configure OAuth grant type | Yes | Yes |
+| `teachfloor apps remove oauth` | Remove OAuth block | Yes | Yes |
 | **Distribution** |
 | `teachfloor apps set distribution` | Set public/private | Yes | Yes |
 
@@ -75,6 +80,8 @@ No `--nonInteractive` needed when stdin isn't a TTY — piping / subprocess spaw
 | `apps remove widget` | `--id`, `--removeComponent` |
 | `apps grant permission` | `--permissionName`, `--explanation` |
 | `apps revoke permission` | `--permissionName` |
+| `apps set webhook` | `--url`, `--events` (repeatable, or comma-separated) |
+| `apps set oauth` | `--oauthType` |
 | `apps set distribution` | `--distributionType` |
 
 `login` remains interactive-only (browser OAuth).
@@ -547,6 +554,102 @@ teachfloor apps revoke permission
 $ teachfloor apps revoke permission
 ✔ Select permission to revoke: courses:read
 ✓ Permission removed from manifest.
+```
+
+---
+
+## Webhook & OAuth
+
+### `teachfloor apps set webhook`
+
+Configure the app's webhook URL and the events it subscribes to. Re-run to reconfigure — the whole block is rewritten each time.
+
+```bash
+teachfloor apps set webhook
+```
+
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **URL** — `--url <value>` (required — must start with `https://`, max 2048 chars)
+- **Events** — `--events <name>` (multi-select checkbox picker; repeatable flag or comma-separated: `--events a --events b` OR `--events "a,b"`)
+
+**Available Events**:
+
+Populated from the server catalog at run time so the CLI always offers exactly the events the platform will accept on upload. Current set includes:
+
+- `organization.join`, `course.created`, `course.updated`, `course.completed`, `course.join`
+- `module.created`, `module.updated`
+- `element.created`, `element.updated`, `element.deleted`, `element.completed`
+- `member.login`
+
+The lifecycle events `app.installed` and `app.uninstalled` are always delivered — no need to include them in the manifest.
+
+**Example**:
+```bash
+$ teachfloor apps set webhook
+✔ Webhook URL (must be https://): https://myapp.example.com/teachfloor/hook
+✔ Select events to subscribe to (space to toggle): course.completed, element.completed
+✓ Webhook set to "https://myapp.example.com/teachfloor/hook" (2 events).
+```
+
+**Updates Manifest**:
+```json
+{
+  "webhook": {
+    "url": "https://myapp.example.com/teachfloor/hook",
+    "events": ["course.completed", "element.completed"]
+  }
+}
+```
+
+---
+
+### `teachfloor apps remove webhook`
+
+Strip the `webhook` block from the manifest. The app becomes SDK-only for platform events — no signed deliveries, no installer identity disclosure to the app, and no OAuth credentials on install (OAuth requires a webhook to deliver them).
+
+```bash
+teachfloor apps remove webhook
+```
+
+---
+
+### `teachfloor apps set oauth`
+
+Configure the OAuth block. Presence of this block is the developer's explicit opt-in for install-integrated OAuth — see [OAuth](./oauth).
+
+```bash
+teachfloor apps set oauth
+```
+
+**Prompts** (interactive mode) / **Flags** (non-interactive):
+- **Type** — `--oauthType <value>` (alias `--type`; currently only `install`)
+
+**Example**:
+```bash
+$ teachfloor apps set oauth
+✔ Select the OAuth grant type: install
+✓ OAuth type set to "install".
+```
+
+**Updates Manifest**:
+```json
+{
+  "oauth": { "type": "install" }
+}
+```
+
+:::info
+OAuth credentials are delivered inside the `app.installed` webhook payload. If your app has no webhook block, no tokens will be minted even with `oauth` set. Run `apps set webhook` first (or after) to complete the setup.
+:::
+
+---
+
+### `teachfloor apps remove oauth`
+
+Strip the `oauth` block from the manifest. New installs will no longer receive an access token / refresh token pair on install. In-app SDK permissions still work.
+
+```bash
+teachfloor apps remove oauth
 ```
 
 ---
