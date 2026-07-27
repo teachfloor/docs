@@ -28,14 +28,16 @@ Teachfloor Apps are extensions that enhance the platform's functionality by addi
 ### Advanced Topics
 8. [Data Storage](./apps/advanced-topics/data-storage) - Persist user and app data
 9. [Realtime Channels](./apps/advanced-topics/realtime) - Subscribe to and publish low-latency events between learners
-10. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
-11. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
+10. [Webhooks](./apps/advanced-topics/webhooks) - Receive signed HTTP deliveries to your app's backend when platform events fire
+11. [OAuth](./apps/advanced-topics/oauth) - Call the public API from your app's backend on behalf of the installing organization
+12. [Permissions](./apps/advanced-topics/permissions) - Request and use platform resources
+13. [Deployment](./apps/advanced-topics/deployment) - Deploy private apps and publish to marketplace
 
 ### Reference
-12. [CLI Commands](./apps/references/cli) - Complete command reference
-13. [Best Practices](./apps/references/best-practices) - Tips and patterns
-14. [Examples](./apps/references/examples) - Sample apps and code snippets
-15. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
+14. [CLI Commands](./apps/references/cli) - Complete command reference
+15. [Best Practices](./apps/references/best-practices) - Tips and patterns
+16. [Examples](./apps/references/examples) - Sample apps and code snippets
+17. [Troubleshooting](./apps/references/troubleshooting) - Common issues and solutions
 
 ## Prerequisites
 

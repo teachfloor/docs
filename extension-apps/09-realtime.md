@@ -194,9 +194,10 @@ There is no way for an app to read a channel it doesn't subscribe to, or to publ
 
 ## Next Steps
 
-→ Continue to [Permissions](/docs/apps/advanced-topics/permissions)
+→ Continue to [Webhooks](/docs/apps/advanced-topics/webhooks)
 
 ## Additional Resources
 
+- [Webhooks](/docs/apps/advanced-topics/webhooks) - Signed HTTP deliveries to your app's backend. Complementary to realtime — reaches your server even when no learner is online.
 - [Permissions](/docs/apps/advanced-topics/permissions) - The full `realtime` permission listing alongside the rest of the platform's permissions.
 - [Data Storage](/docs/apps/advanced-topics/data-storage) - Pair realtime with `appdata` / `userdata` for state that survives reloads.
