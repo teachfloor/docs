@@ -169,18 +169,18 @@ When both conditions are met, the **complete object** is included. Otherwise, th
 
 **Example:**
 ```javascript
-// With course_read permission on a course detail page:
+// With courses:read permission on a course detail page:
 {
   course: { id: "abc123", name: "Introduction to React", /* ...other course fields */ }
   // module and element keys not present (not in their context)
 }
 
-// Without course_read permission on a course detail page:
+// Without courses:read permission on a course detail page:
 {
   // No keys present (no permissions granted)
 }
 
-// With course_read and module_read on a module detail page:
+// With courses:read and modules:read on a module detail page:
 {
   course: { id: "abc123", name: "Introduction to React", /* ...other course fields */ },
   module: { id: "def456", name: "Getting Started", /* ...other module fields */ }
@@ -479,9 +479,9 @@ async function generateContent() {
 - `'ai/text-generate'`: General text generation
 
 **Permissions Required:**
-- `ai_text_generate`: Always required to use AI generation
-- `ai_context_external_send`: Only required when using placeholders
-- Contextual permissions: Required for corresponding placeholders (`course_read` for course placeholders, etc.)
+- `ai:text_generate`: Always required to use AI generation
+- `ai:context_external_send`: Only required when using placeholders
+- Contextual permissions: Required for corresponding placeholders (`courses:read` for course placeholders, etc.)
 
 ### Using Placeholders
 
@@ -490,17 +490,17 @@ Include platform data directly in prompts using placeholders:
 ```javascript
 import { generate } from '@teachfloor/extension-kit'
 
-// Course placeholders (requires: ai_text_generate + course_read + ai_context_external_send)
+// Course placeholders (requires: ai:text_generate + courses:read + ai:context_external_send)
 const courseSummary = await generate(
   'Summarize this course: {{course.content}}'
 )
 
-// Module placeholders (requires: ai_text_generate + module_read + ai_context_external_send)
+// Module placeholders (requires: ai:text_generate + modules:read + ai:context_external_send)
 const moduleQuiz = await generate(
   'Create a 5-question quiz about {{module.name}}: {{module.content}}'
 )
 
-// Element placeholders (requires: ai_text_generate + element_read + ai_context_external_send)
+// Element placeholders (requires: ai:text_generate + elements:read + ai:context_external_send)
 const studyNotes = await generate(
   'Generate study notes for {{element.name}}: {{element.content}}'
 )
@@ -516,7 +516,7 @@ const studyNotes = await generate(
 
 ### Without Placeholders
 
-You can also manually include context data (only requires `ai_text_generate`):
+You can also manually include context data (only requires `ai:text_generate`):
 
 ```javascript
 import { generate, useExtensionContext } from '@teachfloor/extension-kit'

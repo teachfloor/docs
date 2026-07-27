@@ -19,15 +19,15 @@ Track all user learning events to Intercom for customer engagement and analytics
   "distribution_type": "private",
   "permissions": [
     {
-      "permission": "user_read",
+      "permission": "user:read",
       "purpose": "Send user profile to Intercom"
     },
     {
-      "permission": "user_events_read",
+      "permission": "user_events:read",
       "purpose": "Track learning activities in Intercom"
     },
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Include course context in event tracking"
     }
   ]
@@ -231,7 +231,7 @@ A complete note-taking application using browser storage.
   },
   "permissions": [
     {
-      "permission": "userdata_write",
+      "permission": "userdata:write",
       "purpose": "Save and load your notes"
     }
   ]
@@ -494,11 +494,11 @@ Track user's learning progress.
   },
   "permissions": [
     {
-      "permission": "user_events_read",
+      "permission": "user_events:read",
       "purpose": "Track your learning activities"
     },
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Display course information"
     }
   ]

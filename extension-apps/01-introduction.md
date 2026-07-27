@@ -106,7 +106,7 @@ The manifest is a JSON configuration file that defines your app:
   },
   "permissions": [
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Display course information"
     }
   ]
@@ -151,11 +151,11 @@ Apps receive real-time context from the platform:
 
 Apps must request permissions to access platform resources:
 
-- `user_read`: Read user information
-- `course_read`: Access course data
-- `module_read`: Access module content
-- `element_read`: Access learning elements
-- `user_events_read`: Track user activity
+- `user:read`: Read user information
+- `courses:read`: Access course data
+- `modules:read`: Access module content
+- `elements:read`: Access learning elements
+- `user_events:read`: Track user activity
 
 ## Development Workflow
 

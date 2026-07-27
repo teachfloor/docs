@@ -219,7 +219,7 @@ return <div>{userContext.name}</div>
 {
   "permissions": [
     {
-      "permission": "user_read",
+      "permission": "user:read",
       "purpose": "Display your profile"
     }
   ]
@@ -252,7 +252,7 @@ try {
 
 **Symptoms**:
 ```
-Error: Permission denied: user_read
+Error: Permission denied: user:read
 ```
 
 **Solution**:
@@ -641,15 +641,15 @@ useEffect(() => {
 ```javascript
 // ❌ Bad - requesting everything
 "permissions": [
-  { "permission": "user_read", ... },
-  { "permission": "user_events_read", ... },
-  { "permission": "course_read", ... },
+  { "permission": "user:read", ... },
+  { "permission": "user_events:read", ... },
+  { "permission": "courses:read", ... },
   // ... not all needed
 ]
 
 // ✅ Good - only what's needed
 "permissions": [
-  { "permission": "course_read", "purpose": "Display course info" }
+  { "permission": "courses:read", "purpose": "Display course info" }
 ]
 ```
 

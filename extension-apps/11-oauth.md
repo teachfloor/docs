@@ -32,8 +32,8 @@ To receive credentials on install, declare both of these in your manifest:
   "version": "1.0.0",
   "oauth": { "type": "install" },
   "permissions": [
-    { "permission": "course_read", "purpose": "Sync course completions to our HR tool" },
-    { "permission": "module_read", "purpose": "Attribute completions to the right module" }
+    { "permission": "courses:read", "purpose": "Sync course completions to our HR tool" },
+    { "permission": "modules:read", "purpose": "Attribute completions to the right module" }
   ],
   "webhook": {
     "url": "https://my-app.com/teachfloor/webhook",
@@ -58,9 +58,9 @@ Adding a permission to the manifest grants the matching OAuth scope on the issue
 
 | Manifest permission | OAuth scope | Grants |
 |---|---|---|
-| `course_read` | `courses:read` | GET `/v0/courses/*` |
-| `module_read` | `modules:read` | GET `/v0/modules/*` |
-| `element_read` | `elements:read` | GET `/v0/elements/*` |
+| `courses:read` | `courses:read` | GET `/v0/courses/*` |
+| `modules:read` | `modules:read` | GET `/v0/modules/*` |
+| `elements:read` | `elements:read` | GET `/v0/elements/*` |
 
 Other manifest permissions (data storage, realtime, etc.) don't have a public-API equivalent and don't appear on issued tokens.
 

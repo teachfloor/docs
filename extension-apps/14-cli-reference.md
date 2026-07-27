@@ -475,16 +475,16 @@ teachfloor apps grant permission
 - **Purpose** — `--explanation <text>` (required — user-facing reason shown on the install screen)
 
 **Available Permissions**:
-- `user_read`: Read user profile
-- `user_events_read`: Read user activity
-- `course_read`: Read course data
-- `module_read`: Read module content
-- `element_read`: Read learning elements
+- `user:read`: Read user profile
+- `user_events:read`: Read user activity
+- `courses:read`: Read course data
+- `modules:read`: Read module content
+- `elements:read`: Read learning elements
 
 **Example**:
 ```bash
 $ teachfloor apps grant permission
-✔ Select permission: course_read
+✔ Select permission: courses:read
 ✔ Enter purpose: Display course information in notes
 ✓ Permission added to manifest.
 ```
@@ -494,7 +494,7 @@ $ teachfloor apps grant permission
 {
   "permissions": [
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Display course information in notes"
     }
   ]
@@ -517,7 +517,7 @@ teachfloor apps revoke permission
 **Example**:
 ```bash
 $ teachfloor apps revoke permission
-✔ Select permission to revoke: course_read
+✔ Select permission to revoke: courses:read
 ✓ Permission removed from manifest.
 ```
 

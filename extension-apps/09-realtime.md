@@ -49,7 +49,7 @@ The `realtime` permission grants:
 It does **not** grant cross-app, cross-org, or other-user channel access.
 
 :::info
-**Resource ids are gated by their own read permissions.** Subscribing to a `course`-scoped channel needs `course_read` in addition to `realtime` — without it the host strips `course` from the viewport payload, so `environment.context.course.id` is `undefined` and there's no id to subscribe with. The same applies for `module_read` and `element_read` if you ever derive an id from those contexts.
+**Resource ids are gated by their own read permissions.** Subscribing to a `course`-scoped channel needs `courses:read` in addition to `realtime` — without it the host strips `course` from the viewport payload, so `environment.context.course.id` is `undefined` and there's no id to subscribe with. The same applies for `modules:read` and `elements:read` if you ever derive an id from those contexts.
 :::
 
 ## SDK API

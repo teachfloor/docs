@@ -36,7 +36,7 @@ Store data shared across all users in your organization.
 {
   "permissions": [
     {
-      "permission": "appdata_write",
+      "permission": "appdata:write",
       "purpose": "Save and load app configuration and settings"
     }
   ]
@@ -44,7 +44,7 @@ Store data shared across all users in your organization.
 ```
 
 :::info
-`appdata_write` automatically includes read access.
+`appdata:write` automatically includes read access.
 :::
 
 **Read-Only** (if you only need to read):
@@ -52,7 +52,7 @@ Store data shared across all users in your organization.
 {
   "permissions": [
     {
-      "permission": "appdata_read",
+      "permission": "appdata:read",
       "purpose": "Load app configuration and settings"
     }
   ]
@@ -132,7 +132,7 @@ Store data specific to individual users.
 {
   "permissions": [
     {
-      "permission": "userdata_write",
+      "permission": "userdata:write",
       "purpose": "Save and load your personal preferences and app data"
     }
   ]
@@ -140,7 +140,7 @@ Store data specific to individual users.
 ```
 
 :::info
-`userdata_write` includes read access.
+`userdata:write` includes read access.
 :::
 
 **Read-Only**:
@@ -148,7 +148,7 @@ Store data specific to individual users.
 {
   "permissions": [
     {
-      "permission": "userdata_read",
+      "permission": "userdata:read",
       "purpose": "Load your personal preferences and app data"
     }
   ]
@@ -255,7 +255,7 @@ Same as App Data / User Data — the Storage Manager doesn't add its own permiss
 {
   "permissions": [
     {
-      "permission": "userdata_write",
+      "permission": "userdata:write",
       "purpose": "Save and load user notes"
     }
   ]
@@ -438,21 +438,21 @@ Store lists of data items for a user, with pagination support.
 {
   "permissions": [
     {
-      "permission": "usercollection_write",
+      "permission": "usercollection:write",
       "purpose": "Save and load your activity history and saved items"
     }
   ]
 }
 ```
 
-**Note**: `usercollection_write` includes read access.
+**Note**: `usercollection:write` includes read access.
 
 **Read-Only**:
 ```json
 {
   "permissions": [
     {
-      "permission": "usercollection_read",
+      "permission": "usercollection:read",
       "purpose": "Load your activity history and saved items"
     }
   ]
@@ -698,7 +698,7 @@ await updateNote('123', {
 ```
 
 **Important**:
-- Requires `usercollection_write` permission
+- Requires `usercollection:write` permission
 - Item ID comes from `item.id` when listing items
 - Update replaces the entire value - merge with existing data if needed
 - Returns the updated value
@@ -731,7 +731,7 @@ await removeBookmark(itemToDelete.id)
 ```
 
 **Important**:
-- Requires `usercollection_write` permission
+- Requires `usercollection:write` permission
 - Item ID comes from `item.id` when listing items
 - Delete operations are permanent
 - Returns `null` on success

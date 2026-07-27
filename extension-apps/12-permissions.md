@@ -12,7 +12,7 @@ All permissions must be declared in your app manifest with a user-facing explana
 
 ## How Permissions Work
 
-When your app subscribes to events, the platform includes an `objectContext` parameter containing contextual data based on your granted permissions. For example, with `course_read` permission, `objectContext.course` includes the current course data when in a course viewport.
+When your app subscribes to events, the platform includes an `objectContext` parameter containing contextual data based on your granted permissions. For example, with `courses:read` permission, `objectContext.course` includes the current course data when in a course viewport.
 
 :::info
 See [Integration Guide - Events](/docs/apps/core-concepts/extension-kit/integration#events) for detailed `objectContext` structure and usage examples.
@@ -26,22 +26,22 @@ Your app can request the following permissions:
 
 | Permission | Description | Access Type |
 |-----------|-------------|-------------|
-| `user_read` | Access user profile information | User data in objectContext |
-| `user_events_read` | Access user activity events | User events |
-| `course_read` | Access course contextual data | Course object in objectContext |
-| `module_read` | Access module contextual data | Module object in objectContext |
-| `element_read` | Access element contextual data | Element object in objectContext |
+| `user:read` | Access user profile information | User data in objectContext |
+| `user_events:read` | Access user activity events | User events |
+| `courses:read` | Access course contextual data | Course object in objectContext |
+| `modules:read` | Access module contextual data | Module object in objectContext |
+| `elements:read` | Access element contextual data | Element object in objectContext |
 
 ### Storage Permissions
 
 | Permission | Description | Access Type | Hierarchy |
 |-----------|-------------|-------------|-----------|
-| `appdata_read` | Read organization-wide app data | Storage API - App Data | Read only |
-| `appdata_write` | Write organization-wide app data | Storage API - App Data | **Includes read** |
-| `userdata_read` | Read user-specific app data | Storage API - User Data | Read only |
-| `userdata_write` | Write user-specific app data | Storage API - User Data | **Includes read** |
-| `usercollection_read` | Read user data collections | Storage API - Collections | Read only |
-| `usercollection_write` | Write to user data collections | Storage API - Collections | **Includes read** |
+| `appdata:read` | Read organization-wide app data | Storage API - App Data | Read only |
+| `appdata:write` | Write organization-wide app data | Storage API - App Data | **Includes read** |
+| `userdata:read` | Read user-specific app data | Storage API - User Data | Read only |
+| `userdata:write` | Write user-specific app data | Storage API - User Data | **Includes read** |
+| `usercollection:read` | Read user data collections | Storage API - Collections | Read only |
+| `usercollection:write` | Write to user data collections | Storage API - Collections | **Includes read** |
 
 :::info
 **Important**: Write permissions (`*_write`) automatically grant read access. Requesting `*_write` is sufficient for both reading and writing.
@@ -51,14 +51,14 @@ Your app can request the following permissions:
 
 | Permission | Description | Access Type |
 |-----------|-------------|-------------|
-| `ai_text_generate` | Generate text using AI models | AI Generation API |
-| `ai_context_external_send` | Send platform data to AI models | AI Context Sharing |
+| `ai:text_generate` | Generate text using AI models | AI Generation API |
+| `ai:context_external_send` | Send platform data to AI models | AI Context Sharing |
 
 ## Permission Details
 
 ### User Permissions
 
-#### `user_read`
+#### `user:read`
 Access basic user profile information.
 
 **Data available in objectContext**:
@@ -77,12 +77,12 @@ Access basic user profile information.
 **Example**:
 ```json
 {
-  "permission": "user_read",
+  "permission": "user:read",
   "purpose": "Display personalized greetings and user information"
 }
 ```
 
-#### `user_events_read`
+#### `user_events:read`
 Access user activity and learning events.
 
 **Data available in objectContext**:
@@ -101,7 +101,7 @@ Access user activity and learning events.
 **Example**:
 ```json
 {
-  "permission": "user_events_read",
+  "permission": "user_events:read",
   "purpose": "Track learning progress and generate activity reports"
 }
 ```
@@ -110,7 +110,7 @@ Access user activity and learning events.
 
 These permissions control what data appears in the `objectContext` parameter based on the current viewport.
 
-#### `course_read`
+#### `courses:read`
 Access course information when user is in a course viewport.
 
 **Data available in objectContext.course**:
@@ -129,7 +129,7 @@ Access course information when user is in a course viewport.
 **Example**:
 ```json
 {
-  "permission": "course_read",
+  "permission": "courses:read",
   "purpose": "Display course information in notes and widgets"
 }
 ```
@@ -146,7 +146,7 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 })
 ```
 
-#### `module_read`
+#### `modules:read`
 Access module information when user is viewing a module.
 
 **Data available in objectContext.module**:
@@ -163,7 +163,7 @@ Access module information when user is viewing a module.
 **Example**:
 ```json
 {
-  "permission": "module_read",
+  "permission": "modules:read",
   "purpose": "Show module progress and navigation"
 }
 ```
@@ -180,7 +180,7 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 })
 ```
 
-#### `element_read`
+#### `elements:read`
 Access learning element information when user is viewing an element.
 
 **Data available in objectContext.element**:
@@ -196,7 +196,7 @@ Access learning element information when user is viewing an element.
 **Example**:
 ```json
 {
-  "permission": "element_read",
+  "permission": "elements:read",
   "purpose": "Display element information and add notes to content"
 }
 ```
@@ -218,12 +218,12 @@ subscribeToEvent('environment.viewport.changed', (viewport, objectContext) => {
 
 Storage permissions allow your app to persist data on the Teachfloor platform. See [Data Storage](./data-storage) for detailed usage.
 
-#### `appdata_read` & `appdata_write`
+#### `appdata:read` & `appdata:write`
 
 Store and retrieve organization-wide app data shared across all users.
 
 :::info
-**Permission Hierarchy**: `appdata_write` includes `appdata_read` access.
+**Permission Hierarchy**: `appdata:write` includes `appdata:read` access.
 :::
 
 **Use cases**:
@@ -237,7 +237,7 @@ Store and retrieve organization-wide app data shared across all users.
 {
   "permissions": [
     {
-      "permission": "appdata_write",
+      "permission": "appdata:write",
       "purpose": "Save and load app configuration and shared settings"
     }
   ]
@@ -249,7 +249,7 @@ Store and retrieve organization-wide app data shared across all users.
 {
   "permissions": [
     {
-      "permission": "appdata_read",
+      "permission": "appdata:read",
       "purpose": "Load app configuration and shared settings"
     }
   ]
@@ -267,11 +267,11 @@ await store('config', { theme: 'dark', lang: 'en' }, 'appdata')
 const config = await retrieve('config', 'appdata')
 ```
 
-#### `userdata_read` & `userdata_write`
+#### `userdata:read` & `userdata:write`
 
 Store and retrieve user-specific data.
 
-**Permission Hierarchy**: `userdata_write` includes `userdata_read` access.
+**Permission Hierarchy**: `userdata:write` includes `userdata:read` access.
 
 **Use cases**:
 - User preferences
@@ -284,7 +284,7 @@ Store and retrieve user-specific data.
 {
   "permissions": [
     {
-      "permission": "userdata_write",
+      "permission": "userdata:write",
       "purpose": "Save and load your personal preferences and settings"
     }
   ]
@@ -296,7 +296,7 @@ Store and retrieve user-specific data.
 {
   "permissions": [
     {
-      "permission": "userdata_read",
+      "permission": "userdata:read",
       "purpose": "Load your personal preferences and settings"
     }
   ]
@@ -314,12 +314,12 @@ await store('preferences', { theme: 'light', fontSize: 14 }, 'userdata')
 const prefs = await retrieve('preferences', 'userdata')
 ```
 
-#### `usercollection_read` & `usercollection_write`
+#### `usercollection:read` & `usercollection:write`
 
 Store and retrieve collections of data items for a user, with pagination support.
 
 :::info
-**Permission Hierarchy**: `usercollection_write` includes `usercollection_read` access.
+**Permission Hierarchy**: `usercollection:write` includes `usercollection:read` access.
 :::
 
 **Use cases**:
@@ -333,7 +333,7 @@ Store and retrieve collections of data items for a user, with pagination support
 {
   "permissions": [
     {
-      "permission": "usercollection_write",
+      "permission": "usercollection:write",
       "purpose": "Save and load your notes and activity history"
     }
   ]
@@ -345,7 +345,7 @@ Store and retrieve collections of data items for a user, with pagination support
 {
   "permissions": [
     {
-      "permission": "usercollection_read",
+      "permission": "usercollection:read",
       "purpose": "Load your saved notes and activity history"
     }
   ]
@@ -371,7 +371,7 @@ console.log(result.next) // Next cursor
 
 ### AI Permissions
 
-#### `ai_text_generate`
+#### `ai:text_generate`
 
 Generate text using AI language models.
 
@@ -384,7 +384,7 @@ Generate text using AI language models.
 **Example**:
 ```json
 {
-  "permission": "ai_text_generate",
+  "permission": "ai:text_generate",
   "purpose": "Generate content suggestions and summaries"
 }
 ```
@@ -402,7 +402,7 @@ const result = await generate(
 console.log(result) // Generated text response
 ```
 
-#### `ai_context_external_send`
+#### `ai:context_external_send`
 
 Permission to use platform data placeholders in AI prompts.
 
@@ -418,9 +418,9 @@ Permission to use platform data placeholders in AI prompts.
 
 :::caution
 **Important**: When using placeholders, you must also have the corresponding read permission:
-- Course placeholders require `course_read`
-- Module placeholders require `module_read`
-- Element placeholders require `element_read`
+- Course placeholders require `courses:read`
+- Module placeholders require `modules:read`
+- Element placeholders require `elements:read`
 :::
 
 **Example**:
@@ -428,15 +428,15 @@ Permission to use platform data placeholders in AI prompts.
 {
   "permissions": [
     {
-      "permission": "ai_text_generate",
+      "permission": "ai:text_generate",
       "purpose": "Generate content suggestions"
     },
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Access course information"
     },
     {
-      "permission": "ai_context_external_send",
+      "permission": "ai:context_external_send",
       "purpose": "Include course content in AI prompts"
     }
   ]
@@ -447,10 +447,10 @@ Permission to use platform data placeholders in AI prompts.
 ```javascript
 import { generate } from '@teachfloor/extension-kit'
 
-// Without placeholders - only needs ai_text_generate
+// Without placeholders - only needs ai:text_generate
 const simpleResult = await generate('Write a motivational message')
 
-// With placeholders - needs ai_text_generate + ai_context_external_send + course_read
+// With placeholders - needs ai:text_generate + ai:context_external_send + courses:read
 const contextResult = await generate(
   'Summarize this course: {{course.content}}'
 )
@@ -481,11 +481,11 @@ Edit `teachfloor-app.json`:
 {
   "permissions": [
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Display course information in widgets"
     },
     {
-      "permission": "user_events_read",
+      "permission": "user_events:read",
       "purpose": "Track your learning progress"
     }
   ]

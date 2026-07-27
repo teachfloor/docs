@@ -54,11 +54,11 @@ Here's a minimal manifest:
 
   "permissions": [
     {
-      "permission": "user_read",
+      "permission": "user:read",
       "purpose": "Display your name and profile"
     },
     {
-      "permission": "course_read",
+      "permission": "courses:read",
       "purpose": "Display course information in notes"
     }
   ],
@@ -210,11 +210,11 @@ Platform permissions your app needs to access Teachfloor resources.
 ```json
 "permissions": [
   {
-    "permission": "course_read",
+    "permission": "courses:read",
     "purpose": "Display course information in widgets"
   },
   {
-    "permission": "user_events_read",
+    "permission": "user_events:read",
     "purpose": "Track learning progress"
   }
 ]
