@@ -332,7 +332,7 @@ useEffect(() => {
 
 ### Modal Control
 
-Widget-surface views can promote themselves into a modal for more room — useful for detail views, forms, or wizards triggered from a compact dashboard widget. The widget always opens ITSELF in the modal (never a different widget), and the modal iframe runs the same component with a fresh mount.
+Widget-surface views can promote themselves into a modal for more room — useful for detail views, forms, or wizards triggered from a compact dashboard widget. The widget always opens ITSELF in the modal (never a different widget), and the modal runs the same component with a fresh mount.
 
 ```javascript
 import { openModal, closeModal, useExtensionContext } from '@teachfloor/extension-kit'
@@ -372,11 +372,11 @@ Anything outside the allowed values is dropped by the host — you can't pass ar
 
 #### `closeModal()`
 
-Dismiss the modal from within its own iframe. Only meaningful when `environment.presentation === 'modal'`. Typical use: form submit success, wizard finish. Calls from a normally-placed widget/drawer/page are no-ops.
+Dismiss the modal from within its own view. Only meaningful when `environment.presentation === 'modal'`. Typical use: form submit success, wizard finish. Calls from a normally-placed widget/drawer/page are no-ops.
 
 #### Launch state — `openModal({ state })` + `useLaunchState()`
 
-Passing `state` in `openModal` hands an arbitrary object to the modal-hosted iframe. The child reads it via `useLaunchState()` (or `useExtensionContext().state`). Set once at mount, does not update. Use it for deep-linking, initial form values, or opener context.
+Passing `state` in `openModal` hands an arbitrary object to the modal-hosted view. The child reads it via `useLaunchState()` (or `useExtensionContext().state`). Set once at mount, does not update. Use it for deep-linking, initial form values, or opener context.
 
 ```javascript
 import { openModal, useLaunchState } from '@teachfloor/extension-kit'

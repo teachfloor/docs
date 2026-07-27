@@ -10,7 +10,7 @@ This chapter covers how to opt in, how to receive and store credentials, how to 
 - **Third-party dashboards** — build a Teachfloor-authenticated view of the org's courses in your own product's admin panel.
 - **Automated workflows** — poll the API from your backend on your own schedule, augmenting the push-based webhook data.
 
-If you only need in-iframe data access (inside your app's dashboard view), the SDK's [`teachfloor.get(...)`](/docs/apps/core-concepts/extension-kit/integration) helpers already do that. OAuth is for when your **backend** — outside the iframe, outside the browser — needs to reach platform data.
+If you only need in-app data access (from within your app's dashboard view), the SDK's [`teachfloor.get(...)`](/docs/apps/core-concepts/extension-kit/integration) helpers already do that. OAuth is for when your **backend** — outside the dashboard, outside the user's browser — needs to reach platform data.
 
 ## How it works
 
@@ -61,8 +61,10 @@ Adding a permission to the manifest grants the matching OAuth scope on the issue
 | `courses:read` | `courses:read` | GET `/v0/courses/*` |
 | `modules:read` | `modules:read` | GET `/v0/modules/*` |
 | `elements:read` | `elements:read` | GET `/v0/elements/*` |
+| `members:read` | `members:read` | GET `/v0/members/*`, GET `/v0/courses/{id}/members/*` |
+| `activities:read` | `activities:read` | GET `/v0/activities/*`, GET `/v0/elements/{id}/activities` |
 
-Other manifest permissions (data storage, realtime, etc.) don't have a public-API equivalent and don't appear on issued tokens.
+Other manifest permissions (data storage, realtime, AI, etc.) are SDK-only — they don't map to a public-API scope and don't appear on issued tokens.
 
 ## Receiving credentials
 

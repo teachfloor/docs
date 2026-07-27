@@ -1,6 +1,6 @@
 # Webhooks
 
-Webhooks deliver platform events to your app's **own backend** — HTTP POSTs signed with your app's secret, fired whenever something the app cares about happens on the platform. Complements [Realtime Channels](/docs/apps/advanced-topics/realtime): realtime pushes events into the browser iframe while a learner is active; webhooks reach your server even when no learner is online.
+Webhooks deliver platform events to your app's **own backend** — HTTP POSTs signed with your app's secret, fired whenever something the app cares about happens on the platform. Complements [Realtime Channels](/docs/apps/advanced-topics/realtime): realtime pushes events into your app's SDK view while a learner is active; webhooks reach your server even when no learner is online.
 
 ## What you can build
 
@@ -212,7 +212,7 @@ See the [OAuth chapter](/docs/apps/advanced-topics/oauth) for the full end-to-en
 }
 ```
 
-Without the `oauth` block, no tokens are minted even if the manifest declares OAuth-mappable permissions — an iframe-only app that adds `courses:read` for in-iframe use won't unexpectedly start receiving credentials in its webhook receiver logs. Adding `oauth: { type: "install" }` is the explicit opt-in.
+Without the `oauth` block, no tokens are minted even if the manifest declares OAuth-mappable permissions — an SDK-only app that adds `courses:read` for in-app use won't unexpectedly start receiving credentials in its webhook receiver logs. Adding `oauth: { type: "install" }` is the explicit opt-in.
 
 Iframe-only apps and apps with only SDK-scoped storage permissions receive no `credentials` — they can still deliver a signed webhook, they just don't get an access token for the public API. When `credentials` is present, use the tokens to call the public API on behalf of the installing organization — bearer-authenticated with `access_token`, refreshable via the standard OAuth 2.0 `/oauth/token` refresh flow using `client_id` + `client_secret` + `refresh_token`. Store `access_token` and `refresh_token` per-install (keyed by `organization.id`).
 
@@ -277,7 +277,7 @@ Respond with any 2xx status code to acknowledge receipt. Any other response (4xx
 
 - **Signature** verification is your responsibility. A delivery that doesn't verify against your master secret is forged — reject it.
 - **The delivery URL and secret cross the wire only over HTTPS**, both from admin to browser (when revealing the secret) and from Teachfloor to your endpoint.
-- **No inbound path is opened by declaring webhooks.** Webhooks are strictly outbound — Teachfloor never calls into your app's iframe or your platform-side runtime as a result of a webhook declaration.
+- **No inbound path is opened by declaring webhooks.** Webhooks are strictly outbound — Teachfloor never calls into your app's SDK view or your platform-side runtime as a result of a webhook declaration.
 - **Uninstall removes the endpoint.** When an org uninstalls your app, the webhook endpoint row is deleted (after the final `app.uninstalled` delivery). Further platform events do not attempt to reach your endpoint for that org.
 
 ## Next Steps
@@ -286,6 +286,6 @@ Respond with any 2xx status code to acknowledge receipt. Any other response (4xx
 
 ## Additional Resources
 
-- [Realtime Channels](/docs/apps/advanced-topics/realtime) - Sub-second event delivery into your app's iframe while the learner is active. Complementary to webhooks (which reach your backend regardless).
+- [Realtime Channels](/docs/apps/advanced-topics/realtime) - Sub-second event delivery into your app's SDK view while the learner is active. Complementary to webhooks (which reach your backend regardless).
 - [Permissions](/docs/apps/advanced-topics/permissions) - The permission scopes your app can declare in its manifest.
 - [App Manifest](/docs/apps/core-concepts/app-manifest) - The full manifest schema, including the `webhook` block.
