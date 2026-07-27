@@ -39,6 +39,10 @@ npm install -g @teachfloor/teachfloor-cli
 | `teachfloor apps remove oauth` | Remove OAuth block | Yes | Yes |
 | **Distribution** |
 | `teachfloor apps set distribution` | Set public/private | Yes | Yes |
+| **Inspection** |
+| `teachfloor apps show` | Print a spec-sheet summary of the current app | Yes | Yes |
+| **Diagnostics** |
+| `teachfloor apps doctor` | Diagnose common setup issues | Yes | No |
 
 ## Non-Interactive Mode
 
@@ -699,6 +703,135 @@ teachfloor apps upload
 
 # 3. Submit via dashboard
 # Navigate to Settings → Apps → Your App → Submit for Review
+```
+
+---
+
+## Inspection
+
+### `teachfloor apps show`
+
+Print a spec-sheet summary of the current app — manifest metadata, webhook + OAuth config, permissions (with legacy-alias flagging), views, and install state on your own org. The quickest way to see "what does this app look like right now."
+
+```bash
+teachfloor apps show
+```
+
+**Options**:
+- `-v, --verbose`: Expand widget declarations to show `id`/`name`/`description` per view (default is compact `Views (2 widgets, 1 drawer)`)
+- `--json`: Emit machine-readable JSON instead of the pretty output (pipe into `jq`)
+- `--no-remote`: Skip the permissions-catalog fetch; render local manifest only. Loses legacy-alias flagging and OAuth scope derivation but works fully offline
+
+**What it prints**:
+
+- **Header** — app name, version, id, distribution type
+- **Metadata** — description + post-install action (only when set)
+- **Webhook** — URL, subscribed events, note that lifecycle events (`app.installed` / `app.uninstalled`) are always delivered
+- **OAuth** — type + "Scopes on install" (the OAuth scopes derived from the manifest's permissions, showing exactly what token an install would mint)
+- **Permissions** — every entry with its purpose; legacy snake_case names show the canonical form with `(legacy alias: course_read)` inline
+- **Views** — count by surface by default; expanded to per-view detail with `--verbose`
+
+Sections only render when the corresponding manifest field is present.
+
+**Example**:
+```bash
+$ teachfloor apps show
+
+Webhook Test App                                            v1.0.0
+6a640834d241e                                              private
+
+  Description      Webhook test app
+  Post-install     external  →  https://example.com
+
+Webhook
+  URL              https://webhook.site/5c1ab7fb-168a-4102-83a0-0425ffc073db
+  Events           element.completed
+                   (+ lifecycle: app.installed, app.uninstalled — always delivered)
+
+OAuth
+  Type             install
+  Scopes on install  courses:read, elements:read, activities:read, members:read
+
+Permissions (5)
+  courses:read     Course permission
+  courses:read     Read permission                (legacy alias: course_read)
+  elements:read    Element read permission        (legacy alias: element_read)
+  activities:read  Activity permission
+  members:read     User read permission
+```
+
+**Scripting with `--json`**:
+```bash
+# List the OAuth scopes this app's install would mint
+teachfloor apps show --json | jq -r '.computed.oauth_scopes_on_install[]'
+
+# List every permission entry that's still using a legacy alias
+teachfloor apps show --json | jq '.permissions[] | select(.is_legacy)'
+```
+
+---
+
+## Diagnostics
+
+### `teachfloor apps doctor`
+
+Run a sequence of checks against your local setup + the current app, printing a pass/warn/fail line for each. Useful when something isn't working and you're not sure whether the problem is auth, the manifest, the app state on the platform, or your webhook/OAuth config.
+
+```bash
+teachfloor apps doctor
+```
+
+**Options**:
+- `-v, --verbose`: Print the detail line for every check, not just non-passing ones
+
+**What it checks**:
+
+Environment
+- **Authenticated** — token present, org selected, and `/whoami` still accepts it (the most common failure mode is a silently-expired token)
+
+Manifest (only when run inside an app folder)
+- **Inside app folder** — `teachfloor-app.json` exists
+- **Manifest is valid JSON** — file parses
+- **Manifest required fields** — `id`, `name`, `version` are all set
+- **App exists on the platform** — the manifest's `id` resolves via `GET /apps/{id}`
+
+Metadata (checked when the field is present)
+- **Description** — warns when empty; marketplace listings render blank otherwise
+- **Distribution type** — must be `private` or `public`
+- **post_install_action** — shape check: `type` is required; when `type: "external"`, `url` is required and must be `https://`
+
+Views (only when `ui_extension.views` is declared)
+- **Views** — every view has `surface`, `viewport`, `component`; surface exists in the server catalog; widget-surface views additionally follow server rules (widget id matches `^[a-z][a-z0-9_]*$`, name ≤ 60 chars, description ≤ 200 chars, ids unique per app)
+
+Permissions (only when declared)
+- **Permissions** — every entry is `{ permission, purpose }`; each permission exists in the server catalog; legacy snake_case names (`course_read`) surface as warnings so you know to migrate to the canonical form (`courses:read`)
+
+Webhook block (only when declared)
+- **Webhook URL declared / uses HTTPS / length** — server-side rules mirrored locally so `apps upload` doesn't 422 on preventable issues
+- **Webhook events subscribed** — every event in `webhook.events` is in the server's catalog
+
+OAuth block (only when declared)
+- **OAuth type is valid** — currently only `install` is accepted
+- **OAuth prerequisites** — the three-prereq gate (`oauth` block + `webhook` block + at least one permission) — warns when credentials wouldn't actually be minted on install
+
+**Exit code**: `0` when there are no errors (warnings still exit 0); `1` when any check failed.
+
+**Example**:
+```bash
+$ teachfloor apps doctor
+
+Running diagnostics...
+
+  ✓  Authenticated
+  ✓  Inside app folder
+  ✓  Manifest is valid JSON
+  ✓  Manifest required fields
+  ✓  App exists on the platform
+  ✓  Webhook URL — myapp.example.com
+  ✓  Webhook events subscribed
+  ⚠  OAuth prerequisites — no webhook block — credentials would have nowhere to land
+
+7 passed, 1 warning
 ```
 
 ---
