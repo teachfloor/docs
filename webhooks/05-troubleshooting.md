@@ -22,7 +22,7 @@ curl -X POST https://your-endpoint.com/webhooks/teachfloor \
 
 **Causes:**
 - Endpoint not responding with 2xx status
-- Response taking longer than 3 seconds
+- Response taking longer than 10 seconds
 - Application errors during processing
 - Infrastructure issues
 

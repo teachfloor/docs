@@ -5,13 +5,13 @@ Understanding webhook reliability and retry behavior.
 ## How Delivery Works
 
 1. Event occurs in Teachfloor
-2. HTTP POST sent to your endpoint (3 second timeout)
+2. HTTP POST sent to your endpoint (10 second timeout)
 3. Response checked
 4. 2xx status = success, otherwise retry
 
 ## Successful Delivery
 
-Your endpoint must respond with 2xx status within 3 seconds:
+Your endpoint must respond with 2xx status within 10 seconds:
 - `200 OK` (recommended)
 - `201 Created`
 - `202 Accepted`
@@ -20,7 +20,7 @@ Your endpoint must respond with 2xx status within 3 seconds:
 ## Retry Mechanism
 
 - **Total attempts**: 3 (initial + 2 retries)
-- **Timeout**: 3 seconds per attempt
+- **Timeout**: 10 seconds per attempt
 - **Backoff**: Exponential (10^attempt seconds)
 
 ### Retry Schedule
@@ -34,22 +34,25 @@ Your endpoint must respond with 2xx status within 3 seconds:
 ### When Retries Occur
 
 - Non-2xx status code
-- Timeout (>3 seconds)
+- Timeout (>10 seconds)
 - Connection failure
 
 ## Handling Duplicates
 
-Use `event.id` to prevent duplicate processing:
+Every delivery carries a `Teachfloor-Idempotency-Key` header whose value is stable across retry attempts (it equals the envelope `id` field). Use it as your dedupe key — checking the header lets you short-circuit before parsing the body:
 
 ```javascript
 const processed = new Set();
 
-function processWebhook(event) {
-  if (processed.has(event.id)) return;
-  processed.add(event.id);
+function processWebhook(req) {
+  const key = req.headers['teachfloor-idempotency-key']; // or event.id from the body
+  if (processed.has(key)) return;
+  processed.add(key);
   // Process event
 }
 ```
+
+Retries carry the SAME key, so any 2xx you send after a retry-triggering timeout will still be treated as duplicate work on your side.
 
 ## Monitoring
 

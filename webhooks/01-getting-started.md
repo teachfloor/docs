@@ -69,7 +69,7 @@ Route::post('/webhooks/teachfloor', function (Request $request) {
 
 Your endpoint must:
 - Accept POST requests
-- Return 2xx status within 3 seconds
+- Return 2xx status within 10 seconds
 - Verify signatures (see [Security](./security))
 
 ## Next Steps

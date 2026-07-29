@@ -140,13 +140,14 @@ Every delivery has the same envelope, with an event-specific `data` block inside
   "id": "evt_abc123",
   "type": "course.completed",
   "created_at": "2026-07-25T14:32:01.000000Z",
+  "installation_id": "7YWJgrMnJMybawx1",
   "data": {
     ...event-specific fields
   }
 }
 ```
 
-`id` is stable and unique — safe to use as an idempotency key. `type` matches one of the [subscribable event names](#event-catalog).
+`id` is stable and unique — safe to use as an idempotency key (and mirrored in the `Teachfloor-Idempotency-Key` header — see [Delivery guarantees](#delivery-guarantees)). `type` matches one of the [subscribable event names](#event-catalog). `installation_id` is the hashid of the InstalledApp this delivery targets — use it to look up which install fired the event without inspecting the `data` block (whose shape varies per event type).
 
 ### Lifecycle events
 
@@ -159,8 +160,8 @@ Two events are always delivered to your endpoint regardless of your `events` sub
   "id": "evt_...",
   "type": "app.installed",
   "created_at": "2026-07-25T14:32:01.000000Z",
+  "installation_id": "7YWJgrMnJMybawx1",
   "data": {
-    "installation_id": "7YWJgrMnJMybawx1",
     "organization": {
       "id": "acme-corp",
       "name": "Acme Corp"
@@ -237,7 +238,7 @@ When an organization upgrades your app to a new version, the platform tears down
 1. `app.uninstalled` for the old version (fired against the old endpoint URL if that changed between versions).
 2. `app.installed` for the new version (fired against the new endpoint URL).
 
-Design your handlers to be idempotent. The `installation_id` changes between the old and new install; correlate by `organization.id` if you need to detect an upgrade rather than a fresh install.
+Design your handlers to be idempotent. The envelope-level `installation_id` changes between the old and new install; correlate by `organization.id` if you need to detect an upgrade rather than a fresh install.
 
 If the new manifest **drops** the `webhook` block, only `app.uninstalled` fires — the app.installed event has nowhere to go. Treat the `app.uninstalled` as your last signal from that org.
 
@@ -266,9 +267,9 @@ Subscribing to an unknown event name is rejected at manifest push time.
 ## Delivery guarantees
 
 - **Retry** — up to 3 attempts on any non-2xx response, with exponential backoff between attempts.
-- **Timeout** — 3 seconds per attempt. Endpoints that take longer are considered failed and retried.
+- **Timeout** — 10 seconds per attempt. Endpoints that take longer are considered failed and retried. If you need to do more work than 10 seconds allows, respond 2xx immediately and enqueue the work.
 - **Order** — deliveries are queued and processed asynchronously. Events for the same organization may be delivered out of order if one takes multiple attempts to succeed. Use the envelope's `created_at` if strict ordering matters.
-- **At-least-once** — a single event may be delivered more than once if your endpoint responds 200 after our timeout window. Use the envelope `id` as an idempotency key to dedupe.
+- **At-least-once** — a single event may be delivered more than once if your endpoint responds 200 after our timeout window. Dedupe on the `Teachfloor-Idempotency-Key` header (equivalent to the envelope `id`) — the header is stable across retry attempts, so it lets you short-circuit duplicate work before parsing the body.
 - **HTTPS required** — HTTP endpoints are rejected at manifest validation. TLS 1.2+ is expected on your endpoint.
 
 Respond with any 2xx status code to acknowledge receipt. Any other response (4xx, 5xx, timeout) triggers a retry.
