@@ -20,6 +20,8 @@ Some viewports provide an `objectContext` object containing details about the cu
 | `teachfloor.dashboard.community.channel.detail` | `/:organization/community/:channel` | channel |
 | `teachfloor.dashboard.community.post.detail` | `/:organization/community/:channel/posts/:post` | channel, post |
 | `teachfloor.dashboard.community.member.list` | `/:organization/community/:channel/members` | channel |
+| `teachfloor.dashboard.community.event.list` | `/:organization/community/events` | - |
+| `teachfloor.dashboard.community.event.detail` | `/:organization/community/events/:event` | event |
 | `teachfloor.dashboard.settings.general.detail` | `/:organization/settings/general` | - |
 | `teachfloor.dashboard.settings.customization.detail` | `/:organization/settings/customization` | - |
 | `teachfloor.dashboard.settings.team.list` | `/:organization/settings/team` | - |

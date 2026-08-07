@@ -43,6 +43,8 @@ teachfloor.{surface}.{resource}.{view-type}
 | `teachfloor.dashboard.community.channel.detail` | Single channel page | `/:org/community/:channelId` | Social features, engagement tools, moderation |
 | `teachfloor.dashboard.community.post.detail` | Community post detail | `/:org/community/:channelId/posts/:postId` | Post sidebars, reaction tools, translation |
 | `teachfloor.dashboard.community.member.list` | Community members | `/:org/community/:channelId/members` | Member profiles, networking tools, search |
+| `teachfloor.dashboard.community.event.list` | Community events | `/:org/community/events` | Calendar exports, RSVP tooling, scheduling helpers |
+| `teachfloor.dashboard.community.event.detail` | Community event detail | `/:org/community/events/:eventId` | Attendee tools, meeting integrations, reminders |
 | **Settings** |
 | `teachfloor.dashboard.settings.general.detail` | General settings | `/:org/settings/general` | Organization-wide integrations, preferences |
 | `teachfloor.dashboard.settings.customization.domain.detail` | Customization · Domain | `/:org/settings/customization/domain` | Domain configuration widgets, DNS helpers |
@@ -241,6 +243,30 @@ The primary resource on this page is the Channel itself — posts are its conten
 {
   "viewport": "teachfloor.dashboard.community.member.list",
   "component": "CommunityMembersView"
+}
+```
+
+#### `teachfloor.dashboard.community.event.list`
+**Displays on**: Community events list
+**Path**: `/:organization/community/events`
+**Use cases**: Calendar exports, RSVP tooling, scheduling helpers
+
+```json
+{
+  "viewport": "teachfloor.dashboard.community.event.list",
+  "component": "CommunityEventsView"
+}
+```
+
+#### `teachfloor.dashboard.community.event.detail`
+**Displays on**: Single community event page
+**Path**: `/:organization/community/events/:eventId`
+**Use cases**: Attendee tools, meeting integrations, reminders, follow-up content
+
+```json
+{
+  "viewport": "teachfloor.dashboard.community.event.detail",
+  "component": "CommunityEventView"
 }
 ```
 
