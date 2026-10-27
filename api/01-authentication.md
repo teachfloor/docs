@@ -19,6 +19,8 @@ Authorization: Bearer YOUR_API_KEY
 
 **Security**: Never share your API key publicly or commit it to version control.
 
+A request with a missing or unknown key is answered with `403 Forbidden` and the standard [error envelope](./errors). A valid key on a plan without the Public API is answered with `402 Payment Required`.
+
 ## Example Request
 
 ```bash

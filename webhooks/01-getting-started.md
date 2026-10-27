@@ -34,7 +34,7 @@ All webhooks have this structure:
 
 ```json
 {
-  "id": "evt_abc123",
+  "id": "WqX3nKp7Lm2vRt9Z",
   "type": "course.join",
   "created_at": "2025-10-07T15:30:00.000000Z",
   "data": {

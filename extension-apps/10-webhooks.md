@@ -137,7 +137,7 @@ Every delivery has the same envelope, with an event-specific `data` block inside
 
 ```json
 {
-  "id": "evt_abc123",
+  "id": "WqX3nKp7Lm2vRt9Z",
   "type": "course.completed",
   "created_at": "2026-07-25T14:32:01.000000Z",
   "installation_id": "7YWJgrMnJMybawx1",
@@ -172,7 +172,7 @@ Two events are always delivered to your endpoint regardless of your `events` sub
       "version": "1.0.0"
     },
     "installer": {
-      "id": "usr_abc123",
+      "id": "e7W6kP8wvjd3GRBz",
       "email": "alice@acme.com",
       "full_name": "Alice Doe"
     },

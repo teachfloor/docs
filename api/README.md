@@ -35,10 +35,11 @@ curl https://api.teachfloor.com/v0/members \
 
 ## Available Resources
 
-- **Activities** - Retrieve activity completion data
-- **Courses** - Manage courses and enrollments
-- **Members** - Access member information
-- **Custom Fields** - Work with custom field data
+- **Courses**, **Modules** and **Elements** - Create, read, update, delete and search course content; enroll and revoke course members
+- **Members** - Create, update, search and revoke organization members; send invites
+- **Activities** - Retrieve completion and submission data per member, course, module or element
+- **Custom Fields** - Read the field definitions and write values for members and course members
+- **Uploads** - Upload files to use in course content
 
 See the full [API Reference](https://docs.teachfloor.com/api-reference) for complete endpoint documentation.
 
