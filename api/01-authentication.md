@@ -17,7 +17,7 @@ Authorization: Bearer YOUR_API_KEY
 3. Click **Create API Key** and give it a name, such as the service that will use it
 4. Copy the key from the confirmation dialog and store it securely
 
-The key is shown **once**. Afterwards the Integrations page lists only its name, a masked form (`tf_key_abc123…wxyz`) and when it was last used. You can create as many keys as you need, one per integration, and revoke any of them without affecting the others.
+The key is shown **once**. Afterwards the Integrations page lists only its name, a masked form (`tf_key_••••••••wxyz`) and when it was last used. You can create as many keys as you need, one per integration, and revoke any of them without affecting the others.
 
 Keys created before named keys were introduced keep working unchanged.
 
