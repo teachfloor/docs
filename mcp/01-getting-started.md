@@ -83,6 +83,7 @@ Every tool declares whether it reads or writes. Read-only tools can run without 
 
 - The server negotiates its protocol revision on `initialize`, and speaks `2025-03-26` and `2024-11-05`. A client asking for anything else is answered with `2025-03-26`.
 - Transport is JSON-RPC over HTTP `POST`. The optional server-to-client SSE stream is not implemented: a `GET` on the endpoint answers `405` with `Allow: POST`.
+- Batched requests are accepted: send a JSON array and you get one response per entry, with notifications omitted. A batch of only notifications answers `204`.
 - A failed tool call comes back as a tool result with `isError: true` and a message the assistant can act on, rather than as a JSON-RPC error.
 
 ## Limits
