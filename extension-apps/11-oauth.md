@@ -118,10 +118,19 @@ Adding a permission to the manifest allows your app to request the matching OAut
 | Manifest permission | OAuth scope | Grants |
 |---|---|---|
 | `courses:read` | `courses:read` | GET `/v0/courses/*` |
+| `courses:write` | `courses:write` | POST/DELETE `/v0/courses/*`, POST `/v0/courses/{id}/join`, POST `/v0/courses/{id}/revoke` |
 | `modules:read` | `modules:read` | GET `/v0/modules/*` |
+| `modules:write` | `modules:write` | POST/DELETE `/v0/modules/*` |
 | `elements:read` | `elements:read` | GET `/v0/elements/*` |
+| `elements:write` | `elements:write` | POST/DELETE `/v0/elements/*` |
 | `members:read` | `members:read` | GET `/v0/members/*`, GET `/v0/courses/{id}/members/*` |
+| `members:write` | `members:write` | POST `/v0/members`, POST `/v0/members/{id}`, POST `/v0/courses/{id}/members/{member_id}` |
+| `teams:read` | `teams:read` | GET `/v0/teams/*`, GET `/v0/members/{id}/teams` |
+| `teams:write` | `teams:write` | POST/DELETE `/v0/teams/*`, POST `/v0/teams/{id}/members/*`, POST `/v0/teams/{id}/courses/*` |
 | `activities:read` | `activities:read` | GET `/v0/activities/*`, GET `/v0/elements/{id}/activities` |
+| `custom_fields:read` | `custom_fields:read` | GET `/v0/custom-fields`, GET `/v0/courses/{id}/custom-fields` |
+| `uploads:write` | `uploads:write` | POST `/v0/uploads` |
+| `organization:write` | `organization:write` | POST `/v0/invites`, POST `/v0/revoke` |
 
 **Grantable on `authorize` tokens** (delivered via `/oauth/token` code exchange, user-scoped, populate id_token claims):
 

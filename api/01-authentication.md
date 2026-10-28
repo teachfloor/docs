@@ -14,8 +14,12 @@ Authorization: Bearer YOUR_API_KEY
 
 1. Log in to your Teachfloor account
 2. Navigate to **Settings** → **Integrations**
-3. Click **Generate API Key**
-4. Copy and store the key securely
+3. Click **Create API Key** and give it a name, such as the service that will use it
+4. Copy the key from the confirmation dialog and store it securely
+
+The key is shown **once**. Afterwards the Integrations page lists only its name, a masked form (`tf_key_abc123…wxyz`) and when it was last used. You can create as many keys as you need, one per integration, and revoke any of them without affecting the others.
+
+Keys created before named keys were introduced keep working unchanged.
 
 **Security**: Never share your API key publicly or commit it to version control.
 
@@ -50,20 +54,24 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 ```
 
-## Regenerating Your Key
+## Rotating a Key
 
-You can regenerate your API key at any time:
+To replace a key without touching the others:
 
 1. Go to **Settings** → **Integrations**
-2. Click **Regenerate API Key**
+2. Open the key's menu and click **Rotate**
+3. Copy the new key from the confirmation dialog
 
-**Warning**: Regenerating invalidates the previous key. Update all applications using the old key.
+**Warning**: Rotating revokes the previous secret immediately. Update the application using it before or right after rotating. If you need an overlap window, create a second key, move the application to it, then revoke the first one.
+
+To stop a key for good, choose **Revoke** from the same menu. Revoked keys are refused with `403 Forbidden` on their next request.
 
 ## Best Practices
 
 - Store API keys in environment variables
 - Never hardcode keys in your application
-- Regenerate immediately if compromised
+- Rotate immediately if compromised
+- Use one key per integration so a leak is contained and `last used` tells you which key is live
 
 ## Next Steps
 
