@@ -1,6 +1,6 @@
 # Getting Started
 
-What every MCP client needs to connect to your Teachfloor organization. The per-client pages — [Claude](./clients/claude), [custom clients](./clients/custom) — cover the steps specific to each.
+What every MCP client needs to connect to your Teachfloor organization. The per-client pages — [Claude](./clients/claude), [ChatGPT](./clients/chatgpt), [custom clients](./clients/custom) — cover the steps specific to each.
 
 **Endpoint:** `https://mcp.teachfloor.com`
 

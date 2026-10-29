@@ -26,7 +26,8 @@ Access is per organization and per person: a token reaches only what that member
 
 | Client | |
 |---|---|
-| [Claude](./mcp/clients/claude) | Available as a custom connector |
+| [Claude](./mcp/clients/claude) | Listed in the [connector directory](https://claude.ai/directory/teachfloor) |
+| [ChatGPT](./mcp/clients/chatgpt) | Submitted, waiting to be published |
 | [Custom clients](./mcp/clients/custom) | Any MCP client, or your own script |
 
 ## Quick Links

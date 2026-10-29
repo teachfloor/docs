@@ -1,23 +1,18 @@
 # Claude
 
-Connect Teachfloor to Claude as a custom connector.
+Connect Teachfloor to Claude from the connector directory.
 
 ## Connecting
 
-Add `https://mcp.teachfloor.com` as a custom connector in Claude.
+Teachfloor is listed in Claude's connector directory:
 
-Claude discovers the authorization server, registers itself, and opens a Teachfloor consent screen where you choose the organization to connect and approve the access. Nothing needs to be set up on the Teachfloor side first — no application to register, no key to paste.
+**[claude.ai/directory/teachfloor](https://claude.ai/directory/teachfloor)**
+
+Open it and add the connector. Claude registers itself and opens a Teachfloor consent screen where you choose the organization to connect and approve the access. Nothing needs to be set up on the Teachfloor side first — no application to register, no key to paste.
+
+You can also add it by hand: in Claude, add `https://mcp.teachfloor.com` as a custom connector. The result is the same, it is just more typing.
 
 See [Getting Started](../getting-started) for what the consent screen grants and how access is scoped.
-
-## What Claude Does With the Annotations
-
-Every tool declares whether it reads or writes, and Claude uses that to decide when to ask you:
-
-- **Read-only tools** can run without a prompt each time — listing courses, reading a member, searching modules.
-- **Anything that creates, modifies or deletes** asks for confirmation before it runs.
-
-[Tools Reference](../tools-reference) marks which tools fall into which group.
 
 ## Asking for Things
 
@@ -37,4 +32,4 @@ The last one writes, so Claude will ask before it runs.
 
 **Tools are missing or greyed out.** The token carries the permissions of the person who approved it. A lecturer or assistant sees only the courses and members they can see in Teachfloor.
 
-**It asks for confirmation on something that only reads.** Worth reporting — that would mean a tool is annotated wrongly. Contact support through your Teachfloor dashboard.
+**It asks for confirmation on something that only reads.** Worth reporting — a tool that only reads should never need approval. Contact support through your Teachfloor dashboard.
